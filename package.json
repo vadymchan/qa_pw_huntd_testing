@@ -20,7 +20,11 @@
   },
   "homepage": "https://github.com/vadymchan/qa_pw_huntd_testing#readme",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.61.0",
-    "@types/node": "^26.0.0"
+    "@types/node": "^26.0.0",
+    "eslint": "^10.5.0",
+    "globals": "^17.6.0",
+    "typescript-eslint": "^8.61.1"
   }
 }
