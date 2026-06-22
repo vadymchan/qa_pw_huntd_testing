@@ -1,0 +1,26 @@
+{
+  "name": "qa_pw_huntd_testing",
+  "version": "1.0.0",
+  "description": "To see the description of the task assignment [follow the link](https://github.com/mate-academy/qa_pw_huntd_testing/blob/main/TaskDescription.md).",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vadymchan/qa_pw_huntd_testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vadymchan/qa_pw_huntd_testing/issues"
+  },
+  "homepage": "https://github.com/vadymchan/qa_pw_huntd_testing#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "@types/node": "^26.0.0"
+  }
+}
