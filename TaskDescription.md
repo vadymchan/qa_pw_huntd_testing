@@ -8,7 +8,7 @@
 
 ## Main task:
 
-1. Analize the [Huntd](https://huntd.tech/) application for the required test coverage.
+1. Analyze the [Huntd](https://huntd.tech/) application for the required test coverage.
 2. Create the test coverage for the Huntd functionality.
 3. Organize your test folders in the Suite hierarhy: `parentSuite`, `suite` and `subSuite`.
 4. Follow the OOP and Composition principles:
