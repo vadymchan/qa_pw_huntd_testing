@@ -31,13 +31,13 @@
 
 ### Login
 
-| #   | Scenario                                                      | Type     | Severity |
-| --- | ------------------------------------------------------------- | -------- | -------- |
-| 1   | User should login with valid credentials                      | positive | blocker  |
-| 2   | User should see validation error when email field is empty    | negative | critical |
-| 3   | User should see validation error when password field is empty | negative | critical |
-| 4   | User should see validation error when email is incorrect      | negative | critical |
-| 5   | User should see validation error when password is incorrect   | negative | critical |
+| #   | Scenario                                                    | Type     | Severity |
+| --- | ----------------------------------------------------------- | -------- | -------- |
+| 1   | User should login with valid credentials                    | positive | blocker  |
+| 2   | User should see validation error when email is empty        | negative | critical |
+| 3   | User should see validation error when password is empty     | negative | critical |
+| 4   | User should see validation error when email is incorrect    | negative | critical |
+| 5   | User should see validation error when password is incorrect | negative | critical |
 
 ### Logout
 
