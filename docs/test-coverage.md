@@ -11,10 +11,11 @@
 | 1   | User should register with valid required-only fields                | positive | blocker  |
 | 2   | User should register with all valid fields                          | positive | critical |
 | 3   | User should see validation error when password is empty             | negative | normal   |
-| 4   | User should see validation error when repeat password is mismatched | negative | normal   |
-| 5   | User should see validation error when email is empty                | negative | normal   |
-| 6   | User should see validation error when email is invalid              | negative | normal   |
-| 7   | User should see validation error when email is already taken        | negative | normal   |
+| 4   | User should see validation error when repeat password is empty      | negative | normal   |
+| 5   | User should see validation error when repeat password is mismatched | negative | normal   |
+| 6   | User should see validation error when email is empty                | negative | normal   |
+| 7   | User should see validation error when email is invalid              | negative | normal   |
+| 8   | User should see validation error when email is already taken        | negative | normal   |
 
 #### Recruiter
 
