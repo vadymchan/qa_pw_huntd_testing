@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 
-test.describe(`Login User`, () => {
+test.describe(`Logout user`, () => {
   test(`User should logout successfully`, async ({ page }) => {
     await page.goto('/sign-up');
 
