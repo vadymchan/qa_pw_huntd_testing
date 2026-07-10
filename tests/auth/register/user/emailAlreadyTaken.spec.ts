@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 
-test.describe(`Register as User`, () => {
+test.describe(`Register as user`, () => {
   let email: string;
 
   // TODO: use api + fixture instead

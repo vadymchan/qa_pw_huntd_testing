@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe(`Register as User`, () => {
+test.describe(`Register as user`, () => {
   test(`User should see validation error when password is empty`, async ({ page }) => {
     await page.goto('/sign-in');
 

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 // TODO: can be made parameterized (different formats)
 
-test.describe(`Register as User`, () => {
+test.describe(`Register as user`, () => {
   test(`User should see validation error when email is invalid`, async ({ page }) => {
     await page.goto('/sign-up');
 

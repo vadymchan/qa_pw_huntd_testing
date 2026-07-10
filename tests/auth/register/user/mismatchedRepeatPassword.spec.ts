@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 
-test.describe(`Register as User`, () => {
+test.describe(`Register as user`, () => {
   test(`User should see validation error when email is invalid`, async ({ page }) => {
     await page.goto('/sign-up');
 

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 
-test.describe('Register as Recruiter', () => {
+test.describe('Register as recruiter', () => {
   test(`User should register with valid required-only fields`, async ({ page }) => {
     await page.goto('/sign-up');
 

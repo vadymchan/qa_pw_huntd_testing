@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { generateSalaryString } from '../../../../src/utils/generateSalaryString';
 
-test.describe(`Register as Candidate`, () => {
+test.describe(`Register as candidate`, () => {
   test(`User should register with valid required-only fields`, async ({ page }) => {
     await page.goto('/sign-up');
 
