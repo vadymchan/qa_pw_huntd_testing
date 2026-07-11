@@ -9,12 +9,5 @@ export function generateProfileContacts() {
   const behanceUrl = `https://www.behance.net/${nameFormatted}`;
   const githubUrl = `https://www.github.com/${nameFormatted}/`;
 
-  return new ProfileContacts(
-    firstName,
-    lastName,
-    linkedinUrl,
-    behanceUrl,
-    githubUrl,
-  );
-
+  return new ProfileContacts(firstName, lastName, linkedinUrl, behanceUrl, githubUrl);
 }
