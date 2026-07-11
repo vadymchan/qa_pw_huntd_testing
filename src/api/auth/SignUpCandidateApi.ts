@@ -1,14 +1,18 @@
 import { SignUpUserApi } from './SignUpUserApi';
 import { CandidateProfile } from '../../models/auth/candidate/CandidateProfile';
 import { WorkPlace } from '../../models/auth/candidate/WorkPlace';
-import { APIRequestContext } from '@playwright/test';
+import { APIRequestContext, APIResponse } from '@playwright/test';
 
 export class SignUpCandidateApi extends SignUpUserApi {
   constructor(request: APIRequestContext) {
     super(request);
   }
 
+  async #parseProfileId(response: APIResponse) {
+    const body = await this.parseJson(response);
 
+    return body.data.updateCandidateProfile.id;
+  }
 
   async createWorkPlace(workPlace: WorkPlace) {
     const payload = {
@@ -31,6 +35,21 @@ export class SignUpCandidateApi extends SignUpUserApi {
       },
       query:
         'mutation updateCandidateProfile($position: String, $salary: Float, $candidateDescription: String, $experienceDescription: String, $workExpectations: String, $achievements: String, $technologiesIds: [Int!], $jobExperienceId: Int, $employmentTypesIds: [Int!], $employmentLocationsIds: [Int!], $englishLevelId: Int, $specializationId: Int, $specializationsIds: [Int!], $cities: [CandidateProfileCityInput!], $workPlaces: [CandidateProfileWorkPlaceInput!]) {\n  updateCandidateProfile(\n    position: $position\n    salary: $salary\n    candidateDescription: $candidateDescription\n    experienceDescription: $experienceDescription\n    workExpectations: $workExpectations\n    achievements: $achievements\n    technologiesIds: $technologiesIds\n    jobExperienceId: $jobExperienceId\n    employmentTypesIds: $employmentTypesIds\n    employmentLocationsIds: $employmentLocationsIds\n    englishLevelId: $englishLevelId\n    specializationId: $specializationId\n    specializationsIds: $specializationsIds\n    cities: $cities\n    workPlaces: $workPlaces\n  ) {\n    ...CandidateProfileBase\n    __typename\n  }\n}\n\nfragment CandidateProfileBase on CandidateProfile {\n  id\n  userId\n  status\n  rejectReason\n  position\n  salary\n  candidateDescription\n  experienceDescription\n  workExpectations\n  achievements\n  slug\n  lastActionTime\n  __typename\n}\n',
+    };
+
+    const response = await this.post(payload);
+
+    const profileId = await this.#parseProfileId(response);
+
+    return { response, profileId };
+  }
+
+  async sendProfileToReview() {
+    const payload = {
+      operationName: 'sendCandidateProfileToReview',
+      variables: {},
+      query:
+        'mutation sendCandidateProfileToReview {\n  sendCandidateProfileToReview {\n    ...CandidateProfileBase\n    __typename\n  }\n}\n\nfragment CandidateProfileBase on CandidateProfile {\n  id\n  userId\n  status\n  rejectReason\n  position\n  salary\n  candidateDescription\n  experienceDescription\n  workExpectations\n  achievements\n  slug\n  lastActionTime\n  __typename\n}\n',
     };
 
     return await this.post(payload);

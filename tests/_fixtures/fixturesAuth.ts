@@ -1,4 +1,4 @@
-import { test as base } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
 import { generateUserCredentials } from '../../src/utils/generators/generateUserCredentials';
 import { generateProfileContacts } from '../../src/utils/generators/generateProfileContacts';
 import { SignUpCandidateApi } from '../../src/api/auth/SignUpCandidateApi';
@@ -13,17 +13,17 @@ export const test = base.extend<{ registeredCandidate; registeredRecruiter }>({
 
     // Create User
     const userCredentials = generateUserCredentials();
-    const { response: signUpResponse, userId } =
-      await signUpCandidateApi.createUser(userCredentials);
+    const signUpResponse = await signUpCandidateApi.createUser(userCredentials);
     signUpCandidateApi.assertSuccessResponseCode(signUpResponse);
 
     // Update Candidate Profile
     const candidateProfile = generateCandidateProfile();
-    const updateCandidateProfileResponse = await signUpCandidateApi.updateProfile(candidateProfile);
+    const { response: updateCandidateProfileResponse, profileId } =
+      await signUpCandidateApi.updateProfile(candidateProfile);
     signUpCandidateApi.assertSuccessResponseCode(updateCandidateProfileResponse);
 
     // Create Work Place
-    const workPlace = generateWorkPlace(userId);
+    const workPlace = generateWorkPlace(profileId);
     const createWorkPlaceResponse = await signUpCandidateApi.createWorkPlace(workPlace);
     signUpCandidateApi.assertSuccessResponseCode(createWorkPlaceResponse);
 
@@ -33,7 +33,11 @@ export const test = base.extend<{ registeredCandidate; registeredRecruiter }>({
       await signUpCandidateApi.updateProfileContacts(profileContacts);
     signUpCandidateApi.assertSuccessResponseCode(updateProfileContactsResponse);
 
-    await use({ userCredentials, userId, candidateProfile, workPlace, profileContacts });
+    // Send Candidate Profile To Review
+    const sendProfileToReviewResponse = await signUpCandidateApi.sendProfileToReview();
+    await signUpCandidateApi.assertSuccessResponseCode(sendProfileToReviewResponse);
+
+    await use({ userCredentials, profileId, candidateProfile, workPlace, profileContacts });
   },
   registeredRecruiter: async ({ request }, use) => {
     const signUpRecruiterApi = new SignUpRecruiterApi(request);
@@ -54,6 +58,10 @@ export const test = base.extend<{ registeredCandidate; registeredRecruiter }>({
     const updateProfileContactsResponse =
       await signUpRecruiterApi.updateProfileContacts(profileContacts);
     signUpRecruiterApi.assertSuccessResponseCode(updateProfileContactsResponse);
+
+    // Send Recruiter Profile To Reveiw
+    const sendProfileToReviewResponse = await signUpRecruiterApi.sendProfileToReview();
+    signUpRecruiterApi.assertSuccessResponseCode(sendProfileToReviewResponse);
 
     await use({ userCredentials, recruiterProfile, profileContacts });
   },
