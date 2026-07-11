@@ -1,4 +1,4 @@
-import { test as base, expect } from '@playwright/test';
+import { test as base } from '@playwright/test';
 import { generateUserCredentials } from '../../src/utils/generators/generateUserCredentials';
 import { generateProfileContacts } from '../../src/utils/generators/generateProfileContacts';
 import { SignUpCandidateApi } from '../../src/api/auth/SignUpCandidateApi';
@@ -44,7 +44,7 @@ export const test = base.extend<{ registeredCandidate; registeredRecruiter }>({
 
     // Create User
     const userCredentials = generateUserCredentials();
-    const { response: signUpResponse } = await signUpRecruiterApi.createUser(userCredentials);
+    const signUpResponse = await signUpRecruiterApi.createUser(userCredentials);
     signUpRecruiterApi.assertSuccessResponseCode(signUpResponse);
 
     // Update Recruiter Profile
