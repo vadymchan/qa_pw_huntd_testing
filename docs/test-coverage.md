@@ -61,7 +61,6 @@
 | 6   | User should see validation error when first name is empty | negative | minor    |
 | 7   | User should update last name                              | positive | normal   |
 | 8   | User should see validation error when last name is empty  | negative | minor    |
-| 9   | User should update Linkedin                               | positive | normal   |
 
 #### Account Settings
 
