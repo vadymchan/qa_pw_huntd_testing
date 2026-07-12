@@ -64,14 +64,14 @@
 
 #### Account Settings
 
-| #   | Scenario                                                            | Type     | Severity |
-| --- | ------------------------------------------------------------------- | -------- | -------- |
-| 1   | User should change password successfully                            | positive | normal   |
-| 2   | User should see validation error when current password is empty     | negative | critical |
-| 3   | User should see validation error when current password is incorrect | negative | critical |
-| 4   | User should see validation error when new password is empty         | negative | normal   |
-| 5   | User should see validation error when repeat password is empty      | negative | minor    |
-| 6   | User should see validation error when repeat password is mismatched | negative | minor    |
+| #   | Scenario                                                                | Type     | Severity |
+| --- | ----------------------------------------------------------------------- | -------- | -------- |
+| 1   | User should change password successfully                                | positive | normal   |
+| 2   | User should see validation error when current password is empty         | negative | critical |
+| 3   | User should see validation error when current password is incorrect     | negative | critical |
+| 4   | User should see validation error when new password is empty             | negative | normal   |
+| 5   | User should see validation error when repeat new password is empty      | negative | minor    |
+| 6   | User should see validation error when repeat new password is mismatched | negative | minor    |
 
 ### Candidate
 
@@ -146,14 +146,14 @@
 
 #### Account Settings
 
-| #   | Scenario                                                            | Type     | Severity |
-| --- | ------------------------------------------------------------------- | -------- | -------- |
-| 1   | User should change password successfully                            | positive | normal   |
-| 2   | User should see validation error when current password is empty     | negative | critical |
-| 3   | User should see validation error when current password is incorrect | negative | critical |
-| 4   | User should see validation error when new password is empty         | negative | normal   |
-| 5   | User should see validation error when repeat password is empty      | negative | minor    |
-| 6   | User should see validation error when repeat password is mismatched | negative | minor    |
+| #   | Scenario                                                                | Type     | Severity |
+| --- | ----------------------------------------------------------------------- | -------- | -------- |
+| 1   | User should change password successfully                                | positive | normal   |
+| 2   | User should see validation error when current password is empty         | negative | critical |
+| 3   | User should see validation error when current password is incorrect     | negative | critical |
+| 4   | User should see validation error when new password is empty             | negative | normal   |
+| 5   | User should see validation error when repeat new password is empty      | negative | minor    |
+| 6   | User should see validation error when repeat new password is mismatched | negative | minor    |
 
 ## Jobs
 
