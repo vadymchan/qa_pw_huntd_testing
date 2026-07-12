@@ -1,5 +1,6 @@
 import { expect } from '@playwright/test';
-import { test } from '../../../_fixtures/fixtures';
+import { test } from '../../../../_fixtures/fixtures';
+import { graphqlWaitForResponse } from '../../../../../src/utils/playwright/graphqlWaitForResponse';
 
 test.describe(`Edit profile as candidate`, () => {
   test.beforeEach(async ({ page, registeredCandidate }) => {
@@ -11,16 +12,19 @@ test.describe(`Edit profile as candidate`, () => {
     await page.waitForURL('/profile-preview/**');
   });
 
-  test(`User should see validation error when desired position is empt`, async ({ page }) => {
-    const desiredPosition = '';
+  test(`User should update desired position`, async ({ page }) => {
+    const desiredPosition = 'Fullstack';
 
     await page.goto('/profile/candidate');
 
     await page.getByLabel('Desired position').fill(desiredPosition);
-    await page.getByRole('button', { name: 'Save changes' }).click();
+    await graphqlWaitForResponse(page, 'updateCandidateProfile', async () => {
+      await page.getByRole('button', { name: 'Save changes' }).click();
+    });
 
-    await expect(page.locator('[class*=FormField_metaBlock]').first()).toHaveText(
-      'Position is required',
+    await page.goto('/profile-preview/candidate');
+    await expect(page.locator('[class*=CandidateProfilePreviewModule_title]')).toHaveText(
+      desiredPosition,
     );
   });
 });

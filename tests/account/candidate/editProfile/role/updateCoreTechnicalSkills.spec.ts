@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
-import { test } from '../../../_fixtures/fixtures';
-import { graphqlWaitForResponse } from '../../../../src/utils/playwright/graphqlWaitForResponse';
+import { test } from '../../../../_fixtures/fixtures';
+import { graphqlWaitForResponse } from '../../../../../src/utils/playwright/graphqlWaitForResponse';
 
 test.describe(`Edit profile as candidate`, () => {
   test.beforeEach(async ({ page, registeredCandidate }) => {

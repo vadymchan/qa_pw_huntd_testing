@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../../../_fixtures/fixtures';
+import { test } from '../../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {
   test.beforeEach(async ({ page, registeredCandidate }) => {
@@ -11,11 +11,7 @@ test.describe(`Edit profile as candidate`, () => {
     await page.waitForURL('/profile-preview/**');
   });
 
-  test(`User should see validation error when core technical skills are fewer than minimum`, async ({
-    page,
-  }) => {
-    const coreTechnicalSkills = ['Python', 'GraphQL', 'MySQL', 'Big Data'];
-
+  test(`User should see validation error when core technical skills is empty`, async ({ page }) => {
     await page.goto('/profile/candidate');
 
     await page
@@ -23,14 +19,6 @@ test.describe(`Edit profile as candidate`, () => {
       .filter({ has: page.getByLabel('Core technical skills') })
       .locator('.select__clear-indicator')
       .click();
-
-    for (const skill of coreTechnicalSkills) {
-      await page.getByRole('textbox', { name: 'Core technical skills' }).fill(skill);
-      await expect(
-        page.locator('.select__option').filter({ hasText: new RegExp(`^${skill}$`) }),
-      ).toBeVisible();
-      await page.keyboard.press('Enter');
-    }
 
     await page.getByRole('button', { name: 'Save changes' }).click();
 
