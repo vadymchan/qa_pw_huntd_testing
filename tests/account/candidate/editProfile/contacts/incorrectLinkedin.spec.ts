@@ -11,7 +11,7 @@ test.describe(`Edit profile as candidate`, () => {
     await page.waitForURL('/profile-preview/**');
   });
 
-  test(`User should update Linkedin`, async ({ page }) => {
+  test(`User should see validation error when Linkedin is invalid`, async ({ page }) => {
     const linkedinUrl = 'incorrect Linkedin format';
 
     await page.goto('profile/candidate/contacts');

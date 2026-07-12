@@ -11,7 +11,7 @@ test.describe(`Edit profile as candidate`, () => {
     await page.waitForURL('/profile-preview/**');
   });
 
-  test(`User should update GitHub`, async ({ page }) => {
+  test(`User should see validation error when GitHub is invalid`, async ({ page }) => {
     const githubUrl = 'incorrect GitHub format';
 
     await page.goto('profile/candidate/contacts');

@@ -11,7 +11,7 @@ test.describe(`Edit profile as candidate`, () => {
     await page.waitForURL('/profile-preview/**');
   });
 
-  test(`User should update Behance`, async ({ page }) => {
+  test(`User should see validation error when Behance is invalid`, async ({ page }) => {
     const behanceUrl = 'incorrect Behance format';
 
     await page.goto('profile/candidate/contacts');
