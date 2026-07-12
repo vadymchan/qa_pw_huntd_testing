@@ -161,6 +161,15 @@ test.describe(`Register as candidate`, () => {
       ).toBeVisible();
     }
 
+    await expect(
+      page
+        .locator('[class*=ProfileInfo_item]')
+        .filter({
+          has: page.locator('[class*=ProfileInfo_itemTitle]').getByText('Job expectations'),
+        })
+        .getByRole('definition'),
+    ).toHaveText(expectations);
+
     for (const role of desiredRoles) {
       await expect(
         page
