@@ -8,7 +8,7 @@ export class CandidateProfile {
     public englishLevelId: number,
     public cities: object, // TODO: create City class
     public employmentLocationsIds: Array<number>,
-    public workExpectations: string,
     public achievements: string,
+    public workExpectations: string,
   ) {}
 }
