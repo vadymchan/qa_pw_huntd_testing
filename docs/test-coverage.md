@@ -141,8 +141,11 @@
 | 3   | User should update last name                              | positive | normal   |
 | 4   | User should see validation error when last name is empty  | negative | minor    |
 | 5   | User should update Linkedin                               | positive | normal   |
-| 6   | User should update Behance                                | positive | normal   |
-| 7   | User should update GitHub                                 | positive | normal   |
+| 6   | User should see validation error when Linkedin is invalid | negative | minor    |
+| 7   | User should update Behance                                | positive | normal   |
+| 8   | User should see validation error when Behance is invalid  | negative | minor    |
+| 9   | User should update Github                                 | positive | normal   |
+| 10  | User should see validation error when GitHub is invalid   | negative | minor    |
 
 #### Account Settings
 
