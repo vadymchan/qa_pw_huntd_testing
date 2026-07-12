@@ -84,8 +84,8 @@
 | 1   | User should update desired position                                                | positive | normal   |
 | 2   | User should see validation error when desired position is empty                    | negative | minor    |
 | 3   | User should update desired roles                                                   | positive | normal   |
-| 4   | User should see validation error when desired roles is empty                       | negative | minor    |
-| 5   | User should update core technical skills                                           | positive | normal   |
+| 4   | User should update core technical skills                                           | positive | normal   |
+| 5   | User should see validation error when core technical skills is empty               | positive | minor    |
 | 6   | User should see validation error when core technical skills are fewer than minimum | negative | minor    |
 
 ##### Expectations
