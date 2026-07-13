@@ -1,4 +1,4 @@
-export function generateSalaryString(salaryType: string, salaryAmount: number) {
+export function generateSalaryString(salaryType: 'Annual' | 'Monthly', salaryAmount: number) {
   const salaryInThousands = salaryAmount / 1000;
   const monthsInYear = 12;
 
@@ -21,7 +21,7 @@ export function generateSalaryString(salaryType: string, salaryAmount: number) {
     : roundToOneDecimal(monthlySalary) * 1000;
   const annualSalaryFormatted = needsShortening(annualSalary)
     ? `${truncateIfDecimalIsZero(annualSalary)}k`
-    : roundToOneDecimal(monthlySalary) * 1000;
+    : roundToOneDecimal(annualSalary) * 1000;
 
   return `$${annualSalaryFormatted} ($${monthlySalaryFormatted} / month)`;
 }
