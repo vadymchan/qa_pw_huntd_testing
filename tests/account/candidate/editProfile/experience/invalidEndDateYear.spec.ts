@@ -14,7 +14,7 @@ test.describe(`Edit profile as candidate`, () => {
   test(`User should see validation error when job experience end date year has incorrect format`, async ({
     page,
   }) => {
-    const endYear = 'invalid format';
+    const endYear = 'incorrect format';
 
     await page.goto('/profile/candidate/experience');
 
