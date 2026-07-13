@@ -165,11 +165,10 @@
 | 6   | Applying for a job shouldn't be available                      | negative | normal   |
 | 7   | Newsletter form should subscribe successfully with valid email | positive | normal   |
 | 8   | Newsletter should show error when email is empty               | negative | normal   |
-| 9   | Newsletter should show error when email is in invalid format   | negative | normal   |
+| 9   | Newsletter should show error when email has incorrect format   | negative | normal   |
 
 Notes:
 
-- job details = description, salary, employment type, location
 - filter by category (just by url that has changed)
 - filter by company (image and company name the same for each job in the filtered list)
 
