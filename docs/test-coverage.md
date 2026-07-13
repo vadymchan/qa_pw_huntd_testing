@@ -102,22 +102,20 @@
 
 ##### Experience
 
-| #   | Scenario                                                                                    | Type     | Severity |
-| --- | ------------------------------------------------------------------------------------------- | -------- | -------- |
-| 1   | User should add job experience                                                              | positive | normal   |
-| 2   | User should update job experience                                                           | positive | normal   |
-| 3   | User should see validation error when job experience role is empty                          | negative | minor    |
-| 4   | User should see validation error when job experience company name is empty                  | negative | minor    |
-| 5   | User should see validation error when job experience start date month is empty              | negative | minor    |
-| 6   | User should see validation error when job experience start date year is empty               | negative | minor    |
-| 7   | User should see validation error when job experience start date year are fewer than minimum | negative | minor    |
-| 8   | User should see validation error when job experience start date year has incorrect format   | negative | minor    |
-| 9   | User should see validation error when job experience end date month is empty                | negative | minor    |
-| 10  | User should see validation error when job experience end date year is empty                 | negative | minor    |
-| 11  | User should see validation error when job experience end date year are fewer than minimum   | negative | minor    |
-| 12  | User should see validation error when job experience end date year has incorrect format     | negative | minor    |
-| 13  | User should see validation error when job experience start date is after end date           | negative | minor    |
-| 14  | User should delete job experience                                                           | positive | normal   |
+| #   | Scenario                                                                                  | Type     | Severity |
+| --- | ----------------------------------------------------------------------------------------- | -------- | -------- |
+| 1   | User should add job experience                                                            | positive | normal   |
+| 2   | User should update job experience                                                         | positive | normal   |
+| 3   | User should see validation error when job experience role is empty                        | negative | minor    |
+| 4   | User should see validation error when job experience company name is empty                | negative | minor    |
+| 5   | User should see validation error when job experience start date month is empty            | negative | minor    |
+| 6   | User should see validation error when job experience start date year is empty             | negative | minor    |
+| 7   | User should see validation error when job experience start date year is less than minimum | negative | minor    |
+| 8   | User should see validation error when job experience start date year has incorrect format | negative | minor    |
+| 9   | User should see validation error when job experience end date year is less than minimum   | negative | minor    |
+| 10  | User should see validation error when job experience end date year has incorrect format   | negative | minor    |
+| 11  | User should see validation error when job experience start date is after end date         | negative | minor    |
+| 12  | User should delete job experience                                                         | positive | normal   |
 
 ##### Bio
 
