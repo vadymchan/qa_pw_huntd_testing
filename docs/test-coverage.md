@@ -97,11 +97,8 @@
 | 3   | User should update desired monthly base salary                             | positive | normal   |
 | 4   | User should see validation error when desired monthly base salary is empty | negative | minor    |
 | 5   | User should update job experience                                          | positive | normal   |
-| 6   | User should see validation error when job experience is not selected       | negative | minor    |
-| 7   | User should update English level                                           | positive | normal   |
-| 8   | User should see validation error when English level is not selected        | negative | minor    |
-| 9   | User should update location                                                | positive | normal   |
-| 10  | User should see validation error when location is empty                    | negative | minor    |
+| 6   | User should update English level                                           | positive | normal   |
+| 7   | User should update location                                                | positive | normal   |
 
 ##### Experience
 
