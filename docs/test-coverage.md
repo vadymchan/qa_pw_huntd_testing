@@ -102,8 +102,6 @@
 | 8   | User should see validation error when English level is not selected        | negative | minor    |
 | 9   | User should update location                                                | positive | normal   |
 | 10  | User should see validation error when location is empty                    | negative | minor    |
-| 11  | User should update employment options                                      | positive | normal   |
-| 12  | User should see validation error when employment options are unchecked     | negative | minor    |
 
 ##### Experience
 
