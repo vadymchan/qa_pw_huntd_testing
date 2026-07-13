@@ -22,7 +22,7 @@ test.describe(`Register as candidate`, () => {
     const englishLevel = 'Elementary';
     const location = 'Kharkiv';
 
-    const salaryType: string = 'Annual';
+    const salaryType = 'Annual';
     const previousRole = 'Automation Qa';
     const previousCompany = 'Mate Academy';
     const startMonth = 'January';
