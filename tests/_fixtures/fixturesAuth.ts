@@ -1,11 +1,11 @@
 import { test as base } from '@playwright/test';
 import { generateUserCredentials } from '../../src/utils/generators/generateUserCredentials';
 import { generateProfileContacts } from '../../src/utils/generators/generateProfileContacts';
+import { generateCandidateProfile } from '../../src/utils/generators/generateCandidateProfile';
+import { generateRecruiterProfile } from '../../src/utils/generators/generateRecruiterProfile';
+import { generateWorkPlace } from '../../src/utils/generators/generateWorkPlace';
 import { SignUpCandidateApi } from '../../src/api/auth/SignUpCandidateApi';
 import { SignUpRecruiterApi } from '../../src/api/auth/SignUpRecruiterApi';
-import { generateCandidateProfile } from '../../src/utils/generators/generateCandidateProfile';
-import { generateWorkPlace } from '../../src/utils/generators/generateWorkPlace';
-import { generateRecruiterProfile } from '../../src/utils/generators/generateRecruiterProfile';
 
 export const test = base.extend<{ registeredCandidate; registeredRecruiter }>({
   registeredCandidate: async ({ request }, use) => {
