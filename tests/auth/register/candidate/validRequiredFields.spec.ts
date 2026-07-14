@@ -36,7 +36,11 @@ test.describe(`Register as candidate`, () => {
     await page.getByLabel('Repeat password').fill(password);
     await page.getByRole('button', { name: 'Create account' }).click();
 
+    await expect(page).toHaveURL('/choose-profile');
+
     await page.getByRole('link', { name: 'Candidate hunting for interesting job offers' }).click();
+
+    await expect(page).toHaveURL('/profile/candidate');
 
     await page
       .getByRole('textbox', { name: 'Desired position' })
@@ -58,6 +62,8 @@ test.describe(`Register as candidate`, () => {
 
     await page.getByRole('button', { name: 'Save and continue' }).click();
 
+    await expect(page).toHaveURL('/profile/candidate/job-expectations');
+
     await page.getByRole('button', { name: salaryType }).click();
     await page
       .getByRole('textbox', { name: /Desired base salary/i })
@@ -77,6 +83,8 @@ test.describe(`Register as candidate`, () => {
 
     await page.getByRole('button', { name: 'Save and continue' }).click();
 
+    await expect(page).toHaveURL('/profile/candidate/experience');
+
     await page.getByRole('button', { name: 'Add manually' }).click();
     await page.getByLabel('Role').fill(previousRole);
     await page.getByLabel('Company name').fill(previousCompany);
@@ -88,8 +96,12 @@ test.describe(`Register as candidate`, () => {
     await page.getByRole('button', { name: 'Save' }).click();
     await page.getByRole('button', { name: 'Save and continue' }).click();
 
+    await expect(page).toHaveURL('/profile/candidate/bio');
+
     await page.getByLabel('Achievements / Key results').fill(achivements);
     await page.getByRole('button', { name: 'Save and continue' }).click();
+
+    await expect(page).toHaveURL('/profile/contacts?preview=candidate');
 
     await page.getByRole('button', { name: 'Usual avatar' }).click();
     await page.getByLabel('First name').fill(firstName);

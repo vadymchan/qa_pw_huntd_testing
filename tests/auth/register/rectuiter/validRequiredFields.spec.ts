@@ -22,15 +22,23 @@ test.describe('Register as recruiter', () => {
     await page.getByLabel('Repeat password').fill(password);
     await page.getByRole('button', { name: 'Create account' }).click();
 
+    await expect(page).toHaveURL('/choose-profile');
+
     await page.getByRole('link', { name: 'Recruiter hiring talent' }).click();
+
+    await expect(page).toHaveURL('/profile/recruiter');
 
     await page.getByLabel('My role').fill(role);
     await page.getByLabel('Company').fill(company);
     await page.getByRole('button', { name: 'Save and continue' }).click();
 
+    await expect(page).toHaveURL('/profile/contacts?preview=recruiter');
+
     await page.getByLabel('First name').fill(firstName);
     await page.getByLabel('Last name').fill(lastName);
     await page.getByRole('button', { name: 'Save and continue' }).click();
+
+    await expect(page).toHaveURL('/profile/perfect-candidate');
 
     for (const candidateRole of candidateRoles) {
       await page.getByLabel('Role').focus();
@@ -64,6 +72,9 @@ test.describe('Register as recruiter', () => {
     await page.locator('#messageBody').fill(templateMessage);
 
     await page.getByRole('button', { name: 'Send' }).click();
+
+    // Sending messages to candidates (bulkSendMessage) takes some time, especially under heavy load
+    await expect(page).toHaveURL('/chats', { timeout: 20_000 });
 
     await page.goto('/profile-preview/recruiter');
 
