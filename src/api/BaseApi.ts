@@ -31,11 +31,22 @@ export class BaseApi {
     expect(this.parseStatus(response)).toBe(SUCCESS_RESPONSE_CODE);
   }
 
+  async throwOnGraphqlErrors(response: APIResponse) {
+    const body = await this.parseJson(response);
+    if (body.errors?.length) {
+      throw new Error(body.errors[0].message);
+    }
+  }
+
   async post(payload: object) {
     const response = await this._request.post(this._endpoint, {
       data: payload,
       headers: this._headers,
     });
+
+    this.assertSuccessResponseCode(response);
+
+    await this.throwOnGraphqlErrors(response);
 
     return response;
   }

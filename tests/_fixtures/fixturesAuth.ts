@@ -13,29 +13,22 @@ export const test = base.extend<{ registeredCandidate; registeredRecruiter }>({
 
     // Create User
     const userCredentials = generateUserCredentials();
-    const signUpResponse = await signUpCandidateApi.createUser(userCredentials);
-    signUpCandidateApi.assertSuccessResponseCode(signUpResponse);
+    await signUpCandidateApi.createUser(userCredentials);
 
     // Update Candidate Profile
     const candidateProfile = generateCandidateProfile();
-    const { response: updateCandidateProfileResponse, profileId } =
-      await signUpCandidateApi.updateProfile(candidateProfile);
-    signUpCandidateApi.assertSuccessResponseCode(updateCandidateProfileResponse);
+    const { profileId } = await signUpCandidateApi.updateProfile(candidateProfile);
 
     // Create Work Place
     const workPlace = generateWorkPlace(profileId);
-    const createWorkPlaceResponse = await signUpCandidateApi.createWorkPlace(workPlace);
-    signUpCandidateApi.assertSuccessResponseCode(createWorkPlaceResponse);
+    await signUpCandidateApi.createWorkPlace(workPlace);
 
     // Update Profile Contacts
     const profileContacts = generateProfileContacts();
-    const updateProfileContactsResponse =
-      await signUpCandidateApi.updateProfileContacts(profileContacts);
-    signUpCandidateApi.assertSuccessResponseCode(updateProfileContactsResponse);
+    await signUpCandidateApi.updateProfileContacts(profileContacts);
 
     // Send Candidate Profile To Review
-    const sendProfileToReviewResponse = await signUpCandidateApi.sendProfileToReview();
-    await signUpCandidateApi.assertSuccessResponseCode(sendProfileToReviewResponse);
+    await signUpCandidateApi.sendProfileToReview();
 
     await use({ userCredentials, profileId, candidateProfile, workPlace, profileContacts });
   },
@@ -44,24 +37,18 @@ export const test = base.extend<{ registeredCandidate; registeredRecruiter }>({
 
     // Create User
     const userCredentials = generateUserCredentials();
-    const signUpResponse = await signUpRecruiterApi.createUser(userCredentials);
-    signUpRecruiterApi.assertSuccessResponseCode(signUpResponse);
+    await signUpRecruiterApi.createUser(userCredentials);
 
     // Update Recruiter Profile
     const recruiterProfile = generateRecruiterProfile();
-    const updateRecruiterProfileResponse =
-      await signUpRecruiterApi.updateRecruiterProfile(recruiterProfile);
-    signUpRecruiterApi.assertSuccessResponseCode(updateRecruiterProfileResponse);
+    await signUpRecruiterApi.updateRecruiterProfile(recruiterProfile);
 
     // Update Profile Contacts
     const profileContacts = generateProfileContacts();
-    const updateProfileContactsResponse =
-      await signUpRecruiterApi.updateProfileContacts(profileContacts);
-    signUpRecruiterApi.assertSuccessResponseCode(updateProfileContactsResponse);
+    await signUpRecruiterApi.updateProfileContacts(profileContacts);
 
-    // Send Recruiter Profile To Reveiw
-    const sendProfileToReviewResponse = await signUpRecruiterApi.sendProfileToReview();
-    signUpRecruiterApi.assertSuccessResponseCode(sendProfileToReviewResponse);
+    // Send Recruiter Profile To Review
+    await signUpRecruiterApi.sendProfileToReview();
 
     await use({ userCredentials, recruiterProfile, profileContacts });
   },
