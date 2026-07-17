@@ -3,19 +3,19 @@ import { testStep } from '../utils/playwright/testStep';
 import { SUCCESS_RESPONSE_CODE } from '../utils/constants/responseCodes';
 
 export class BaseApi {
-  _endpoint: string;
-  _headers: Record<string, string>;
-  _request: APIRequestContext;
+  protected endpoint: string;
+  protected headers: Record<string, string>;
+  protected request: APIRequestContext;
 
   constructor(request: APIRequestContext) {
-    this._endpoint = '/graphql';
-    this._headers = {
+    this.endpoint = '/graphql';
+    this.headers = {
       'Content-Type': 'application/json',
     };
-    this._request = request;
+    this.request = request;
   }
 
-  async step(testTitle: string, stepToRun) {
+  async step<T>(testTitle: string, stepToRun: () => Promise<T> | T): Promise<T> {
     return await testStep(testTitle, stepToRun);
   }
 
@@ -39,9 +39,9 @@ export class BaseApi {
   }
 
   async post(payload: object) {
-    const response = await this._request.post(this._endpoint, {
+    const response = await this.request.post(this.endpoint, {
       data: payload,
-      headers: this._headers,
+      headers: this.headers,
     });
 
     this.assertSuccessResponseCode(response);
