@@ -1,9 +1,7 @@
-export class ProfileContacts {
-  constructor(
-    public firstName: string,
-    public lastName: string,
-    public linkedinUrl: string,
-    public behanceUrl: string,
-    public githubUrl: string,
-  ) {}
-}
+export type ProfileContacts = {
+  firstName: string;
+  lastName: string;
+  linkedinUrl: string;
+  behanceUrl: string;
+  githubUrl: string;
+};

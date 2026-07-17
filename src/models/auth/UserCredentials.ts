@@ -1,6 +1,4 @@
-export class UserCredentials {
-  constructor(
-    public email: string,
-    public password: string,
-  ) {}
-}
+export type UserCredentials = {
+  email: string;
+  password: string;
+};
