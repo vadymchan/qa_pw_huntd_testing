@@ -1,8 +1,11 @@
 import { RecruiterProfile } from '../../models/auth/recruiter/RecruiterProfile';
 
-export function generateRecruiterProfile() {
-  const position = 'HR';
+export function generateRecruiterProfile(): RecruiterProfile {
+  const role = 'HR';
   const companyName = 'Mate Academy';
 
-  return new RecruiterProfile(position, companyName);
+  return {
+    role,
+    companyName,
+  };
 }

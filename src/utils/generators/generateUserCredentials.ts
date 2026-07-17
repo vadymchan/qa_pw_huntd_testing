@@ -1,9 +1,12 @@
 import { faker } from '@faker-js/faker';
 import { UserCredentials } from '../../models/auth/UserCredentials';
 
-export function generateUserCredentials() {
-  const email = faker.internet.email();
+export function generateUserCredentials(): UserCredentials {
+  const email = faker.internet.email().toLowerCase();
   const password = faker.internet.password();
 
-  return new UserCredentials(email, password);
+  return {
+    email,
+    password,
+  };
 }

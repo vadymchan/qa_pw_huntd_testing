@@ -1,4 +1,6 @@
-export function generateSalaryString(salaryType: 'Annual' | 'Monthly', salaryAmount: number) {
+import { SalaryType } from '../../models/auth/candidate/SalaryType';
+
+export function generateSalaryString(salaryType: SalaryType, salaryAmount: number) {
   const salaryInThousands = salaryAmount / 1000;
   const monthsInYear = 12;
 

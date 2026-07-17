@@ -1,12 +1,25 @@
+import { faker } from '@faker-js/faker';
+import { Month } from '../../models/auth/candidate/Month';
 import { WorkPlace } from '../../models/auth/candidate/WorkPlace';
 
-export function generateWorkPlace(userId: number) {
-  const candidateProfileId = userId;
-  const title = 'Automation Qa';
+export function generateWorkPlace(): WorkPlace {
+  const role = 'Automation Qa';
   const companyName = 'Mate Academy';
   const description = 'Work description';
-  const startDate = '2025-1';
-  const endDate = '2026-1';
+  const startMonth: Month = 'January';
+  const startYear = 2025;
+  const endMonth: Month = 'January';
+  const endYear = 2026;
+  const achievements = faker.lorem.sentence();
 
-  return new WorkPlace(candidateProfileId, title, companyName, description, startDate, endDate);
+  return {
+    role,
+    companyName,
+    description,
+    startMonth,
+    startYear,
+    endMonth,
+    endYear,
+    achievements,
+  };
 }
