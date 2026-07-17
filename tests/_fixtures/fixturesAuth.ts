@@ -1,55 +1,71 @@
-import { test as base } from '@playwright/test';
+import { mergeTests } from '@playwright/test';
+import { test as testCandidateProfile } from './fixturesCandidateProfile';
+import { test as recruiterTestProfile } from './fixturesRecruiterProfile';
 import { generateUserCredentials } from '../../src/utils/generators/generateUserCredentials';
-import { generateProfileContacts } from '../../src/utils/generators/generateProfileContacts';
-import { generateCandidateProfile } from '../../src/utils/generators/generateCandidateProfile';
-import { generateRecruiterProfile } from '../../src/utils/generators/generateRecruiterProfile';
-import { generateWorkPlace } from '../../src/utils/generators/generateWorkPlace';
 import { SignUpCandidateApi } from '../../src/api/auth/SignUpCandidateApi';
 import { SignUpRecruiterApi } from '../../src/api/auth/SignUpRecruiterApi';
+import { UserCredentials } from '../../src/models/auth/UserCredentials';
+import { SignUpUserPage } from '../../src/pages/auth/signUp/user/SignUpUserPage';
+import { ChooseProfilePage } from '../../src/pages/auth/signUp/user/ChooseProfilePage';
+import { toCandidateProfileDto } from '../../src/models/auth/candidate/CandidateProfile';
+import { toWorkPlaceDto } from '../../src/models/auth/candidate/WorkPlace';
+import { toRecruiterProfileDto } from '../../src/models/auth/recruiter/RecruiterProfile';
 
-export const test = base.extend<{ registeredCandidate; registeredRecruiter }>({
-  registeredCandidate: async ({ request }, use) => {
+const base = mergeTests(testCandidateProfile, recruiterTestProfile);
+
+export const test = base.extend<{
+  userCredentials: UserCredentials;
+  registeredCandidate: void;
+  registeredRecruiter: void;
+  signUpUserPage: SignUpUserPage;
+  chooseProfilePage: ChooseProfilePage;
+}>({
+  userCredentials: async ({}, use) => {
+    const userCredentials = generateUserCredentials();
+
+    await use(userCredentials);
+  },
+  registeredCandidate: async (
+    { request, userCredentials, candidateProfile, workPlace, candidateProfileContacts },
+    use,
+  ) => {
     const signUpCandidateApi = new SignUpCandidateApi(request);
 
-    // Create User
-    const userCredentials = generateUserCredentials();
     await signUpCandidateApi.createUser(userCredentials);
 
-    // Update Candidate Profile
-    const candidateProfile = generateCandidateProfile();
-    const { profileId } = await signUpCandidateApi.updateProfile(candidateProfile);
+    const candidateProfileDto = toCandidateProfileDto(candidateProfile);
+    const { profileId } = await signUpCandidateApi.updateProfile(candidateProfileDto);
 
-    // Create Work Place
-    const workPlace = generateWorkPlace(profileId);
-    await signUpCandidateApi.createWorkPlace(workPlace);
+    const workPlaceDto = toWorkPlaceDto(workPlace);
+    await signUpCandidateApi.createWorkPlace(profileId, workPlaceDto);
 
-    // Update Profile Contacts
-    const profileContacts = generateProfileContacts();
-    await signUpCandidateApi.updateProfileContacts(profileContacts);
+    await signUpCandidateApi.updateProfileContacts(candidateProfileContacts);
 
-    // Send Candidate Profile To Review
     await signUpCandidateApi.sendProfileToReview();
 
-    await use({ userCredentials, profileId, candidateProfile, workPlace, profileContacts });
+    await use();
   },
-  registeredRecruiter: async ({ request }, use) => {
+  registeredRecruiter: async (
+    { request, userCredentials, recruiterProfile, recruiterProfileContacts },
+    use,
+  ) => {
     const signUpRecruiterApi = new SignUpRecruiterApi(request);
 
-    // Create User
-    const userCredentials = generateUserCredentials();
     await signUpRecruiterApi.createUser(userCredentials);
 
-    // Update Recruiter Profile
-    const recruiterProfile = generateRecruiterProfile();
-    await signUpRecruiterApi.updateRecruiterProfile(recruiterProfile);
+    const recruiterProfileDto = toRecruiterProfileDto(recruiterProfile);
+    await signUpRecruiterApi.updateRecruiterProfile(recruiterProfileDto);
 
-    // Update Profile Contacts
-    const profileContacts = generateProfileContacts();
-    await signUpRecruiterApi.updateProfileContacts(profileContacts);
+    await signUpRecruiterApi.updateProfileContacts(recruiterProfileContacts);
 
-    // Send Recruiter Profile To Review
     await signUpRecruiterApi.sendProfileToReview();
 
-    await use({ userCredentials, recruiterProfile, profileContacts });
+    await use();
+  },
+  signUpUserPage: async ({ page }, use) => {
+    await use(new SignUpUserPage(page));
+  },
+  chooseProfilePage: async ({ page }, use) => {
+    await use(new ChooseProfilePage(page));
   },
 });
