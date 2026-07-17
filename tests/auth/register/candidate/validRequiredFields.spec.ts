@@ -1,184 +1,95 @@
-import { test, expect } from '@playwright/test';
-import { faker } from '@faker-js/faker';
-import { generateSalaryString } from '../../../../src/utils/generators/generateSalaryString';
+import { test } from '../../../_fixtures/fixtures';
 
 test.describe(`Register as candidate`, () => {
-  test(`User should register with valid required-only fields`, async ({ page }) => {
-    await page.goto('/sign-up');
+  test(`User should register with valid required-only fields`, async ({
+    userCredentials,
+    candidateProfile,
+    workPlace,
+    candidateProfileContacts,
+    signUpUserPage,
+    chooseProfilePage,
+    candidateProfilePage,
+    candidateProfileJobExpectationsPage,
+    candidateProfileExperiencePage,
+    candidateProfileBioPage,
+    candidateProfileContactsPage,
+    candidateProfilePreviewPage,
+    candidateProfileFeedbackPage,
+  }) => {
+    await signUpUserPage.open();
+    await signUpUserPage.fillEmail(userCredentials.email);
+    await signUpUserPage.fillPassword(userCredentials.password);
+    await signUpUserPage.fillRepeatPassword(userCredentials.password);
+    await signUpUserPage.clickCreateAccount();
 
-    const email = faker.internet.email().toLowerCase();
-    const password = faker.internet.password();
-    const desiredPosition = 'Qa';
-    const desiredRoles = ['PM'];
-    const coreTechnicalSkills = [
-      'DevOps',
-      'JavaScript',
-      'API testing',
-      'manual testing',
-      'Mobile testing',
-    ];
-    const desiredBaseSalary = 2400;
-    const jobExperience = 'Less than 1 year';
-    const englishLevel = 'Elementary';
-    const location = 'Kharkiv';
+    await chooseProfilePage.assertOpened();
+    await chooseProfilePage.clickCandidate();
 
-    const salaryType = 'Annual';
-    const previousRole = 'Automation Qa';
-    const previousCompany = 'Mate Academy';
-    const startMonth = 'January';
-    const startYear = 2025;
-    const achivements = faker.lorem.sentence();
-    const firstName = faker.person.firstName();
-    const lastName = faker.person.lastName();
+    await candidateProfilePage.assertOpened();
+    await candidateProfilePage.fillDesiredPosition(candidateProfile.desiredPosition);
+    await candidateProfilePage.selectDesiredRoles(candidateProfile.desiredRoles);
+    await candidateProfilePage.selectCoreTechnicalSkills(candidateProfile.coreTechnicalSkills);
+    await candidateProfilePage.clickSaveAndContinue();
 
-    await page.getByRole('textbox', { name: 'Email' }).fill(email);
-    await page.getByLabel('Password', { exact: true }).fill(password);
-    await page.getByLabel('Repeat password').fill(password);
-    await page.getByRole('button', { name: 'Create account' }).click();
+    await candidateProfileJobExpectationsPage.assertOpened();
+    await candidateProfileJobExpectationsPage.clickSalaryType(candidateProfile.salaryType);
+    await candidateProfileJobExpectationsPage.fillDesiredBaseSalary(
+      `${candidateProfile.desiredBaseSalary}`,
+    );
+    await candidateProfileJobExpectationsPage.selectJobExperience(candidateProfile.jobExperience);
+    await candidateProfileJobExpectationsPage.selectEnglishLevel(candidateProfile.englishLevel);
+    await candidateProfileJobExpectationsPage.selectYourLocation(candidateProfile.yourLocation);
+    await candidateProfileJobExpectationsPage.clickSaveAndContinue();
 
-    await expect(page).toHaveURL('/choose-profile');
+    await candidateProfileExperiencePage.assertOpened();
+    await candidateProfileExperiencePage.clickAddManually();
+    await candidateProfileExperiencePage.fillRole(workPlace.role);
+    await candidateProfileExperiencePage.fillCompanyName(workPlace.companyName);
+    await candidateProfileExperiencePage.selectStartMonth(workPlace.startMonth);
+    await candidateProfileExperiencePage.fillStartYear(`${workPlace.startYear}`);
+    await candidateProfileExperiencePage.clickSave();
+    await candidateProfileExperiencePage.clickSaveAndContinue();
 
-    await page.getByRole('link', { name: 'Candidate hunting for interesting job offers' }).click();
+    await candidateProfileBioPage.assertOpened();
+    await candidateProfileBioPage.fillAchivements(candidateProfile.achievements);
+    await candidateProfileBioPage.clickSaveAndContinue();
 
-    await expect(page).toHaveURL('/profile/candidate');
+    await candidateProfileContactsPage.assertOpened();
+    await candidateProfileContactsPage.fillFirstName(candidateProfileContacts.firstName);
+    await candidateProfileContactsPage.fillLastName(candidateProfileContacts.lastName);
+    await candidateProfileContactsPage.clickActivateProfile();
 
-    await page
-      .getByRole('textbox', { name: 'Desired position' })
-      .pressSequentially(desiredPosition);
-
-    for (const role of desiredRoles) {
-      await page.getByLabel('Desired roles').focus();
-      await page.keyboard.press('ArrowDown');
-      await page.locator('.select__option').getByText(role, { exact: true }).click();
-    }
-
-    for (const skill of coreTechnicalSkills) {
-      await page.getByRole('textbox', { name: 'Core technical skills' }).fill(skill);
-      await expect(
-        page.locator('.select__option').filter({ hasText: new RegExp(`^${skill}$`) }),
-      ).toBeVisible();
-      await page.keyboard.press('Enter');
-    }
-
-    await page.getByRole('button', { name: 'Save and continue' }).click();
-
-    await expect(page).toHaveURL('/profile/candidate/job-expectations');
-
-    await page.getByRole('button', { name: salaryType }).click();
-    await page
-      .getByRole('textbox', { name: /Desired base salary/i })
-      .pressSequentially(`${desiredBaseSalary}`);
-    // Use focus + ArrowDown because react-select hides the actual input, making .click() flacky
-    await page.getByLabel('Job experience').focus();
-    await page.keyboard.press('ArrowDown');
-    await page.locator('.select__option').getByText(jobExperience, { exact: true }).click();
-    // Use focus + ArrowDown because react-select hides the actual input, making .click() flaky
-    await page.getByLabel('English level').focus();
-    await page.keyboard.press('ArrowDown');
-    await page.locator('.select__option').getByText(englishLevel, { exact: true }).click();
-    const responsePromise = page.waitForResponse((r) => r.url().includes('GetPlaceDetails'));
-    await page.getByRole('textbox', { name: 'Your Location' }).fill(location);
-    await page.locator('.pac-item').first().click();
-    await responsePromise;
-
-    await page.getByRole('button', { name: 'Save and continue' }).click();
-
-    await expect(page).toHaveURL('/profile/candidate/experience');
-
-    await page.getByRole('button', { name: 'Add manually' }).click();
-    await page.getByLabel('Role').fill(previousRole);
-    await page.getByLabel('Company name').fill(previousCompany);
-    // Use focus + ArrowDown because react-select hides the actual input, making .click() flaky
-    await page.locator('#startMonth').focus();
-    await page.keyboard.press('ArrowDown');
-    await page.locator('.select__option').getByText(startMonth, { exact: true }).click();
-    await page.locator('[name="startYear"]').fill(`${startYear}`);
-    await page.getByRole('button', { name: 'Save' }).click();
-    await page.getByRole('button', { name: 'Save and continue' }).click();
-
-    await expect(page).toHaveURL('/profile/candidate/bio');
-
-    await page.getByLabel('Achievements / Key results').fill(achivements);
-    await page.getByRole('button', { name: 'Save and continue' }).click();
-
-    await expect(page).toHaveURL('/profile/contacts?preview=candidate');
-
-    await page.getByRole('button', { name: 'Usual avatar' }).click();
-    await page.getByLabel('First name').fill(firstName);
-    await page.getByLabel('Last name').fill(lastName);
-    await page.getByRole('button', { name: 'Activate profile' }).click();
-
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    await candidateProfileFeedbackPage.assertOpened();
+    await candidateProfileFeedbackPage.assertHeaderHasText(
       'Congrats, your Hunter profile is all set!',
     );
 
-    await page.goto('/profile-preview/candidate');
-
-    await expect(page.locator('[class*=CandidateProfilePreviewModule_title]')).toHaveText(
-      `${desiredPosition}`,
+    await candidateProfilePreviewPage.open();
+    await candidateProfilePreviewPage.assertDesiredPositionHasText(
+      candidateProfile.desiredPosition,
     );
-
-    await expect(
-      page.locator('[class*=ProfileMeta_metaWrapper]').getByRole('listitem').first(),
-    ).toContainText(location);
-    await expect(
-      page.locator('[class*=ProfileMeta_metaWrapper]').getByRole('listitem').nth(1),
-    ).toHaveText(jobExperience);
-    await expect(
-      page.locator('[class*=ProfileMeta_metaWrapper]').getByRole('listitem').nth(2),
-    ).toHaveText(generateSalaryString(salaryType, desiredBaseSalary));
-    await expect(
-      page.locator('[class*=ProfileMeta_metaWrapper]').getByRole('listitem').nth(3),
-    ).toHaveText(englishLevel);
-
-    await expect(
-      page
-        .locator('[class*=ProfileInfo_item]')
-        .filter({
-          has: page
-            .locator('[class*=ProfileInfo_itemTitle]')
-            .getByText('Achievements / Key results'),
-        })
-        .getByRole('definition'),
-    ).toHaveText(achivements);
-
-    for (const skill of coreTechnicalSkills) {
-      await expect(
-        page
-          .locator('[class*=ProfileInfo_item]')
-          .filter({
-            has: page.locator('[class*=ProfileInfo_itemTitle]').getByText('Core technical skills'),
-          })
-          .locator('[class*=ProfileInfo_tagsContainer]')
-          .getByText(skill, { exact: true }),
-      ).toBeVisible();
-    }
-
-    for (const role of desiredRoles) {
-      await expect(
-        page
-          .locator('[class*=ProfileInfo_item]')
-          .filter({
-            has: page.locator('[class*=ProfileInfo_itemTitle]').getByText('Considering roles'),
-          })
-          .getByText(role),
-      ).toBeVisible();
-    }
-
-    const experience = page.locator('li[class*=ProfileWorkHistory_item]');
-    await expect(experience.locator('[class*=typography_caption]')).toHaveText(previousRole);
-    await expect(experience.locator('p[class*=typography_smallText]').first()).toHaveText(
-      previousCompany,
+    await candidateProfilePreviewPage.assertLocationContainsText(candidateProfile.yourLocation);
+    await candidateProfilePreviewPage.assertJobExperienceHasText(candidateProfile.jobExperience);
+    await candidateProfilePreviewPage.assertSalaryHasText(
+      candidateProfile.salaryType,
+      candidateProfile.desiredBaseSalary,
     );
-
-    await expect(experience.locator('[class*=ProfileWorkHistory_term__]').first()).toHaveText(
-      `${startMonth.slice(0, 3)} ${startYear} - current time`,
+    await candidateProfilePreviewPage.assertEnglishLevelHasText(candidateProfile.englishLevel);
+    await candidateProfilePreviewPage.assertAchivementsHaveText(candidateProfile.achievements);
+    await candidateProfilePreviewPage.assertCoreTechnicalSkillsHaveText(
+      candidateProfile.coreTechnicalSkills,
     );
-
-    await expect(page.locator('p[class*=typography_smallHeading]')).toHaveText(
-      `${firstName} ${lastName}`,
+    await candidateProfilePreviewPage.assertDesiredRolesHaveText(candidateProfile.desiredRoles);
+    await candidateProfilePreviewPage.assertPreviousRoleHasText(workPlace.role);
+    await candidateProfilePreviewPage.assertPreviousCompanyHasText(workPlace.companyName);
+    await candidateProfilePreviewPage.assertPreviousJobDatesHaveText(
+      workPlace.startMonth,
+      workPlace.startYear,
     );
-
-    await expect(page.locator('a[href^="mailto:"]')).toHaveText(email);
+    await candidateProfilePreviewPage.assertFullNameHasText(
+      candidateProfileContacts.firstName,
+      candidateProfileContacts.lastName,
+    );
+    await candidateProfilePreviewPage.assertEmailHasText(userCredentials.email);
   });
 });
