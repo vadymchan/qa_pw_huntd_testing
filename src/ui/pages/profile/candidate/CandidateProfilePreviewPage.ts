@@ -1,13 +1,13 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../../BasePage';
-import { generateSalaryString } from '../../../utils/generators/generateSalaryString';
-import { SalaryType } from '../../../models/auth/candidate/SalaryType';
-import { Month } from '../../../models/auth/candidate/Month';
-import { Role } from '../../../models/auth/candidate/Role';
-import { CoreTechnicalSkill } from '../../../models/auth/candidate/CoreTechnicalSkill';
-import { EnglishLevel } from '../../../models/auth/candidate/EnglishLevel';
-import { JobExperience } from '../../../models/auth/candidate/JobExperience';
-import { CityName } from '../../../models/auth/candidate/CityName';
+import { generateSalaryString } from '../../../../utils/generators/generateSalaryString';
+import { SalaryType } from '../../../../models/auth/candidate/SalaryType';
+import { Month } from '../../../../models/auth/candidate/Month';
+import { Role } from '../../../../models/auth/candidate/Role';
+import { CoreTechnicalSkill } from '../../../../models/auth/candidate/CoreTechnicalSkill';
+import { EnglishLevel } from '../../../../models/auth/candidate/EnglishLevel';
+import { JobExperience } from '../../../../models/auth/candidate/JobExperience';
+import { CityName } from '../../../../models/auth/candidate/CityName';
 
 export class CandidateProfilePreviewPage extends BasePage {
   private desiredPosition: Locator;
@@ -19,6 +19,7 @@ export class CandidateProfilePreviewPage extends BasePage {
   private coreTechnicalSkills: Locator;
   private expectations: Locator;
   private desiredRoles: Locator;
+  private experience: Locator;
   private previousRole: Locator;
   private previousCompany: Locator;
   private previousJobDates: Locator;
@@ -51,13 +52,13 @@ export class CandidateProfilePreviewPage extends BasePage {
     this.expectations = section('Job expectations').getByRole('definition');
     this.desiredRoles = section('Considering roles');
 
-    const experience = page.locator('li[class*=ProfileWorkHistory_item]');
-    this.previousRole = experience.locator('[class*=typography_caption]');
-    this.previousCompany = experience.locator('p[class*=typography_smallText]').first();
-    this.previousJobDates = experience.locator('[class*=ProfileWorkHistory_term__]').first();
-    this.previousJobAchivements = experience.locator(
-      '[class*=ProfileWorkHistory_descriptionField]',
-    );
+    this.experience = page.locator('li[class*=ProfileWorkHistory_item]');
+    this.previousRole = this.experience.locator('[class*=typography_caption]').first();
+    this.previousCompany = this.experience.locator('p[class*=typography_smallText]').first();
+    this.previousJobDates = this.experience.locator('[class*=ProfileWorkHistory_term__]').first();
+    this.previousJobAchivements = this.experience
+      .locator('[class*=ProfileWorkHistory_descriptionField]')
+      .first();
     this.fullName = page.locator('p[class*=typography_smallHeading]');
     this.email = page.locator('a[href^="mailto:"]');
 
@@ -105,6 +106,10 @@ export class CandidateProfilePreviewPage extends BasePage {
     for (const role of desiredRoles) {
       await expect(this.desiredRoles.getByText(role)).toBeVisible();
     }
+  }
+
+  async assertNoWorkExperienceIsVisible() {
+    await expect(this.experience).toBeHidden();
   }
 
   async assertPreviousRoleHasText(previousRole: string) {
