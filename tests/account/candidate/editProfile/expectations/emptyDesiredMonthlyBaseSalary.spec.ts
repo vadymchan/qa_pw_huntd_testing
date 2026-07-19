@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { SALARY_IS_REQUIRED } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -16,7 +17,7 @@ test.describe(`Edit profile as candidate`, () => {
     const waitForResponse = false;
     await editCandidateProfileJobExpectationsPage.clickSaveChanges(waitForResponse);
     await editCandidateProfileJobExpectationsPage.assertDesiredBaseSalaryValidationMessage(
-      'Salary is required',
+      SALARY_IS_REQUIRED,
     );
   });
 });

@@ -1,6 +1,7 @@
 import { test } from '../../../_fixtures/fixtures';
 import { faker } from '@faker-js/faker';
 import { SignUpUserPage } from '../../../../src/ui/pages/auth/signUp/user/SignUpUserPage';
+import { EMAIL_IS_ALREADY_TAKEN } from '../../../../src/utils/constants/validationMessages';
 
 test.describe(`Register as user`, () => {
   test(`User should see validation error when email is already taken`, async ({
@@ -21,6 +22,6 @@ test.describe(`Register as user`, () => {
     await signUpUserPage.fillRepeatPassword(password);
     await signUpUserPage.clickCreateAccount();
 
-    await signUpUserPage.assertEmailValidationMessage('Email is already taken.');
+    await signUpUserPage.assertEmailValidationMessage(EMAIL_IS_ALREADY_TAKEN);
   });
 });

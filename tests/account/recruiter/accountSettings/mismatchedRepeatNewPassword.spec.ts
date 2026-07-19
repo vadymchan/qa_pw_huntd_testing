@@ -1,5 +1,6 @@
 import { test } from '../../../_fixtures/fixtures';
 import { faker } from '@faker-js/faker';
+import { PASSWORD_IS_MISMATCHED } from '../../../../src/utils/constants/validationMessages';
 
 test.describe(`Update recruiter account settings`, () => {
   test(`User should see validation error when repeat new password is mismatched`, async ({
@@ -18,8 +19,6 @@ test.describe(`Update recruiter account settings`, () => {
     await changePasswordPage.fillNewPassword(newPassword);
     await changePasswordPage.fillRepeatNewPassword(repeatNewPassword);
     await changePasswordPage.clickSaveChanges(waitForResponse);
-    await changePasswordPage.assertRepeatNewPasswordValidationMessage(
-      'Please make sure your passwords match',
-    );
+    await changePasswordPage.assertRepeatNewPasswordValidationMessage(PASSWORD_IS_MISMATCHED);
   });
 });

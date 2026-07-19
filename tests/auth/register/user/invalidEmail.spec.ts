@@ -1,4 +1,5 @@
 import { test } from '../../../_fixtures/fixtures';
+import { EMAIL_IS_INCORRECT } from '../../../../src/utils/constants/validationMessages';
 
 // TODO: can be made parameterized (different formats)
 
@@ -9,6 +10,6 @@ test.describe(`Register as user`, () => {
     await signUpUserPage.open();
     await signUpUserPage.fillEmail(email);
     await signUpUserPage.clickCreateAccount();
-    await signUpUserPage.assertEmailValidationMessage('Wrong email');
+    await signUpUserPage.assertEmailValidationMessage(EMAIL_IS_INCORRECT);
   });
 });

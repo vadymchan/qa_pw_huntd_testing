@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { YEAR_FORMAT_IS_INCORRECT } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -14,7 +15,7 @@ test.describe(`Edit profile as candidate`, () => {
     const waitForResponse = false;
     await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
     await editCandidateProfileExperiencePage.assertStartYearValidationMessage(
-      'Please enter correct year',
+      YEAR_FORMAT_IS_INCORRECT,
     );
   });
 });

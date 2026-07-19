@@ -1,4 +1,5 @@
 import { test } from '../../../_fixtures/fixtures';
+import { COMPANY_NAME_IS_REQUIRED } from '../../../../src/utils/constants/validationMessages';
 
 test.describe(`Update recruiter profile`, () => {
   test.use({ storageState: 'playwright/.auth/recruiter.json' });
@@ -13,6 +14,6 @@ test.describe(`Update recruiter profile`, () => {
     await editRecruiterProfilePage.open();
     await editRecruiterProfilePage.recruiterProfile.fillCompany(company);
     await editRecruiterProfilePage.clickSaveChanges(waitForResponse);
-    await editRecruiterProfilePage.assertCompanyValidationMessage('Company is required');
+    await editRecruiterProfilePage.assertCompanyValidationMessage(COMPANY_NAME_IS_REQUIRED);
   });
 });

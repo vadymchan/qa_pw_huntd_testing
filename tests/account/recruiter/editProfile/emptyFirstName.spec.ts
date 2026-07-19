@@ -1,4 +1,5 @@
 import { test } from '../../../_fixtures/fixtures';
+import { FIRST_NAME_IS_REQUIRED } from '../../../../src/utils/constants/validationMessages';
 
 test.describe(`Update recruiter profile`, () => {
   test.use({ storageState: 'playwright/.auth/recruiter.json' });
@@ -13,8 +14,6 @@ test.describe(`Update recruiter profile`, () => {
     await editRecruiterProfileContactsPage.open();
     await editRecruiterProfileContactsPage.profileContacts.fillFirstName(firstName);
     await editRecruiterProfileContactsPage.clickSaveChanges(waitForResponse);
-    await editRecruiterProfileContactsPage.assertFirstNameValidationMessage(
-      'First name is required',
-    );
+    await editRecruiterProfileContactsPage.assertFirstNameValidationMessage(FIRST_NAME_IS_REQUIRED);
   });
 });

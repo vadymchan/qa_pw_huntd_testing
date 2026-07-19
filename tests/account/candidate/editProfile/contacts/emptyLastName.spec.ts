@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { LAST_NAME_IS_REQUIRED } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -12,6 +13,6 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileContactsPage.profileContacts.fillLastName(lastName);
     const waitForResponse = false;
     await editCandidateProfileContactsPage.clickSaveChanges(waitForResponse);
-    await editCandidateProfileContactsPage.assertLastNameValidationMessage('Last name is required');
+    await editCandidateProfileContactsPage.assertLastNameValidationMessage(LAST_NAME_IS_REQUIRED);
   });
 });

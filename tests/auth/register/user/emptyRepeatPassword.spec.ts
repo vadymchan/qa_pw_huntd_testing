@@ -1,3 +1,4 @@
+import { REPEAT_PASSWORD_IS_REQUIRED } from '../../../../src/utils/constants/validationMessages';
 import { test } from '../../../_fixtures/fixtures';
 
 test.describe(`Register as user`, () => {
@@ -6,6 +7,6 @@ test.describe(`Register as user`, () => {
   }) => {
     await signUpUserPage.open();
     await signUpUserPage.clickCreateAccount();
-    await signUpUserPage.assertRepeatPasswordValidationMessage('Please repeat your password');
+    await signUpUserPage.assertRepeatPasswordValidationMessage(REPEAT_PASSWORD_IS_REQUIRED);
   });
 });

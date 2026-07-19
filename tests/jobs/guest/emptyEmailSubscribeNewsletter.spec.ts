@@ -1,3 +1,4 @@
+import { EMAIL_IS_REQUIRED } from '../../../src/utils/constants/validationMessages';
 import { test } from '../../_fixtures/fixtures';
 
 test.describe(`Browse jobs as a guest`, () => {
@@ -7,6 +8,6 @@ test.describe(`Browse jobs as a guest`, () => {
     await guestJobsPage.open();
     await guestJobsPage.fillEmail(email);
     await guestJobsPage.clickReceiveJobs();
-    await guestJobsPage.assertEmailValidationMessage('Email is required');
+    await guestJobsPage.assertEmailValidationMessage(EMAIL_IS_REQUIRED);
   });
 });

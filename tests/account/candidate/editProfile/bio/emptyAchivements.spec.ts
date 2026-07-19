@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { ACHIVEMENTS_ARE_REQUIRED } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -10,8 +11,6 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileBioPage.profileBio.fillAchivements(achivements);
     const waitForResponse = false;
     await editCandidateProfileBioPage.clickSaveChanges(waitForResponse);
-    await editCandidateProfileBioPage.assertAchivementsValidationMessage(
-      '2-3 achievements are required to be noticed by startups',
-    );
+    await editCandidateProfileBioPage.assertAchivementsValidationMessage(ACHIVEMENTS_ARE_REQUIRED);
   });
 });

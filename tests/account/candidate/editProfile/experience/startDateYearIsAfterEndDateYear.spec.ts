@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { END_DATE_CANNOT_PRECEDE_START_DATE } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -23,7 +24,7 @@ test.describe(`Edit profile as candidate`, () => {
     const waitForResponse = false;
     await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
     await editCandidateProfileExperiencePage.assertEndYearValidationMessage(
-      'End date cannot precede start date',
+      END_DATE_CANNOT_PRECEDE_START_DATE,
     );
   });
 });

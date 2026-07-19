@@ -1,3 +1,4 @@
+import { PASSWORD_IS_MISMATCHED } from '../../../../src/utils/constants/validationMessages';
 import { test } from '../../../_fixtures/fixtures';
 import { faker } from '@faker-js/faker';
 
@@ -10,8 +11,6 @@ test.describe(`Register as user`, () => {
     await signUpUserPage.fillPassword(password);
     await signUpUserPage.fillRepeatPassword(repeatPassword);
     await signUpUserPage.clickCreateAccount();
-    await signUpUserPage.assertRepeatPasswordValidationMessage(
-      'Please make sure your passwords match',
-    );
+    await signUpUserPage.assertRepeatPasswordValidationMessage(PASSWORD_IS_MISMATCHED);
   });
 });

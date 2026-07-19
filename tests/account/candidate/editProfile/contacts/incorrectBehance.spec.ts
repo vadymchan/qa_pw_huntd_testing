@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { BEHANCE_IS_INCORRECT } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -12,8 +13,6 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileContactsPage.profileContacts.fillBehance(behanceUrl);
     const waitForResponse = false;
     await editCandidateProfileContactsPage.clickSaveChanges(waitForResponse);
-    await editCandidateProfileContactsPage.assertBehanceValidationMessage(
-      'Please enter correct Behance link',
-    );
+    await editCandidateProfileContactsPage.assertBehanceValidationMessage(BEHANCE_IS_INCORRECT);
   });
 });

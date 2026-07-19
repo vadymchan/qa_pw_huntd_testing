@@ -1,6 +1,7 @@
 import { test } from '../../_fixtures/fixtures';
 import { SignInUserPage } from '../../../src/ui/pages/auth/signIn/SignInUserPage';
 import { faker } from '@faker-js/faker';
+import { WRONG_CREDENTIALS } from '../../../src/utils/constants/validationMessages';
 
 test.describe(`Login user`, () => {
   test(`User should see validation error when password is incorrect`, async ({
@@ -17,6 +18,6 @@ test.describe(`Login user`, () => {
     await signInUserPage.fillEmail(email);
     await signInUserPage.fillPassword(password);
     await signInUserPage.clickSignIn();
-    await signInUserPage.assertEmailValidationMessage('Wrong credentials');
+    await signInUserPage.assertEmailValidationMessage(WRONG_CREDENTIALS);
   });
 });

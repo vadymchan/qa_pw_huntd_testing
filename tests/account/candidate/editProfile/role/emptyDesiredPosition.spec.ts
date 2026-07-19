@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { DESIRED_POSITION_IS_REQUIRED } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -12,6 +13,8 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfilePage.candidateProfile.fillDesiredPosition(desiredPosition);
     const waitForResponse = false;
     await editCandidateProfilePage.clickSaveChanges(waitForResponse);
-    await editCandidateProfilePage.assertDesiredPositionValidationMessage('Position is required');
+    await editCandidateProfilePage.assertDesiredPositionValidationMessage(
+      DESIRED_POSITION_IS_REQUIRED,
+    );
   });
 });

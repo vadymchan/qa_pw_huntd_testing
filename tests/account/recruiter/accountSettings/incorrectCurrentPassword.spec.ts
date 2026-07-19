@@ -1,5 +1,6 @@
 import { test } from '../../../_fixtures/fixtures';
 import { faker } from '@faker-js/faker';
+import { WRONG_CREDENTIALS } from '../../../../src/utils/constants/validationMessages';
 
 test.describe(`Update recruiter account settings`, () => {
   test(`User should see validation error when current password is incorrect`, async ({
@@ -17,6 +18,6 @@ test.describe(`Update recruiter account settings`, () => {
     await changePasswordPage.fillNewPassword(newPassword);
     await changePasswordPage.fillRepeatNewPassword(newPassword);
     await changePasswordPage.clickSaveChanges(waitForResponse);
-    await changePasswordPage.assertCurrentPasswordValidationMessage('Wrong credentials');
+    await changePasswordPage.assertCurrentPasswordValidationMessage(WRONG_CREDENTIALS);
   });
 });

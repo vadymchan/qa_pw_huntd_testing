@@ -1,5 +1,6 @@
 import { test } from '../../_fixtures/fixtures';
 import { SignInUserPage } from '../../../src/ui/pages/auth/signIn/SignInUserPage';
+import { PASSWORD_IS_REQUIRED } from '../../../src/utils/constants/validationMessages';
 
 test.describe(`Register as user`, () => {
   test(`User should see validation error when password is empty`, async ({ browser }) => {
@@ -9,6 +10,6 @@ test.describe(`Register as user`, () => {
     const signInUserPage = new SignInUserPage(page);
     await signInUserPage.open();
     await signInUserPage.clickSignIn();
-    await signInUserPage.assertPasswordValidationMessage('Password is required');
+    await signInUserPage.assertPasswordValidationMessage(PASSWORD_IS_REQUIRED);
   });
 });

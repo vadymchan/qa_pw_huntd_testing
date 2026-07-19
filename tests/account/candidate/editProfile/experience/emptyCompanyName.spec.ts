@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { COMPANY_IS_REQUIRED } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -11,7 +12,7 @@ test.describe(`Edit profile as candidate`, () => {
     const waitForResponse = false;
     await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
     await editCandidateProfileExperiencePage.assertCompanyNameValidationMessage(
-      'Company name is required',
+      COMPANY_IS_REQUIRED,
     );
   });
 });

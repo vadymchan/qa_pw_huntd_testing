@@ -1,4 +1,5 @@
 import { test } from '../../../_fixtures/fixtures';
+import { REPEAT_PASSWORD_IS_REQUIRED } from '../../../../src/utils/constants/validationMessages';
 
 test.describe(`Update recruiter account settings`, () => {
   test(`User should see validation error when repeat new password is empty`, async ({
@@ -13,8 +14,6 @@ test.describe(`Update recruiter account settings`, () => {
     await changePasswordPage.clickChangePassword();
     await changePasswordPage.fillRepeatNewPassword(newPassword);
     await changePasswordPage.clickSaveChanges(waitForResponse);
-    await changePasswordPage.assertRepeatNewPasswordValidationMessage(
-      'Please repeat your password',
-    );
+    await changePasswordPage.assertRepeatNewPasswordValidationMessage(REPEAT_PASSWORD_IS_REQUIRED);
   });
 });

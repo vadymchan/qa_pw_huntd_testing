@@ -1,3 +1,4 @@
+import { ROLE_IS_REQUIRED } from '../../../../../src/utils/constants/validationMessages';
 import { test } from '../../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {
@@ -10,6 +11,6 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileExperiencePage.clickAdd();
     const waitForResponse = false;
     await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
-    await editCandidateProfileExperiencePage.assertRoleValidationMessage('Role is required');
+    await editCandidateProfileExperiencePage.assertRoleValidationMessage(ROLE_IS_REQUIRED);
   });
 });

@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { YEAR_IS_LESS_THAN_MINIMUM } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -15,7 +16,7 @@ test.describe(`Edit profile as candidate`, () => {
     const waitForResponse = false;
     await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
     await editCandidateProfileExperiencePage.assertEndYearValidationMessage(
-      'The date cannot be earlier than 1925',
+      YEAR_IS_LESS_THAN_MINIMUM,
     );
   });
 });

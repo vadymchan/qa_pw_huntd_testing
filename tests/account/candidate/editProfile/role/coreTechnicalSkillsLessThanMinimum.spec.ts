@@ -1,5 +1,6 @@
-import { CoreTechnicalSkill } from '../../../../../src/models/auth/candidate/CoreTechnicalSkill';
 import { test } from '../../../../_fixtures/fixtures';
+import { CoreTechnicalSkill } from '../../../../../src/models/auth/candidate/CoreTechnicalSkill';
+import { CORE_TECHNICAL_SKILLS_BELOW_MINIMUM } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -20,7 +21,7 @@ test.describe(`Edit profile as candidate`, () => {
     const waitForResponse = false;
     await editCandidateProfilePage.clickSaveChanges(waitForResponse);
     await editCandidateProfilePage.assertCoreTechnicalSkillsValidationMessage(
-      'Select at least 5 skills',
+      CORE_TECHNICAL_SKILLS_BELOW_MINIMUM,
     );
   });
 });

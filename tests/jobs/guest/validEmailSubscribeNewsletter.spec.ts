@@ -1,5 +1,9 @@
 import { faker } from '@faker-js/faker';
 import { test } from '../../_fixtures/fixtures';
+import {
+  SUBSCRIPTION_SUCCESS_TEXT,
+  SUBSCRIPTION_SUCCESS_TITLE,
+} from '../../../src/utils/constants/guestJobsMessages';
 
 test.describe(`Browse jobs as a guest`, () => {
   test(`Newsletter form should subscribe successfully with valid email`, async ({
@@ -10,7 +14,7 @@ test.describe(`Browse jobs as a guest`, () => {
     await guestJobsPage.open();
     await guestJobsPage.fillEmail(email);
     await guestJobsPage.clickReceiveJobs();
-    await guestJobsPage.assertFlashMessageTitleHasText('Subscription created');
-    await guestJobsPage.assertFlashMessageTextHasText('We will notify you by email about new jobs');
+    await guestJobsPage.assertFlashMessageTitleHasText(SUBSCRIPTION_SUCCESS_TITLE);
+    await guestJobsPage.assertFlashMessageTextHasText(SUBSCRIPTION_SUCCESS_TEXT);
   });
 });

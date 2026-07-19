@@ -1,4 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
+import { START_MONTH_IS_REQUIRED } from '../../../../../src/utils/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -11,7 +12,7 @@ test.describe(`Edit profile as candidate`, () => {
     const waitForResponse = false;
     await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
     await editCandidateProfileExperiencePage.assertStartMonthValidationMessage(
-      'Start month is required',
+      START_MONTH_IS_REQUIRED,
     );
   });
 });
