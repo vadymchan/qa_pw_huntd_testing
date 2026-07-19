@@ -1,15 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../../../_fixtures/fixtures';
 
 // TODO: negative tests related to sign up could be moved in one file and be made parameterized
 
 test.describe(`Register as user`, () => {
-  test(`User should see validation error when email is empty`, async ({ page }) => {
-    await page.goto('/sign-up');
-
-    await page.getByRole('button', { name: 'Create account' }).click();
-
-    await expect(page.locator('[class*=FormField_metaBlock]').first()).toHaveText(
-      'Email is required',
-    );
+  test(`User should see validation error when email is empty`, async ({ signUpUserPage }) => {
+    await signUpUserPage.open();
+    await signUpUserPage.clickCreateAccount();
+    await signUpUserPage.assertEmailValidationMessage('Email is required');
   });
 });

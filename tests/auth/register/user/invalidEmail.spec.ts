@@ -1,17 +1,14 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../../../_fixtures/fixtures';
 
 // TODO: can be made parameterized (different formats)
 
 test.describe(`Register as user`, () => {
-  test(`User should see validation error when email is invalid`, async ({ page }) => {
-    await page.goto('/sign-up');
-
+  test(`User should see validation error when email is invalid`, async ({ signUpUserPage }) => {
     const email = 'incorrect email format';
 
-    await page.getByLabel('Email').fill(email);
-
-    await page.getByRole('button', { name: 'Create account' }).click();
-
-    await expect(page.locator('[class*=FormField_metaBlock]').first()).toHaveText('Wrong email');
+    await signUpUserPage.open();
+    await signUpUserPage.fillEmail(email);
+    await signUpUserPage.clickCreateAccount();
+    await signUpUserPage.assertEmailValidationMessage('Wrong email');
   });
 });

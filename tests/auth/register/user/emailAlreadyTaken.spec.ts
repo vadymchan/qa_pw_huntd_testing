@@ -1,37 +1,26 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../../../_fixtures/fixtures';
 import { faker } from '@faker-js/faker';
+import { SignUpUserPage } from '../../../../src/ui/pages/auth/signUp/user/SignUpUserPage';
 
 test.describe(`Register as user`, () => {
-  let email: string;
-
-  // TODO: use api + fixture instead
-  test.beforeEach(async ({ browser }) => {
+  test(`User should see validation error when email is already taken`, async ({
+    browser,
+    registerNewUser,
+  }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
 
-    await page.goto('/sign-up');
-
-    email = faker.internet.email();
-    const password = faker.internet.password();
-
-    await page.getByRole('textbox', { name: 'Email' }).fill(email);
-    await page.getByLabel('Password', { exact: true }).fill(password);
-    await page.getByLabel('Repeat password').fill(password);
-    await page.getByRole('button', { name: 'Create account' }).click();
-  });
-
-  test(`User should see validation error when email is already taken`, async ({ page }) => {
-    await page.goto('/sign-up');
+    const signUpUserPage = new SignUpUserPage(page);
 
     const password = faker.internet.password();
 
-    await page.getByRole('textbox', { name: 'Email' }).fill(email);
-    await page.getByLabel('Password', { exact: true }).fill(password);
-    await page.getByLabel('Repeat password').fill(password);
-    await page.getByRole('button', { name: 'Create account' }).click();
+    await signUpUserPage.open();
 
-    await expect(page.locator('[class*=FormField_metaBlock]').first()).toHaveText(
-      'Email is already taken.',
-    );
+    await signUpUserPage.fillEmail(registerNewUser.userCredentials.email);
+    await signUpUserPage.fillPassword(password);
+    await signUpUserPage.fillRepeatPassword(password);
+    await signUpUserPage.clickCreateAccount();
+
+    await signUpUserPage.assertEmailValidationMessage('Email is already taken.');
   });
 });
