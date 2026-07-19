@@ -8,10 +8,10 @@ test.describe('Register as recruiter', () => {
     perfectCandidate,
     signUpUserPage,
     chooseProfilePage,
-    recruiterProfilePage,
-    recruiterProfileContactsPage,
-    recruiterProfilePerfectCandidatePage,
-    recruiterProfilePreviewPage,
+    createRecruiterProfilePage: recruiterProfilePage,
+    createRecruiterProfileContactsPage: recruiterProfileContactsPage,
+    createRecruiterProfilePerfectCandidatePage: recruiterProfilePerfectCandidatePage,
+    recruiterProfilePreviewPage: recruiterProfilePreviewPage,
   }) => {
     await signUpUserPage.open();
     await signUpUserPage.fillEmail(userCredentials.email);
@@ -23,13 +23,13 @@ test.describe('Register as recruiter', () => {
     await chooseProfilePage.clickRecruiter();
 
     await recruiterProfilePage.assertOpened();
-    await recruiterProfilePage.fillRole(recruiterProfile.role);
-    await recruiterProfilePage.fillCompany(recruiterProfile.companyName);
+    await recruiterProfilePage.recruiterProfile.fillRole(recruiterProfile.role);
+    await recruiterProfilePage.recruiterProfile.fillCompany(recruiterProfile.companyName);
     await recruiterProfilePage.clickSaveAndContinue();
 
     await recruiterProfileContactsPage.assertOpened();
-    await recruiterProfileContactsPage.fillFirstName(recruiterProfileContacts.firstName);
-    await recruiterProfileContactsPage.fillLastName(recruiterProfileContacts.lastName);
+    await recruiterProfileContactsPage.component.fillFirstName(recruiterProfileContacts.firstName);
+    await recruiterProfileContactsPage.component.fillLastName(recruiterProfileContacts.lastName);
     await recruiterProfileContactsPage.clickSaveAndContinue();
 
     await recruiterProfilePerfectCandidatePage.assertOpened();
