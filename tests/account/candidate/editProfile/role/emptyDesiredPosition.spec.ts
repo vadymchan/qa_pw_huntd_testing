@@ -1,26 +1,17 @@
-import { expect } from '@playwright/test';
 import { test } from '../../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {
-  test.beforeEach(async ({ page, registeredCandidate }) => {
-    await page.goto('/sign-in');
+  test.use({ storageState: 'playwright/.auth/candidate.json' });
 
-    await page.getByLabel('Email').fill(registeredCandidate.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredCandidate.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
-  test(`User should see validation error when desired position is empt`, async ({ page }) => {
+  test(`User should see validation error when desired position is empt`, async ({
+    editCandidateProfilePage,
+  }) => {
     const desiredPosition = '';
 
-    await page.goto('/profile/candidate');
-
-    await page.getByLabel('Desired position').fill(desiredPosition);
-    await page.getByRole('button', { name: 'Save changes' }).click();
-
-    await expect(page.locator('[class*=FormField_metaBlock]').first()).toHaveText(
-      'Position is required',
-    );
+    await editCandidateProfilePage.open();
+    await editCandidateProfilePage.candidateProfile.fillDesiredPosition(desiredPosition);
+    const waitForResponse = false;
+    await editCandidateProfilePage.clickSaveChanges(waitForResponse);
+    await editCandidateProfilePage.assertDesiredPositionValidationMessage('Position is required');
   });
 });
