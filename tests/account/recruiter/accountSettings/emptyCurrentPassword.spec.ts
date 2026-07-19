@@ -1,28 +1,18 @@
 import { test } from '../../../_fixtures/fixtures';
-import { expect } from '@playwright/test';
 
 test.describe(`Update recruiter account settings`, () => {
-  test.beforeEach(async ({ page, registeredRecruiter }) => {
-    await page.goto('/sign-in');
-
-    await page.getByLabel('Email').fill(registeredRecruiter.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredRecruiter.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
-  test(`User should see validation error when current password is empty`, async ({ page }) => {
+  test(`User should see validation error when current password is empty`, async ({
+    registerNewRecruiter,
+    changePasswordPage,
+  }) => {
     const currentPassword = '';
 
-    await page.goto('/settings/change-password');
+    const waitForResponse = false;
 
-    await page.getByRole('button', { name: 'Change password' }).click();
-
-    await page.getByLabel('Current password').fill(currentPassword);
-    await page.getByRole('button', { name: 'Save changes' }).click();
-
-    await expect(page.locator('[class*=FormField_metaBlock]').first()).toHaveText(
-      'Password is required',
-    );
+    await changePasswordPage.open();
+    await changePasswordPage.clickChangePassword();
+    await changePasswordPage.fillCurrentPassword(currentPassword);
+    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.assertCurrentPasswordValidationMessage('Password is required');
   });
 });

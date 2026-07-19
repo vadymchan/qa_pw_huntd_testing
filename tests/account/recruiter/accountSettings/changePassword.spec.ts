@@ -1,37 +1,34 @@
-import { faker } from '@faker-js/faker';
 import { test } from '../../../_fixtures/fixtures';
-import { expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test.describe(`Update recruiter account settings`, () => {
-  test.beforeEach(async ({ page, registeredRecruiter }) => {
-    await page.goto('/sign-in');
-
-    await page.getByLabel('Email').fill(registeredRecruiter.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredRecruiter.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
-  test(`User should change password successfully`, async ({ page, registeredRecruiter }) => {
-    const currentPassword = registeredRecruiter.userCredentials.password;
+  test(`User should change password successfully`, async ({
+    registerNewRecruiter,
+    changePasswordPage,
+    logoutUserPage,
+    signInUserPage,
+    recruiterProfilePreviewPage: recruiterProfilePreviewPage,
+  }) => {
+    const currentPassword = registerNewRecruiter.userCredentials.password;
     const newPassword = faker.internet.password();
 
-    await page.goto('/settings/change-password');
+    const waitForResponse = true;
 
-    await page.getByRole('button', { name: 'Change password' }).click();
+    await changePasswordPage.open();
+    await changePasswordPage.clickChangePassword();
+    await changePasswordPage.fillCurrentPassword(currentPassword);
+    await changePasswordPage.fillNewPassword(newPassword);
+    await changePasswordPage.fillRepeatNewPassword(newPassword);
+    await changePasswordPage.clickSaveChanges(waitForResponse);
 
-    await page.getByLabel('Current password').fill(currentPassword);
-    await page.getByLabel('New password', { exact: true }).fill(newPassword);
-    await page.getByLabel('Repeat new password').fill(newPassword);
-    await page.getByRole('button', { name: 'Save changes' }).click();
+    await logoutUserPage.clickProfile();
+    await logoutUserPage.clickSignOut();
 
-    await page.getByRole('button', { name: 'Profile' }).click();
-    await page.getByRole('button', { name: 'Sign out' }).click();
+    await signInUserPage.assertOpened();
+    await signInUserPage.fillEmail(registerNewRecruiter.userCredentials.email);
+    await signInUserPage.fillPassword(newPassword);
+    await signInUserPage.clickSignIn();
 
-    await page.getByLabel('Email').fill(registeredRecruiter.userCredentials.email);
-    await page.getByLabel('Password').fill(newPassword);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-
-    await expect(page).toHaveURL('/profile-preview/recruiter');
+    await recruiterProfilePreviewPage.assertOpened();
   });
 });
