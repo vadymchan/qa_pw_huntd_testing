@@ -1,35 +1,21 @@
 import { test } from '../../../../_fixtures/fixtures';
-import { graphqlWaitForResponse } from '../../../../../src/utils/playwright/graphqlWaitForResponse';
-import { expect } from '@playwright/test';
 
 test.describe(`Edit profile as candidate`, () => {
-  test.beforeEach(async ({ page, registeredCandidate }) => {
-    await page.goto('/sign-in');
-
-    await page.getByLabel('Email').fill(registeredCandidate.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredCandidate.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
-  test(`User should update location`, async ({ page }) => {
+  test(`User should update location`, async ({
+    registerNewCandidate,
+    editCandidateProfileJobExpectationsPage,
+    candidateProfilePreviewPage,
+  }) => {
     const location = 'Kyiv';
 
-    await page.goto('/profile/candidate/job-expectations');
+    await editCandidateProfileJobExpectationsPage.open();
+    await editCandidateProfileJobExpectationsPage.profileJobExpectations.selectYourLocation(
+      location,
+    );
+    const waitForResponse = true;
+    await editCandidateProfileJobExpectationsPage.clickSaveChanges(waitForResponse);
 
-    const responsePromise = page.waitForResponse((r) => r.url().includes('GetPlaceDetails'));
-    await page.getByRole('textbox', { name: 'Your Location' }).fill(location);
-    await page.locator('.pac-item').first().click();
-    await responsePromise;
-
-    await graphqlWaitForResponse(page, 'updateCandidateProfile', async () => {
-      await page.getByRole('button', { name: 'Save changes' }).click();
-    });
-
-    await page.goto('/profile-preview/candidate');
-
-    await expect(
-      page.locator('[class*=ProfileMeta_metaWrapper]').getByRole('listitem').first(),
-    ).toContainText(location);
+    await candidateProfilePreviewPage.open();
+    await candidateProfilePreviewPage.assertLocationContainsText(location);
   });
 });
