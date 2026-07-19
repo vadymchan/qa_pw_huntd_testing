@@ -1,34 +1,21 @@
-import { faker } from '@faker-js/faker';
 import { test } from '../../../../_fixtures/fixtures';
-import { graphqlWaitForResponse } from '../../../../../src/utils/playwright/graphqlWaitForResponse';
-import { expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test.describe(`Edit profile as candidate`, () => {
-  test.beforeEach(async ({ page, registeredCandidate }) => {
-    await page.goto('/sign-in');
-
-    await page.getByLabel('Email').fill(registeredCandidate.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredCandidate.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
-  test(`User should update last name`, async ({ page, registeredCandidate }) => {
-    const firstName = registeredCandidate.profileContacts.firstName;
+  test(`User should update last name`, async ({
+    registerNewCandidate,
+    editCandidateProfileContactsPage,
+    candidateProfilePreviewPage,
+  }) => {
+    const firstName = registerNewCandidate.profileContacts.firstName;
     const lastName = faker.person.lastName();
 
-    await page.goto('profile/candidate/contacts');
+    await editCandidateProfileContactsPage.open();
+    await editCandidateProfileContactsPage.profileContacts.fillLastName(lastName);
+    const waitForResponse = true;
+    await editCandidateProfileContactsPage.clickSaveChanges(waitForResponse);
 
-    await page.getByLabel('Last name').fill(lastName);
-
-    await graphqlWaitForResponse(page, 'updateProfileContacts', async () => {
-      await page.getByRole('button', { name: 'Save changes' }).click();
-    });
-
-    await page.goto('/profile-preview/candidate');
-
-    await expect(page.locator('p[class*=typography_smallHeading]')).toHaveText(
-      `${firstName} ${lastName}`,
-    );
+    await candidateProfilePreviewPage.open();
+    await candidateProfilePreviewPage.assertFullNameHasText(firstName, lastName);
   });
 });

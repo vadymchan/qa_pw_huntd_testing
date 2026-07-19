@@ -1,26 +1,18 @@
 import { test } from '../../../../_fixtures/fixtures';
-import { expect } from '@playwright/test';
 
 test.describe(`Edit profile as candidate`, () => {
-  test.beforeEach(async ({ page, registeredCandidate }) => {
-    await page.goto('/sign-in');
+  test.use({ storageState: 'playwright/.auth/candidate.json' });
 
-    await page.getByLabel('Email').fill(registeredCandidate.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredCandidate.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
-  test(`User should see validation error when first name is empty`, async ({ page }) => {
+  test(`User should see validation error when first name is empty`, async ({
+    editCandidateProfileContactsPage,
+  }) => {
     const firstName = '';
 
-    await page.goto('profile/candidate/contacts');
-
-    await page.getByLabel('First name').fill(firstName);
-
-    await page.getByRole('button', { name: 'Save changes' }).click();
-
-    await expect(page.locator('[class*=FormField_metaBlock]').nth(1)).toHaveText(
+    await editCandidateProfileContactsPage.open();
+    await editCandidateProfileContactsPage.profileContacts.fillFirstName(firstName);
+    const waitForResponse = false;
+    await editCandidateProfileContactsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileContactsPage.assertFirstNameValidationMessage(
       'First name is required',
     );
   });
