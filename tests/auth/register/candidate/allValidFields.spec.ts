@@ -8,11 +8,11 @@ test.describe(`Register as candidate`, () => {
     candidateProfileContacts,
     signUpUserPage,
     chooseProfilePage,
-    candidateProfilePage,
-    candidateProfileJobExpectationsPage,
-    candidateProfileExperiencePage,
-    candidateProfileBioPage,
-    candidateProfileContactsPage,
+    createCandidateProfilePage,
+    createCandidateProfileJobExpectationsPage,
+    createCandidateProfileExperiencePage,
+    createCandidateProfileBioPage,
+    createCandidateProfileContactsPage,
     candidateProfilePreviewPage,
     candidateProfileFeedbackPage,
   }) => {
@@ -25,48 +25,88 @@ test.describe(`Register as candidate`, () => {
     await chooseProfilePage.assertOpened();
     await chooseProfilePage.clickCandidate();
 
-    await candidateProfilePage.assertOpened();
-    await candidateProfilePage.fillDesiredPosition(candidateProfile.desiredPosition);
-    await candidateProfilePage.selectDesiredRoles(candidateProfile.desiredRoles);
-    await candidateProfilePage.selectCoreTechnicalSkills(candidateProfile.coreTechnicalSkills);
-    await candidateProfilePage.clickSaveAndContinue();
+    await createCandidateProfilePage.assertOpened();
+    await createCandidateProfilePage.candidateProfile.fillDesiredPosition(
+      candidateProfile.desiredPosition,
+    );
+    await createCandidateProfilePage.candidateProfile.selectDesiredRoles(
+      candidateProfile.desiredRoles,
+    );
+    await createCandidateProfilePage.candidateProfile.selectCoreTechnicalSkills(
+      candidateProfile.coreTechnicalSkills,
+    );
+    await createCandidateProfilePage.clickSaveAndContinue();
 
-    await candidateProfileJobExpectationsPage.assertOpened();
-    await candidateProfileJobExpectationsPage.clickSalaryType(candidateProfile.salaryType);
-    await candidateProfileJobExpectationsPage.fillDesiredBaseSalary(
+    await createCandidateProfileJobExpectationsPage.assertOpened();
+    await createCandidateProfileJobExpectationsPage.profileJobExpectations.clickSalaryType(
+      candidateProfile.salaryType,
+    );
+    await createCandidateProfileJobExpectationsPage.profileJobExpectations.fillDesiredBaseSalary(
       `${candidateProfile.desiredBaseSalary}`,
     );
-    await candidateProfileJobExpectationsPage.selectJobExperience(candidateProfile.jobExperience);
-    await candidateProfileJobExpectationsPage.selectEnglishLevel(candidateProfile.englishLevel);
-    await candidateProfileJobExpectationsPage.selectYourLocation(candidateProfile.yourLocation);
-    await candidateProfileJobExpectationsPage.clickSaveAndContinue();
+    await createCandidateProfileJobExpectationsPage.profileJobExpectations.selectJobExperience(
+      candidateProfile.jobExperience,
+    );
+    await createCandidateProfileJobExpectationsPage.profileJobExpectations.selectEnglishLevel(
+      candidateProfile.englishLevel,
+    );
+    await createCandidateProfileJobExpectationsPage.profileJobExpectations.selectYourLocation(
+      candidateProfile.yourLocation,
+    );
+    await createCandidateProfileJobExpectationsPage.clickSaveAndContinue();
 
-    await candidateProfileExperiencePage.assertOpened();
-    await candidateProfileExperiencePage.clickAddManually();
-    await candidateProfileExperiencePage.fillRole(workPlace.role);
-    await candidateProfileExperiencePage.fillCompanyName(workPlace.companyName);
-    await candidateProfileExperiencePage.selectStartMonth(workPlace.startMonth);
-    await candidateProfileExperiencePage.fillStartYear(`${workPlace.startYear}`);
-    await candidateProfileExperiencePage.clickEndDate();
-    await candidateProfileExperiencePage.selectEndMonth(workPlace.endMonth);
-    await candidateProfileExperiencePage.fillEndYear(`${workPlace.endYear}`);
-    await candidateProfileExperiencePage.fillAchivements(`${workPlace.achievements}`);
-    await candidateProfileExperiencePage.clickSave();
-    await candidateProfileExperiencePage.clickSaveAndContinue();
+    await createCandidateProfileExperiencePage.assertOpened();
+    await createCandidateProfileExperiencePage.clickAddManually();
+    await createCandidateProfileExperiencePage.profileExperience.fillRole(workPlace.role);
+    await createCandidateProfileExperiencePage.profileExperience.fillCompanyName(
+      workPlace.companyName,
+    );
+    await createCandidateProfileExperiencePage.profileExperience.selectStartMonth(
+      workPlace.startMonth,
+    );
+    await createCandidateProfileExperiencePage.profileExperience.fillStartYear(
+      `${workPlace.startYear}`,
+    );
+    await createCandidateProfileExperiencePage.profileExperience.clickEndDate();
+    await createCandidateProfileExperiencePage.profileExperience.selectEndMonth(workPlace.endMonth);
+    await createCandidateProfileExperiencePage.profileExperience.fillEndYear(
+      `${workPlace.endYear}`,
+    );
+    await createCandidateProfileExperiencePage.profileExperience.fillAchivements(
+      `${workPlace.achievements}`,
+    );
+    const waitForResponse = true;
+    await createCandidateProfileExperiencePage.profileExperience.clickSave(
+      waitForResponse,
+      'Create',
+    );
+    await createCandidateProfileExperiencePage.clickSaveAndContinue();
 
-    await candidateProfileBioPage.assertOpened();
-    await candidateProfileBioPage.fillAchivements(candidateProfile.achievements);
-    await candidateProfileBioPage.fillWorkExpectations(candidateProfile.workExpectations);
-    await candidateProfileBioPage.clickSaveAndContinue();
+    await createCandidateProfileBioPage.assertOpened();
+    await createCandidateProfileBioPage.profileBio.fillAchivements(candidateProfile.achievements);
+    await createCandidateProfileBioPage.profileBio.fillWorkExpectations(
+      candidateProfile.workExpectations,
+    );
+    await createCandidateProfileBioPage.clickSaveAndContinue();
 
-    await candidateProfileContactsPage.assertOpened();
-    await candidateProfileContactsPage.clickUsualProfile();
-    await candidateProfileContactsPage.fillFirstName(candidateProfileContacts.firstName);
-    await candidateProfileContactsPage.fillLastName(candidateProfileContacts.lastName);
-    await candidateProfileContactsPage.fillLinkedin(candidateProfileContacts.linkedinUrl);
-    await candidateProfileContactsPage.fillBehance(candidateProfileContacts.behanceUrl);
-    await candidateProfileContactsPage.fillGitHub(candidateProfileContacts.githubUrl);
-    await candidateProfileContactsPage.clickActivateProfile();
+    await createCandidateProfileContactsPage.assertOpened();
+    await createCandidateProfileContactsPage.profileContacts.clickUsualProfile();
+    await createCandidateProfileContactsPage.profileContacts.fillFirstName(
+      candidateProfileContacts.firstName,
+    );
+    await createCandidateProfileContactsPage.profileContacts.fillLastName(
+      candidateProfileContacts.lastName,
+    );
+    await createCandidateProfileContactsPage.profileContacts.fillLinkedin(
+      candidateProfileContacts.linkedinUrl,
+    );
+    await createCandidateProfileContactsPage.profileContacts.fillBehance(
+      candidateProfileContacts.behanceUrl,
+    );
+    await createCandidateProfileContactsPage.profileContacts.fillGitHub(
+      candidateProfileContacts.githubUrl,
+    );
+    await createCandidateProfileContactsPage.clickActivateProfile();
 
     await candidateProfileFeedbackPage.assertOpened();
     await candidateProfileFeedbackPage.assertHeaderHasText(
