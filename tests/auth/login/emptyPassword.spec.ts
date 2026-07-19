@@ -1,13 +1,14 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../../_fixtures/fixtures';
+import { SignInUserPage } from '../../../src/ui/pages/auth/signIn/SignInUserPage';
 
 test.describe(`Register as user`, () => {
-  test(`User should see validation error when password is empty`, async ({ page }) => {
-    await page.goto('/sign-in');
+  test(`User should see validation error when password is empty`, async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-
-    await expect(page.locator('[class*=FormField_metaBlock]').last()).toHaveText(
-      'Password is required',
-    );
+    const signInUserPage = new SignInUserPage(page);
+    await signInUserPage.open();
+    await signInUserPage.clickSignIn();
+    await signInUserPage.assertPasswordValidationMessage('Password is required');
   });
 });

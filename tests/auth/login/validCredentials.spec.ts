@@ -1,32 +1,21 @@
-import { test, expect } from '@playwright/test';
-import { faker } from '@faker-js/faker';
+import { test } from '../../_fixtures/fixtures';
+import { SignInUserPage } from '../../../src/ui/pages/auth/signIn/SignInUserPage';
+import { ChooseProfilePage } from '../../../src/ui/pages/auth/signUp/user/ChooseProfilePage';
 
 test.describe(`Login user`, () => {
-  let email: string;
-  let password: string;
-
-  test.beforeEach(async ({ browser }) => {
+  test(`User should login with valid credentials`, async ({ browser, registerNewUser }) => {
+    const email = registerNewUser.userCredentials.email;
+    const password = registerNewUser.userCredentials.password;
     const context = await browser.newContext();
     const page = await context.newPage();
 
-    await page.goto('/sign-up');
+    const signInUserPage = new SignInUserPage(page);
+    await signInUserPage.open();
+    await signInUserPage.fillEmail(email);
+    await signInUserPage.fillPassword(password);
+    await signInUserPage.clickSignIn();
 
-    email = faker.internet.email();
-    password = faker.internet.password();
-
-    await page.getByLabel('Email').fill(email);
-    await page.getByLabel('Password', { exact: true }).fill(password);
-    await page.getByLabel('Repeat password').fill(password);
-    await page.getByRole('button', { name: 'Create account' }).click();
-  });
-
-  test(`User should login with valid credentials`, async ({ page }) => {
-    await page.goto('/sign-in');
-
-    await page.getByLabel('Email').fill(email);
-    await page.getByLabel('Password').fill(password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-
-    await expect(page).toHaveURL('/choose-profile');
+    const chooseProfilePage = new ChooseProfilePage(page);
+    await chooseProfilePage.assertOpened();
   });
 });
