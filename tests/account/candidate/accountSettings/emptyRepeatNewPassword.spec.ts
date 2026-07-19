@@ -1,27 +1,19 @@
 import { test } from '../../../_fixtures/fixtures';
-import { expect } from '@playwright/test';
 
 test.describe(`Update candidate account settings`, () => {
-  test.beforeEach(async ({ page, registeredCandidate }) => {
-    await page.goto('/sign-in');
-
-    await page.getByLabel('Email').fill(registeredCandidate.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredCandidate.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
-  test(`User should see validation error when repeat new password is empty`, async ({ page }) => {
+  test(`User should see validation error when repeat new password is empty`, async ({
+    registerNewCandidate,
+    changePasswordPage,
+  }) => {
     const newPassword = '';
 
-    await page.goto('/settings/change-password');
+    const waitForResponse = false;
 
-    await page.getByRole('button', { name: 'Change password' }).click();
-
-    await page.getByLabel('Repeat new password').fill(newPassword);
-    await page.getByRole('button', { name: 'Save changes' }).click();
-
-    await expect(page.locator('[class*=FormField_metaBlock]').last()).toHaveText(
+    await changePasswordPage.open();
+    await changePasswordPage.clickChangePassword();
+    await changePasswordPage.fillRepeatNewPassword(newPassword);
+    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.assertRepeatNewPasswordValidationMessage(
       'Please repeat your password',
     );
   });

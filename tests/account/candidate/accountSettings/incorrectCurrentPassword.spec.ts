@@ -1,32 +1,22 @@
-import { faker } from '@faker-js/faker';
 import { test } from '../../../_fixtures/fixtures';
-import { expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test.describe(`Update candidate account settings`, () => {
-  test.beforeEach(async ({ page, registeredCandidate }) => {
-    await page.goto('/sign-in');
-
-    await page.getByLabel('Email').fill(registeredCandidate.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredCandidate.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
-  test(`User should see validation error when current password is incorrect`, async ({ page }) => {
+  test(`User should see validation error when current password is incorrect`, async ({
+    registerNewCandidate,
+    changePasswordPage,
+  }) => {
     const incorrectPassword = faker.internet.password();
     const newPassword = faker.internet.password();
 
-    await page.goto('/settings/change-password');
+    const waitForResponse = false;
 
-    await page.getByRole('button', { name: 'Change password' }).click();
-
-    await page.getByLabel('Current password').fill(incorrectPassword);
-    await page.getByLabel('New password', { exact: true }).fill(newPassword);
-    await page.getByLabel('Repeat new password').fill(newPassword);
-    await page.getByRole('button', { name: 'Save changes' }).click();
-
-    await expect(page.locator('[class*=FormField_metaBlock]').first()).toHaveText(
-      'Wrong credentials',
-    );
+    await changePasswordPage.open();
+    await changePasswordPage.clickChangePassword();
+    await changePasswordPage.fillCurrentPassword(incorrectPassword);
+    await changePasswordPage.fillNewPassword(newPassword);
+    await changePasswordPage.fillRepeatNewPassword(newPassword);
+    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.assertCurrentPasswordValidationMessage('Wrong credentials');
   });
 });

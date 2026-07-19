@@ -1,35 +1,24 @@
-import { faker } from '@faker-js/faker';
 import { test } from '../../../_fixtures/fixtures';
-import { expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test.describe(`Update candidate account settings`, () => {
-  test.beforeEach(async ({ page, registeredCandidate }) => {
-    await page.goto('/sign-in');
-
-    await page.getByLabel('Email').fill(registeredCandidate.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredCandidate.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
   test(`User should see validation error when repeat new password is mismatched`, async ({
-    page,
-    registeredCandidate,
+    registerNewCandidate,
+    changePasswordPage,
   }) => {
-    const currentPassword = registeredCandidate.userCredentials.password;
+    const currentPassword = registerNewCandidate.userCredentials.password;
     const newPassword = faker.internet.password();
     const repeatNewPassword = faker.internet.password();
 
-    await page.goto('/settings/change-password');
+    const waitForResponse = false;
 
-    await page.getByRole('button', { name: 'Change password' }).click();
-
-    await page.getByLabel('Current password').fill(currentPassword);
-    await page.getByLabel('New password', { exact: true }).fill(newPassword);
-    await page.getByLabel('Repeat new password').fill(repeatNewPassword);
-    await page.getByRole('button', { name: 'Save changes' }).click();
-
-    await expect(page.locator('[class*=FormField_metaBlock]').last()).toHaveText(
+    await changePasswordPage.open();
+    await changePasswordPage.clickChangePassword();
+    await changePasswordPage.fillCurrentPassword(currentPassword);
+    await changePasswordPage.fillNewPassword(newPassword);
+    await changePasswordPage.fillRepeatNewPassword(repeatNewPassword);
+    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.assertRepeatNewPasswordValidationMessage(
       'Please make sure your passwords match',
     );
   });
