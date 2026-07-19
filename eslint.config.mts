@@ -16,6 +16,30 @@ export default defineConfig([
   {
     files: ['tests/**'],
     extends: [playwright.configs['flat/recommended']],
+    rules: {
+      'playwright/expect-expect': [
+        'error',
+        {
+          // no raw expect is used (use POM instead)
+          assertFunctionPatterns: ['^assert.*'],
+        },
+      ],
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          // ignore unused register fixtures in tests (they return void and are used in creating new user)
+          argsIgnorePattern: '^register',
+        },
+      ],
+    },
+  },
+  {
+    files: ['tests/**/*.setup.ts'],
+    rules: {
+      // setup verifies via throws (API client fail-fast), not assertions
+      'playwright/expect-expect': 'off',
+    },
   },
   tseslint.configs.recommended,
   eslintConfigPrettier,
