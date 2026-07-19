@@ -1,23 +1,12 @@
-import { test, expect } from '@playwright/test';
-import { faker } from '@faker-js/faker';
+import { test } from '../../_fixtures/fixtures';
 
 test.describe(`Logout user`, () => {
-  test(`User should logout successfully`, async ({ page }) => {
-    await page.goto('/sign-up');
+  test.use({ storageState: 'playwright/.auth/candidate.json' });
 
-    const email = faker.internet.email();
-    const password = faker.internet.password();
-
-    await page.getByLabel('Email').fill(email);
-    await page.getByLabel('Password', { exact: true }).fill(password);
-    await page.getByLabel('Repeat password').fill(password);
-    await page.getByRole('button', { name: 'Create account' }).click();
-
-    await page.getByRole('link', { name: 'Candidate hunting for interesting job offers' }).click();
-
-    await page.getByRole('button', { name: 'Profile' }).click();
-    await page.getByRole('button', { name: 'Sign out' }).click();
-
-    await expect(page).toHaveURL('/sign-in');
+  test(`User should logout successfully`, async ({ logoutUserPage, signInUserPage }) => {
+    await logoutUserPage.open();
+    await logoutUserPage.clickProfile();
+    await logoutUserPage.clickSignOut();
+    await signInUserPage.assertOpened();
   });
 });
