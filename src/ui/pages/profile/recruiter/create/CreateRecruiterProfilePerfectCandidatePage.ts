@@ -1,8 +1,8 @@
 import { expect, Locator, Page } from '@playwright/test';
-import { BasePage } from '../../BasePage';
-import { selectOption } from '../../../utils/playwright/selectOption';
+import { BasePage } from '../../../BasePage';
+import { selectOption } from '../../../../../utils/playwright/selectOption';
 
-export class RecruiterProfilePerfectCandidatePage extends BasePage {
+export class CreateRecruiterProfilePerfectCandidatePage extends BasePage {
   private roles: Locator;
   private technologies: Locator;
   private jobExperience: Locator;

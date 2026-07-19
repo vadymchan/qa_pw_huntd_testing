@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../../BasePage';
-import { PerfectCandidateRole } from '../../../models/auth/recruiter/PerfectCandidateRole';
 
 export class RecruiterProfilePreviewPage extends BasePage {
   private fullName: Locator;
