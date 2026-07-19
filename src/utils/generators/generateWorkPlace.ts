@@ -7,9 +7,9 @@ export function generateWorkPlace(): WorkPlace {
   const companyName = 'Mate Academy';
   const description = 'Work description';
   const startMonth: Month = 'January';
-  const startYear = 2025;
+  const startYear = 2024;
   const endMonth: Month = 'January';
-  const endYear = 2026;
+  const endYear = 2025;
   const achievements = faker.lorem.sentence();
 
   return {
