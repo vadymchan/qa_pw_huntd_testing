@@ -2,13 +2,18 @@ import { test as base } from '@playwright/test';
 import { CandidateProfile } from '../../src/models/auth/candidate/CandidateProfile';
 import { WorkPlace } from '../../src/models/auth/candidate/WorkPlace';
 import { ProfileContacts } from '../../src/models/auth/ProfileContacts';
-import { CandidateProfileBioPage } from '../../src/pages/profile/candidate/CandidateProfileBioPage';
-import { CandidateProfileContactsPage } from '../../src/pages/profile/candidate/CandidateProfileContactsPage';
-import { CandidateProfileExperiencePage } from '../../src/pages/profile/candidate/CandidateProfileExperiencePage';
-import { CandidateProfileFeedbackPage } from '../../src/pages/profile/candidate/CandidateProfileFeedbackPage';
-import { CandidateProfileJobExpectationsPage } from '../../src/pages/profile/candidate/CandidateProfileJobExpectationsPage';
-import { CandidateProfilePage } from '../../src/pages/profile/candidate/CandidateProfilePage';
-import { CandidateProfilePreviewPage } from '../../src/pages/profile/candidate/CandidateProfilePreviewPage';
+import { CreateCandidateProfileBioPage } from '../../src/ui/pages/profile/candidate/create/CreateCandidateProfileBioPage';
+import { CreateCandidateProfileContactsPage } from '../../src/ui/pages/profile/candidate/create/CreateCandidateProfileContactsPage';
+import { CreateCandidateProfileExperiencePage } from '../../src/ui/pages/profile/candidate/create/CreateCandidateProfileExperiencePage';
+import { CreateCandidateProfileJobExpectationsPage } from '../../src/ui/pages/profile/candidate/create/CreateCandidateProfileJobExpectationsPage';
+import { CreateCandidateProfilePage } from '../../src/ui/pages/profile/candidate/create/CreateCandidateProfilePage';
+import { EditCandidateProfilePage } from '../../src/ui/pages/profile/candidate/edit/EditCandidateProfilePage';
+import { EditCandidateProfileBioPage } from '../../src/ui/pages/profile/candidate/edit/EditCandidateProfileBioPage';
+import { EditCandidateProfileContactsPage } from '../../src/ui/pages/profile/candidate/edit/EditCandidateProfileContactsPage';
+import { EditCandidateProfileExperiencePage } from '../../src/ui/pages/profile/candidate/edit/EditCandidateProfileExperiencePage';
+import { EditCandidateProfileJobExpectationsPage } from '../../src/ui/pages/profile/candidate/edit/EditCandidateProfileJobExpectationsPage';
+import { CandidateProfileFeedbackPage } from '../../src/ui/pages/profile/candidate/CandidateProfileFeedbackPage';
+import { CandidateProfilePreviewPage } from '../../src/ui/pages/profile/candidate/CandidateProfilePreviewPage';
 import { generateCandidateProfile } from '../../src/utils/generators/generateCandidateProfile';
 import { generateWorkPlace } from '../../src/utils/generators/generateWorkPlace';
 import { generateProfileContacts } from '../../src/utils/generators/generateProfileContacts';
@@ -17,12 +22,17 @@ type MyFixtures = {
   candidateProfile: CandidateProfile;
   workPlace: WorkPlace;
   candidateProfileContacts: ProfileContacts;
-  candidateProfileBioPage: CandidateProfileBioPage;
-  candidateProfileContactsPage: CandidateProfileContactsPage;
-  candidateProfileExperiencePage: CandidateProfileExperiencePage;
+  createCandidateProfileBioPage: CreateCandidateProfileBioPage;
+  createCandidateProfileContactsPage: CreateCandidateProfileContactsPage;
+  createCandidateProfileExperiencePage: CreateCandidateProfileExperiencePage;
+  createCandidateProfileJobExpectationsPage: CreateCandidateProfileJobExpectationsPage;
+  createCandidateProfilePage: CreateCandidateProfilePage;
+  editCandidateProfileBioPage: EditCandidateProfileBioPage;
+  editCandidateProfileContactsPage: EditCandidateProfileContactsPage;
+  editCandidateProfileExperiencePage: EditCandidateProfileExperiencePage;
+  editCandidateProfileJobExpectationsPage: EditCandidateProfileJobExpectationsPage;
+  editCandidateProfilePage: EditCandidateProfilePage;
   candidateProfileFeedbackPage: CandidateProfileFeedbackPage;
-  candidateProfileJobExpectationsPage: CandidateProfileJobExpectationsPage;
-  candidateProfilePage: CandidateProfilePage;
   candidateProfilePreviewPage: CandidateProfilePreviewPage;
 };
 
@@ -39,23 +49,38 @@ export const test = base.extend<MyFixtures>({
     const candidateProfileContacts = generateProfileContacts();
     await use(candidateProfileContacts);
   },
-  candidateProfileBioPage: async ({ page }, use) => {
-    await use(new CandidateProfileBioPage(page));
+  createCandidateProfileBioPage: async ({ page }, use) => {
+    await use(new CreateCandidateProfileBioPage(page));
   },
-  candidateProfileContactsPage: async ({ page }, use) => {
-    await use(new CandidateProfileContactsPage(page));
+  createCandidateProfileContactsPage: async ({ page }, use) => {
+    await use(new CreateCandidateProfileContactsPage(page));
   },
-  candidateProfileExperiencePage: async ({ page }, use) => {
-    await use(new CandidateProfileExperiencePage(page));
+  createCandidateProfileExperiencePage: async ({ page }, use) => {
+    await use(new CreateCandidateProfileExperiencePage(page));
+  },
+  createCandidateProfileJobExpectationsPage: async ({ page }, use) => {
+    await use(new CreateCandidateProfileJobExpectationsPage(page));
+  },
+  createCandidateProfilePage: async ({ page }, use) => {
+    await use(new CreateCandidateProfilePage(page));
+  },
+  editCandidateProfileBioPage: async ({ page }, use) => {
+    await use(new EditCandidateProfileBioPage(page));
+  },
+  editCandidateProfileContactsPage: async ({ page }, use) => {
+    await use(new EditCandidateProfileContactsPage(page));
+  },
+  editCandidateProfileExperiencePage: async ({ page }, use) => {
+    await use(new EditCandidateProfileExperiencePage(page));
+  },
+  editCandidateProfileJobExpectationsPage: async ({ page }, use) => {
+    await use(new EditCandidateProfileJobExpectationsPage(page));
+  },
+  editCandidateProfilePage: async ({ page }, use) => {
+    await use(new EditCandidateProfilePage(page));
   },
   candidateProfileFeedbackPage: async ({ page }, use) => {
     await use(new CandidateProfileFeedbackPage(page));
-  },
-  candidateProfileJobExpectationsPage: async ({ page }, use) => {
-    await use(new CandidateProfileJobExpectationsPage(page));
-  },
-  candidateProfilePage: async ({ page }, use) => {
-    await use(new CandidateProfilePage(page));
   },
   candidateProfilePreviewPage: async ({ page }, use) => {
     await use(new CandidateProfilePreviewPage(page));

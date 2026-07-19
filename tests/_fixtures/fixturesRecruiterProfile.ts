@@ -1,23 +1,27 @@
 import { test as base } from '@playwright/test';
 import { ProfileContacts } from '../../src/models/auth/ProfileContacts';
 import { RecruiterProfile } from '../../src/models/auth/recruiter/RecruiterProfile';
-import { RecruiterProfileContactsPage } from '../../src/pages/profile/recruiter/RecruiterProfileContactsPage';
-import { RecruiterProfilePage } from '../../src/pages/profile/recruiter/RecruiterProfilePage';
-import { RecruiterProfilePerfectCandidatePage } from '../../src/pages/profile/recruiter/RecruiterProfilePerfectCandidatePage';
-import { RecruiterProfilePreviewPage } from '../../src/pages/profile/recruiter/RecruiterProfilePreviewPage';
+import { PerfectCandidate } from '../../src/models/auth/recruiter/PerfectCandidate';
+import { CreateRecruiterProfileContactsPage } from '../../src/ui/pages/profile/recruiter/create/CreateRecruiterProfileContactsPage';
+import { CreateRecruiterProfilePage } from '../../src/ui/pages/profile/recruiter/create/CreateRecruiterProfilePage';
+import { CreateRecruiterProfilePerfectCandidatePage } from '../../src/ui/pages/profile/recruiter/create/CreateRecruiterProfilePerfectCandidatePage';
+import { RecruiterProfilePreviewPage } from '../../src/ui/pages/profile/recruiter/RecruiterProfilePreviewPage';
+import { EditRecruiterProfileContactsPage } from '../../src/ui/pages/profile/recruiter/edit/EditRecruiterProfileContactsPage';
+import { EditRecruiterProfilePage } from '../../src/ui/pages/profile/recruiter/edit/EditRecruiterProfilePage';
 import { generateRecruiterProfile } from '../../src/utils/generators/generateRecruiterProfile';
 import { generateProfileContacts } from '../../src/utils/generators/generateProfileContacts';
 import { generatePerfectCandidate } from '../../src/utils/generators/generatePerfectCandidate';
-import { PerfectCandidate } from '../../src/models/auth/recruiter/PerfectCandidate';
 
 type MyFixtures = {
   recruiterProfile: RecruiterProfile;
   recruiterProfileContacts: ProfileContacts;
   perfectCandidate: PerfectCandidate;
-  recruiterProfileContactsPage: RecruiterProfileContactsPage;
-  recruiterProfilePage: RecruiterProfilePage;
-  recruiterProfilePerfectCandidatePage: RecruiterProfilePerfectCandidatePage;
+  createRecruiterProfileContactsPage: CreateRecruiterProfileContactsPage;
+  createRecruiterProfilePage: CreateRecruiterProfilePage;
+  createRecruiterProfilePerfectCandidatePage: CreateRecruiterProfilePerfectCandidatePage;
   recruiterProfilePreviewPage: RecruiterProfilePreviewPage;
+  editRecruiterProfileContactsPage: EditRecruiterProfileContactsPage;
+  editRecruiterProfilePage: EditRecruiterProfilePage;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -34,16 +38,22 @@ export const test = base.extend<MyFixtures>({
     const perfectCandidate = generatePerfectCandidate();
     await use(perfectCandidate);
   },
-  recruiterProfileContactsPage: async ({ page }, use) => {
-    await use(new RecruiterProfileContactsPage(page));
+  createRecruiterProfileContactsPage: async ({ page }, use) => {
+    await use(new CreateRecruiterProfileContactsPage(page));
   },
-  recruiterProfilePage: async ({ page }, use) => {
-    await use(new RecruiterProfilePage(page));
+  createRecruiterProfilePage: async ({ page }, use) => {
+    await use(new CreateRecruiterProfilePage(page));
   },
-  recruiterProfilePerfectCandidatePage: async ({ page }, use) => {
-    await use(new RecruiterProfilePerfectCandidatePage(page));
+  createRecruiterProfilePerfectCandidatePage: async ({ page }, use) => {
+    await use(new CreateRecruiterProfilePerfectCandidatePage(page));
   },
   recruiterProfilePreviewPage: async ({ page }, use) => {
     await use(new RecruiterProfilePreviewPage(page));
+  },
+  editRecruiterProfileContactsPage: async ({ page }, use) => {
+    await use(new EditRecruiterProfileContactsPage(page));
+  },
+  editRecruiterProfilePage: async ({ page }, use) => {
+    await use(new EditRecruiterProfilePage(page));
   },
 });

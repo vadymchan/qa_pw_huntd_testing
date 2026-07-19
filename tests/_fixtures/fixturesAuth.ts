@@ -2,34 +2,75 @@ import { mergeTests } from '@playwright/test';
 import { test as testCandidateProfile } from './fixturesCandidateProfile';
 import { test as recruiterTestProfile } from './fixturesRecruiterProfile';
 import { generateUserCredentials } from '../../src/utils/generators/generateUserCredentials';
+import { UserCredentials } from '../../src/models/auth/UserCredentials';
+import {
+  CandidateProfile,
+  toCandidateProfileDto,
+} from '../../src/models/auth/candidate/CandidateProfile';
+import { WorkPlace, toWorkPlaceDto } from '../../src/models/auth/candidate/WorkPlace';
+import { ProfileContacts } from '../../src/models/auth/ProfileContacts';
+import {
+  RecruiterProfile,
+  toRecruiterProfileDto,
+} from '../../src/models/auth/recruiter/RecruiterProfile';
+import { SignUpUserApi } from '../../src/api/auth/SignUpUserApi';
 import { SignUpCandidateApi } from '../../src/api/auth/SignUpCandidateApi';
 import { SignUpRecruiterApi } from '../../src/api/auth/SignUpRecruiterApi';
-import { UserCredentials } from '../../src/models/auth/UserCredentials';
-import { SignUpUserPage } from '../../src/pages/auth/signUp/user/SignUpUserPage';
-import { ChooseProfilePage } from '../../src/pages/auth/signUp/user/ChooseProfilePage';
-import { toCandidateProfileDto } from '../../src/models/auth/candidate/CandidateProfile';
-import { toWorkPlaceDto } from '../../src/models/auth/candidate/WorkPlace';
-import { toRecruiterProfileDto } from '../../src/models/auth/recruiter/RecruiterProfile';
+import { SignUpUserPage } from '../../src/ui/pages/auth/signUp/user/SignUpUserPage';
+import { ChooseProfilePage } from '../../src/ui/pages/auth/signUp/user/ChooseProfilePage';
+import { SignInUserPage } from '../../src/ui/pages/auth/signIn/SignInUserPage';
+import { LogoutUserPage } from '../../src/ui/pages/auth/logout/LogoutUserPage';
 
 const base = mergeTests(testCandidateProfile, recruiterTestProfile);
 
-export const test = base.extend<{
+export type RegisteredUser = {
   userCredentials: UserCredentials;
-  registeredCandidate: void;
-  registeredRecruiter: void;
+};
+
+export type RegisteredCandidate = {
+  userCredentials: UserCredentials;
+  candidateProfile: CandidateProfile;
+  workPlace: WorkPlace;
+  profileContacts: ProfileContacts;
+};
+
+export type RegisteredRecruiter = {
+  userCredentials: UserCredentials;
+  recruiterProfile: RecruiterProfile;
+  profileContacts: ProfileContacts;
+};
+
+type MyFixtures = {
+  userCredentials: UserCredentials;
+  registerNewUser: RegisteredUser;
+  registerNewCandidate: RegisteredCandidate;
+  registerNewRecruiter: RegisteredRecruiter;
   signUpUserPage: SignUpUserPage;
   chooseProfilePage: ChooseProfilePage;
-}>({
+  signInUserPage: SignInUserPage;
+  logoutUserPage: LogoutUserPage;
+};
+
+export const test = base.extend<MyFixtures>({
   userCredentials: async ({}, use) => {
     const userCredentials = generateUserCredentials();
 
     await use(userCredentials);
   },
-  registeredCandidate: async (
-    { request, userCredentials, candidateProfile, workPlace, candidateProfileContacts },
+  registerNewUser: async ({ context, userCredentials }, use) => {
+    const signUpUserApi = new SignUpUserApi(context.request);
+
+    await signUpUserApi.createUser(userCredentials);
+
+    await use({
+      userCredentials,
+    });
+  },
+  registerNewCandidate: async (
+    { context, userCredentials, candidateProfile, workPlace, candidateProfileContacts },
     use,
   ) => {
-    const signUpCandidateApi = new SignUpCandidateApi(request);
+    const signUpCandidateApi = new SignUpCandidateApi(context.request);
 
     await signUpCandidateApi.createUser(userCredentials);
 
@@ -43,13 +84,18 @@ export const test = base.extend<{
 
     await signUpCandidateApi.sendProfileToReview();
 
-    await use();
+    await use({
+      userCredentials,
+      candidateProfile,
+      workPlace,
+      profileContacts: candidateProfileContacts,
+    });
   },
-  registeredRecruiter: async (
-    { request, userCredentials, recruiterProfile, recruiterProfileContacts },
+  registerNewRecruiter: async (
+    { context, userCredentials, recruiterProfile, recruiterProfileContacts },
     use,
   ) => {
-    const signUpRecruiterApi = new SignUpRecruiterApi(request);
+    const signUpRecruiterApi = new SignUpRecruiterApi(context.request);
 
     await signUpRecruiterApi.createUser(userCredentials);
 
@@ -60,12 +106,22 @@ export const test = base.extend<{
 
     await signUpRecruiterApi.sendProfileToReview();
 
-    await use();
+    await use({
+      userCredentials,
+      recruiterProfile,
+      profileContacts: recruiterProfileContacts,
+    });
   },
   signUpUserPage: async ({ page }, use) => {
     await use(new SignUpUserPage(page));
   },
   chooseProfilePage: async ({ page }, use) => {
     await use(new ChooseProfilePage(page));
+  },
+  signInUserPage: async ({ page }, use) => {
+    await use(new SignInUserPage(page));
+  },
+  logoutUserPage: async ({ page }, use) => {
+    await use(new LogoutUserPage(page));
   },
 });
