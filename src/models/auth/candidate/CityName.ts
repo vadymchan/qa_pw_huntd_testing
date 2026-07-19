@@ -1,1 +1,1 @@
-export type CityName = 'Kharkiv';
+export type CityName = 'Kharkiv' | 'Kyiv';

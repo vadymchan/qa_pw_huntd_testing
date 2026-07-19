@@ -3,4 +3,9 @@ export type CoreTechnicalSkill =
   | 'JavaScript'
   | 'API testing'
   | 'manual testing'
-  | 'Mobile testing';
+  | 'Mobile testing'
+  | 'Python'
+  | 'GraphQL'
+  | 'MySQL'
+  | 'Big Data'
+  | 'Data Science';
