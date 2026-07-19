@@ -1,28 +1,19 @@
-import { expect } from '@playwright/test';
 import { test } from '../../../_fixtures/fixtures';
-import { graphqlWaitForResponse } from '../../../../src/utils/playwright/graphqlWaitForResponse';
 
 test.describe(`Edit profile as recruiter`, () => {
-  test.beforeEach(async ({ page, registeredRecruiter }) => {
-    await page.goto('/sign-in');
-
-    await page.getByLabel('Email').fill(registeredRecruiter.userCredentials.email);
-    await page.getByLabel('Password').fill(registeredRecruiter.userCredentials.password);
-    await page.getByRole('button', { name: 'Sign In', exact: true }).click();
-    await page.waitForURL('/profile-preview/**');
-  });
-
-  test(`User should update role`, async ({ page }) => {
+  test(`User should update role`, async ({
+    registerNewRecruiter,
+    editRecruiterProfilePage,
+    recruiterProfilePreviewPage,
+  }) => {
     const role = 'PM';
 
-    await page.goto('/profile/recruiter/company-info');
+    const waitForResponse = true;
 
-    await page.getByLabel('My role').fill(role);
-    await graphqlWaitForResponse(page, 'updateRecruiterProfile', async () => {
-      await page.getByRole('button', { name: 'Save changes' }).click();
-    });
-
-    await page.goto('/profile-preview/recruiter');
-    await expect(page.locator('[class*=ProfileMeta_recruiterMetaItem]').first()).toHaveText(role);
+    await editRecruiterProfilePage.open();
+    await editRecruiterProfilePage.recruiterProfile.fillRole(role);
+    await editRecruiterProfilePage.clickSaveChanges(waitForResponse);
+    await recruiterProfilePreviewPage.open();
+    await recruiterProfilePreviewPage.assertRoleHasText(role);
   });
 });
