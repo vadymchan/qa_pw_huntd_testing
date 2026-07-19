@@ -16,9 +16,10 @@ export class SignUpUserPage extends BasePage {
     this.password = page.getByLabel('Password', { exact: true });
     this.repeatPassword = page.getByLabel('Repeat password');
     this.createAccount = page.getByRole('button', { name: 'Create account' });
-    this.emailValidationMessage = page.locator('[class*=FormField_metaBlock]').first();
-    this.passwordValidationMessage = page.locator('[class*=FormField_metaBlock]').nth(1);
-    this.repeatPasswordValidationMessage = page.locator('[class*=FormField_metaBlock]').last();
+    const validationMessage = page.locator('[class*=FormField_metaBlock]');
+    this.emailValidationMessage = validationMessage.first();
+    this.passwordValidationMessage = validationMessage.nth(1);
+    this.repeatPasswordValidationMessage = validationMessage.last();
   }
 
   async fillEmail(email: string) {
