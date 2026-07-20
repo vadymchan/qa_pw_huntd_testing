@@ -1,4 +1,4 @@
-import { PASSWORD_IS_MISMATCHED } from '../../../../src/utils/constants/validationMessages';
+import { PASSWORD_IS_MISMATCHED } from '../../../../src/ui/constants/validationMessages';
 import { test } from '../../../_fixtures/fixtures';
 import { faker } from '@faker-js/faker';
 

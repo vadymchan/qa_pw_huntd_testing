@@ -1,5 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../BasePage';
+import { PATHS } from '../../constants/paths';
 
 export class GuestJobsPage extends BasePage {
   private apply: Locator;
@@ -22,7 +23,7 @@ export class GuestJobsPage extends BasePage {
   private flashMessageText: Locator;
 
   constructor(page: Page) {
-    super(page, '/jobs');
+    super(page, PATHS.jobs);
 
     this.apply = page.locator('button', { hasText: '1-click apply' }).first();
     this.email = page.getByPlaceholder('Email');

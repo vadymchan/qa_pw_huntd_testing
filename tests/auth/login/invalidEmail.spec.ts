@@ -1,7 +1,7 @@
 import { test } from '../../_fixtures/fixtures';
 import { SignInUserPage } from '../../../src/ui/pages/auth/signIn/SignInUserPage';
 import { faker } from '@faker-js/faker';
-import { WRONG_CREDENTIALS } from '../../../src/utils/constants/validationMessages';
+import { WRONG_CREDENTIALS } from '../../../src/ui/constants/validationMessages';
 
 test.describe(`Login user`, () => {
   test(`User should see validation error when email is incorrect`, async ({

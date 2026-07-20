@@ -1,4 +1,4 @@
-import { PAGINATION_IS_NOT_AVAILABLE } from '../../../src/utils/constants/guestJobsMessages';
+import { PAGINATION_IS_NOT_AVAILABLE } from '../../../src/ui/constants/guestJobsMessages';
 import { test } from '../../_fixtures/fixtures';
 
 test.describe(`Browse jobs as a guest`, () => {

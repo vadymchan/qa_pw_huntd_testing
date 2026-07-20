@@ -4,7 +4,7 @@ import { testStep } from '../../utils/playwright/testStep';
 export class BasePage {
   constructor(
     protected page: Page,
-    protected url: string, // TODO: consider if we need url contract in BasePage
+    protected path: string,
   ) {}
 
   protected async step<T>(title: string, stepToRun: () => Promise<T> | T): Promise<T> {
@@ -12,10 +12,10 @@ export class BasePage {
   }
 
   async open() {
-    await this.page.goto(this.url);
+    await this.page.goto(this.path);
   }
 
   async assertOpened() {
-    await expect(this.page).toHaveURL(this.url);
+    await expect(this.page).toHaveURL(this.path);
   }
 }

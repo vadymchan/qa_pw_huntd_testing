@@ -2,6 +2,7 @@ import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../../../BasePage';
 import { graphqlWaitForResponse } from '../../../../../utils/playwright/graphqlWaitForResponse';
 import { CandidateProfileExperienceComponent } from '../../../../components/profile/candidate/CandidateProfileExperienceComponent';
+import { PATHS } from '../../../../constants/paths';
 
 export class EditCandidateProfileExperiencePage extends BasePage {
   public profileExperience: CandidateProfileExperienceComponent;
@@ -15,7 +16,7 @@ export class EditCandidateProfileExperiencePage extends BasePage {
   private endYearValidationMessage: Locator;
 
   constructor(page: Page) {
-    super(page, '/profile/candidate/experience');
+    super(page, PATHS.profile.candidate.experience);
 
     this.profileExperience = new CandidateProfileExperienceComponent(page);
     this.add = page.getByRole('button', { name: 'Add' });

@@ -1,12 +1,13 @@
 import { Locator, Page } from '@playwright/test';
 import { BasePage } from '../../../BasePage';
+import { PATHS } from '../../../../constants/paths';
 
 export class ChooseProfilePage extends BasePage {
   private candidate: Locator;
   private recruiter: Locator;
 
   constructor(page: Page) {
-    super(page, '/choose-profile');
+    super(page, PATHS.chooseProfile);
 
     this.candidate = page.getByRole('link', {
       name: 'Candidate hunting for interesting job offers',

@@ -1,4 +1,4 @@
-import { ROLE_IS_REQUIRED } from '../../../../../src/utils/constants/validationMessages';
+import { ROLE_IS_REQUIRED } from '../../../../../src/ui/constants/validationMessages';
 import { test } from '../../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {

@@ -1,5 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
-import { BEHANCE_IS_INCORRECT } from '../../../../../src/utils/constants/validationMessages';
+import { BEHANCE_IS_INCORRECT } from '../../../../../src/ui/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });

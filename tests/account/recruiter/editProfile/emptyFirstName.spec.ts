@@ -1,5 +1,5 @@
 import { test } from '../../../_fixtures/fixtures';
-import { FIRST_NAME_IS_REQUIRED } from '../../../../src/utils/constants/validationMessages';
+import { FIRST_NAME_IS_REQUIRED } from '../../../../src/ui/constants/validationMessages';
 
 test.describe(`Update recruiter profile`, () => {
   test.use({ storageState: 'playwright/.auth/recruiter.json' });

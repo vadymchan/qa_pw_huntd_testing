@@ -1,4 +1,4 @@
-import { EMAIL_IS_INCORRECT } from '../../../src/utils/constants/validationMessages';
+import { EMAIL_IS_INCORRECT } from '../../../src/ui/constants/validationMessages';
 import { test } from '../../_fixtures/fixtures';
 
 test.describe(`Browse jobs as a guest`, () => {

@@ -1,6 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../../../BasePage';
 import { selectOption } from '../../../../../utils/playwright/selectOption';
+import { PATHS } from '../../../../constants/paths';
 
 export class CreateRecruiterProfilePerfectCandidatePage extends BasePage {
   private roles: Locator;
@@ -12,7 +13,7 @@ export class CreateRecruiterProfilePerfectCandidatePage extends BasePage {
   private send: Locator;
 
   constructor(page: Page) {
-    super(page, '/profile/perfect-candidate');
+    super(page, PATHS.profile.recruiter.perfectCandidate);
 
     this.roles = page.getByLabel('Role');
     this.technologies = page.getByLabel('Technologies');

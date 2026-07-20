@@ -1,5 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../../BasePage';
+import { PATHS } from '../../../constants/paths';
 
 export class RecruiterProfilePreviewPage extends BasePage {
   private fullName: Locator;
@@ -8,7 +9,7 @@ export class RecruiterProfilePreviewPage extends BasePage {
   private email: Locator;
 
   constructor(page: Page) {
-    super(page, '/profile-preview/recruiter');
+    super(page, PATHS.profile.recruiter.preview);
 
     this.fullName = page.getByRole('heading', { level: 1 });
     const tagLine = page.locator('[class*=ProfileMeta_recruiterMetaItem]');

@@ -1,4 +1,4 @@
-import { PASSWORD_IS_REQUIRED } from '../../../../src/utils/constants/validationMessages';
+import { PASSWORD_IS_REQUIRED } from '../../../../src/ui/constants/validationMessages';
 import { test } from '../../../_fixtures/fixtures';
 
 test.describe(`Register as user`, () => {

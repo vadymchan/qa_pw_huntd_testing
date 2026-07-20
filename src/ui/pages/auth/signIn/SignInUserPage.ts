@@ -1,5 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../../BasePage';
+import { PATHS } from '../../../constants/paths';
 
 export class SignInUserPage extends BasePage {
   private email: Locator;
@@ -9,7 +10,7 @@ export class SignInUserPage extends BasePage {
   private passwordValidationMessage: Locator;
 
   constructor(page: Page) {
-    super(page, '/sign-in');
+    super(page, PATHS.signIn);
 
     this.email = page.getByLabel('Email');
     this.password = page.getByLabel('Password');

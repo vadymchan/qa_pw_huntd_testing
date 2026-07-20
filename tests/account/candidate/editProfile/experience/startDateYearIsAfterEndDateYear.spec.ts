@@ -1,5 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
-import { END_DATE_CANNOT_PRECEDE_START_DATE } from '../../../../../src/utils/constants/validationMessages';
+import { END_DATE_CANNOT_PRECEDE_START_DATE } from '../../../../../src/ui/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });

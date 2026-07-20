@@ -1,6 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../BasePage';
 import { graphqlWaitForResponse } from '../../../utils/playwright/graphqlWaitForResponse';
+import { PATHS } from '../../constants/paths';
 
 export class ChangePasswordPage extends BasePage {
   private changePassword: Locator;
@@ -13,7 +14,7 @@ export class ChangePasswordPage extends BasePage {
   private repeatNewPasswordValidationMessage: Locator;
 
   constructor(page: Page) {
-    super(page, '/settings/change-password');
+    super(page, PATHS.changePassword);
 
     this.changePassword = page.getByRole('button', { name: 'Change password' });
     this.currentPassword = page.getByLabel('Current password');

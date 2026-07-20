@@ -1,6 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 import { BasePage } from '../../../BasePage';
 import { CandidateProfileExperienceComponent } from '../../../../components/profile/candidate/CandidateProfileExperienceComponent';
+import { PATHS } from '../../../../constants/paths';
 
 export class CreateCandidateProfileExperiencePage extends BasePage {
   public profileExperience: CandidateProfileExperienceComponent;
@@ -9,7 +10,7 @@ export class CreateCandidateProfileExperiencePage extends BasePage {
   private saveAndContinue: Locator;
 
   constructor(page: Page) {
-    super(page, '/profile/candidate/experience');
+    super(page, PATHS.profile.candidate.experience);
 
     this.profileExperience = new CandidateProfileExperienceComponent(page);
     this.addManually = page.getByRole('button', { name: 'Add manually' });

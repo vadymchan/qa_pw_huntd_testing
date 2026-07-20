@@ -1,5 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
-import { YEAR_IS_LESS_THAN_MINIMUM } from '../../../../../src/utils/constants/validationMessages';
+import { YEAR_IS_LESS_THAN_MINIMUM } from '../../../../../src/ui/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });

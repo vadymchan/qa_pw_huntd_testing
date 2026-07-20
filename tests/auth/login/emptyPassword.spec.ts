@@ -1,6 +1,6 @@
 import { test } from '../../_fixtures/fixtures';
 import { SignInUserPage } from '../../../src/ui/pages/auth/signIn/SignInUserPage';
-import { PASSWORD_IS_REQUIRED } from '../../../src/utils/constants/validationMessages';
+import { PASSWORD_IS_REQUIRED } from '../../../src/ui/constants/validationMessages';
 
 test.describe(`Register as user`, () => {
   test(`User should see validation error when password is empty`, async ({ browser }) => {

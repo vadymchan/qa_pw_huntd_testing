@@ -8,6 +8,7 @@ import { CoreTechnicalSkill } from '../../../../models/auth/candidate/CoreTechni
 import { EnglishLevel } from '../../../../models/auth/candidate/EnglishLevel';
 import { JobExperience } from '../../../../models/auth/candidate/JobExperience';
 import { CityName } from '../../../../models/auth/candidate/CityName';
+import { PATHS } from '../../../constants/paths';
 
 export class CandidateProfilePreviewPage extends BasePage {
   private desiredPosition: Locator;
@@ -31,7 +32,7 @@ export class CandidateProfilePreviewPage extends BasePage {
   private gitHub: Locator;
 
   constructor(page: Page) {
-    super(page, '/profile-preview/candidate');
+    super(page, PATHS.profile.candidate.preview);
 
     this.desiredPosition = page.locator('[class*=CandidateProfilePreviewModule_title]');
 

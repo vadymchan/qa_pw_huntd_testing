@@ -1,6 +1,6 @@
 import { test } from '../../_fixtures/fixtures';
 import { SignInUserPage } from '../../../src/ui/pages/auth/signIn/SignInUserPage';
-import { EMAIL_IS_REQUIRED } from '../../../src/utils/constants/validationMessages';
+import { EMAIL_IS_REQUIRED } from '../../../src/ui/constants/validationMessages';
 
 // TODO: negative tests related to sign up could be moved in one file and be made parameterized
 

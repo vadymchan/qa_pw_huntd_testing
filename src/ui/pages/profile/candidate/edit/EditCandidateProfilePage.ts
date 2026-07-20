@@ -2,6 +2,7 @@ import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../../../BasePage';
 import { graphqlWaitForResponse } from '../../../../../utils/playwright/graphqlWaitForResponse';
 import { CandidateProfileComponent } from '../../../../components/profile/candidate/CandidateProfileComponent';
+import { PATHS } from '../../../../constants/paths';
 
 export class EditCandidateProfilePage extends BasePage {
   public candidateProfile: CandidateProfileComponent;
@@ -12,7 +13,7 @@ export class EditCandidateProfilePage extends BasePage {
   private coreTechnicalSkillsValidationMessage: Locator;
 
   constructor(page: Page) {
-    super(page, '/profile/candidate');
+    super(page, PATHS.profile.candidate.base);
 
     this.candidateProfile = new CandidateProfileComponent(page);
     this.saveChanges = page.getByRole('button', { name: 'Save changes' });
