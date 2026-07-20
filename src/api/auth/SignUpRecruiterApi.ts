@@ -7,7 +7,7 @@ export class SignUpRecruiterApi extends SignUpUserApi {
     super(request);
   }
 
-  async updateRecruiterProfile(recruiterProfileDto: RecruiterProfileDto) {
+  async updateProfile(recruiterProfileDto: RecruiterProfileDto) {
     const payload = {
       operationName: 'updateRecruiterProfile',
       variables: {
@@ -17,6 +17,21 @@ export class SignUpRecruiterApi extends SignUpUserApi {
         'mutation updateRecruiterProfile($position: String, $companyName: String) {\n  updateRecruiterProfile(position: $position, companyName: $companyName) {\n    ...RecruiterProfileBase\n    __typename\n  }\n}\n\nfragment RecruiterProfileBase on RecruiterProfile {\n  id\n  status\n  rejectReason\n  position\n  companyName\n  slug\n  lastActionTime\n  __typename\n}\n',
     };
 
-    return await this.post(payload);
+    return await this.step(`Update recruiter profile`, async () => {
+      return await this.post(payload);
+    });
+  }
+
+  async sendProfileToReview() {
+    const payload = {
+      operationName: 'sendRecruiterProfileToReview',
+      variables: {},
+      query:
+        'mutation sendRecruiterProfileToReview {\n  sendRecruiterProfileToReview {\n    ...RecruiterProfileBase\n    __typename\n  }\n}\n\nfragment RecruiterProfileBase on RecruiterProfile {\n  id\n  status\n  rejectReason\n  position\n  companyName\n  slug\n  lastActionTime\n  __typename\n}\n',
+    };
+
+    return await this.step(`Send recruiter profile to review`, async () => {
+      return await this.post(payload);
+    });
   }
 }
