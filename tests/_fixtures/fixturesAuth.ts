@@ -100,7 +100,7 @@ export const test = base.extend<MyFixtures>({
     await signUpRecruiterApi.createUser(userCredentials);
 
     const recruiterProfileDto = toRecruiterProfileDto(recruiterProfile);
-    await signUpRecruiterApi.updateRecruiterProfile(recruiterProfileDto);
+    await signUpRecruiterApi.updateProfile(recruiterProfileDto);
 
     await signUpRecruiterApi.updateProfileContacts(recruiterProfileContacts);
 
