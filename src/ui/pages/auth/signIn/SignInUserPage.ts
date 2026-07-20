@@ -46,20 +46,20 @@ export class SignInUserPage extends BasePage {
     });
   }
 
-  async assertEmailValidationMessage(emailValidationMessage: string) {
+  async assertEmailValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert '${this.emailLabel}' shows '${emailValidationMessage}' validation message`,
+      `Assert '${this.emailLabel}' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.emailValidationMessage).toHaveText(emailValidationMessage);
+        await expect(this.emailValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertPasswordValidationMessage(passwordValidationMessage: string) {
+  async assertPasswordValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert '${this.passwordLabel}' shows '${passwordValidationMessage}' validation message`,
+      `Assert '${this.passwordLabel}' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.passwordValidationMessage).toHaveText(passwordValidationMessage);
+        await expect(this.passwordValidationMessage).toHaveText(validationMessage);
       },
     );
   }

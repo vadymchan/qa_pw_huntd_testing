@@ -40,47 +40,47 @@ export class EditCandidateProfileContactsPage extends BasePage {
     });
   }
 
-  async assertFirstNameValidationMessage(firstNameValidationMessage: string) {
+  async assertFirstNameValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'First name' shows '${firstNameValidationMessage}' validation message`,
+      `Assert 'First name' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.firstNameValidationMessage).toHaveText(firstNameValidationMessage);
+        await expect(this.firstNameValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertLastNameValidationMessage(lastNameValidationMessage: string) {
+  async assertLastNameValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Last name' shows '${lastNameValidationMessage}' validation message`,
+      `Assert 'Last name' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.lastNameValidationMessage).toHaveText(lastNameValidationMessage);
+        await expect(this.lastNameValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertLinkedinValidationMessage(linkedinValidationMessage: string) {
+  async assertLinkedinValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Linkedin' shows '${linkedinValidationMessage}' validation message`,
+      `Assert 'Linkedin' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.linkedinValidationMessage).toHaveText(linkedinValidationMessage);
+        await expect(this.linkedinValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertBehanceValidationMessage(behanceValidationMessage: string) {
+  async assertBehanceValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Behance' shows '${behanceValidationMessage}' validation message`,
+      `Assert 'Behance' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.behanceValidationMessage).toHaveText(behanceValidationMessage);
+        await expect(this.behanceValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertGitHubValidationMessage(gitHubValidationMessage: string) {
+  async assertGitHubValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'GitHub' shows '${gitHubValidationMessage}' validation message`,
+      `Assert 'GitHub' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.gitHubValidationMessage).toHaveText(gitHubValidationMessage);
+        await expect(this.gitHubValidationMessage).toHaveText(validationMessage);
       },
     );
   }

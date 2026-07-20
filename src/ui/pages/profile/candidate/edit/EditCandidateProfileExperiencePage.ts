@@ -58,47 +58,47 @@ export class EditCandidateProfileExperiencePage extends BasePage {
     });
   }
 
-  async assertRoleValidationMessage(roleValidationMessage: string) {
+  async assertRoleValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Role' shows '${roleValidationMessage}' validation message`,
+      `Assert 'Role' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.roleValidationMessage).toHaveText(roleValidationMessage);
+        await expect(this.roleValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertCompanyNameValidationMessage(companyNameValidationMessage: string) {
+  async assertCompanyNameValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Company name' shows '${companyNameValidationMessage}' validation message`,
+      `Assert 'Company name' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.companyNameValidationMessage).toHaveText(companyNameValidationMessage);
+        await expect(this.companyNameValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertStartMonthValidationMessage(startMonthValidationMessage: string) {
+  async assertStartMonthValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Start month' shows '${startMonthValidationMessage}' validation message`,
+      `Assert 'Start month' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.startMonthValidationMessage).toHaveText(startMonthValidationMessage);
+        await expect(this.startMonthValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertStartYearValidationMessage(startYearValidationMessage: string) {
+  async assertStartYearValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Start year' shows '${startYearValidationMessage}' validation message`,
+      `Assert 'Start year' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.startYearValidationMessage).toHaveText(startYearValidationMessage);
+        await expect(this.startYearValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertEndYearValidationMessage(endYearValidationMessage: string) {
+  async assertEndYearValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'End year' shows '${endYearValidationMessage}' validation message`,
+      `Assert 'End year' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.endYearValidationMessage).toHaveText(endYearValidationMessage);
+        await expect(this.endYearValidationMessage).toHaveText(validationMessage);
       },
     );
   }

@@ -32,11 +32,11 @@ export class EditCandidateProfileBioPage extends BasePage {
     });
   }
 
-  async assertAchievementsValidationMessage(achievementsValidationMessage: string) {
+  async assertAchievementsValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Achievements' shows '${achievementsValidationMessage}' validation message`,
+      `Assert 'Achievements' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.achievementsValidationMessage).toHaveText(achievementsValidationMessage);
+        await expect(this.achievementsValidationMessage).toHaveText(validationMessage);
       },
     );
   }

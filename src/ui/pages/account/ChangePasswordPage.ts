@@ -72,32 +72,32 @@ export class ChangePasswordPage extends BasePage {
     });
   }
 
-  async assertCurrentPasswordValidationMessage(currentPasswordValidationMessage: string) {
+  async assertCurrentPasswordValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert '${this.currentPasswordLabel}' shows '${currentPasswordValidationMessage}' validation message`,
+      `Assert '${this.currentPasswordLabel}' shows '${validationMessage}' validation message`,
       async () => {
         await expect(this.currentPasswordValidationMessage).toHaveText(
-          currentPasswordValidationMessage,
+          validationMessage,
         );
       },
     );
   }
 
-  async assertNewPasswordValidationMessage(newPasswordValidationMessage: string) {
+  async assertNewPasswordValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert '${this.newPasswordLabel}' shows '${newPasswordValidationMessage}' validation message`,
+      `Assert '${this.newPasswordLabel}' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.newPasswordValidationMessage).toHaveText(newPasswordValidationMessage);
+        await expect(this.newPasswordValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertRepeatNewPasswordValidationMessage(repeatNewPasswordValidationMessage: string) {
+  async assertRepeatNewPasswordValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert '${this.repeatNewPasswordLabel}' shows '${repeatNewPasswordValidationMessage}' validation message`,
+      `Assert '${this.repeatNewPasswordLabel}' shows '${validationMessage}' validation message`,
       async () => {
         await expect(this.repeatNewPasswordValidationMessage).toHaveText(
-          repeatNewPasswordValidationMessage,
+          validationMessage,
         );
       },
     );

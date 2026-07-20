@@ -34,20 +34,17 @@ export class EditRecruiterProfilePage extends BasePage {
     });
   }
 
-  async assertRoleValidationMessage(roleValidationMessage: string) {
-    await this.step(
-      `Assert 'Role' shows '${roleValidationMessage}' validation message`,
-      async () => {
-        await expect(this.roleValidationMessage).toHaveText(roleValidationMessage);
-      },
-    );
+  async assertRoleValidationMessage(validationMessage: string) {
+    await this.step(`Assert 'Role' shows '${validationMessage}' validation message`, async () => {
+      await expect(this.roleValidationMessage).toHaveText(validationMessage);
+    });
   }
 
-  async assertCompanyValidationMessage(companyValidationMessage: string) {
+  async assertCompanyValidationMessage(vgalidationMessage: string) {
     await this.step(
-      `Assert 'Company' shows '${companyValidationMessage}' validation message`,
+      `Assert 'Company' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.companyValidationMessage).toHaveText(companyValidationMessage);
+        await expect(this.companyValidationMessage).toHaveText(validationMessage);
       },
     );
   }

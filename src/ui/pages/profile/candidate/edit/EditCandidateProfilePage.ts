@@ -59,23 +59,23 @@ export class EditCandidateProfilePage extends BasePage {
     });
   }
 
-  async assertDesiredPositionValidationMessage(desiredPositionValidationMessage: string) {
+  async assertDesiredPositionValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Desired position' shows '${desiredPositionValidationMessage}' validation message`,
+      `Assert 'Desired position' shows '${validationMessage}' validation message`,
       async () => {
         await expect(this.desiredPositionValidationMessage).toHaveText(
-          desiredPositionValidationMessage,
+          validationMessage,
         );
       },
     );
   }
 
-  async assertCoreTechnicalSkillsValidationMessage(coreTechnicalSkillsValidationMessage: string) {
+  async assertCoreTechnicalSkillsValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Core technical skills' shows '${coreTechnicalSkillsValidationMessage}' validation message`,
+      `Assert 'Core technical skills' shows '${validationMessage}' validation message`,
       async () => {
         await expect(this.coreTechnicalSkillsValidationMessage).toHaveText(
-          coreTechnicalSkillsValidationMessage,
+          validationMessage,
         );
       },
     );

@@ -31,20 +31,20 @@ export class EditRecruiterProfileContactsPage extends BasePage {
     });
   }
 
-  async assertFirstNameValidationMessage(firstNameValidationMessage: string) {
+  async assertFirstNameValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'first name' shows '${firstNameValidationMessage}' validation message`,
+      `Assert 'first name' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.firstNameValidationMessage).toHaveText(firstNameValidationMessage);
+        await expect(this.firstNameValidationMessage).toHaveText(validationMessage);
       },
     );
   }
 
-  async assertLastNameValidationMessage(lastNameValidationMessage: string) {
+  async assertLastNameValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'last name' shows '${lastNameValidationMessage}' validation message`,
+      `Assert 'last name' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.lastNameValidationMessage).toHaveText(lastNameValidationMessage);
+        await expect(this.lastNameValidationMessage).toHaveText(validationMessage);
       },
     );
   }

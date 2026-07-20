@@ -32,12 +32,12 @@ export class EditCandidateProfileJobExpectationsPage extends BasePage {
     });
   }
 
-  async assertDesiredBaseSalaryValidationMessage(desiredBaseSalaryValidationMessage: string) {
+  async assertDesiredBaseSalaryValidationMessage(validationMessage: string) {
     await this.step(
-      `Assert 'Desired base salary' shows '${desiredBaseSalaryValidationMessage}' validation message`,
+      `Assert 'Desired base salary' shows '${validationMessage}' validation message`,
       async () => {
         await expect(this.desiredBaseSalaryValidationMessage).toHaveText(
-          desiredBaseSalaryValidationMessage,
+          validationMessage,
         );
       },
     );
