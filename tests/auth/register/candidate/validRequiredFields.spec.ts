@@ -75,7 +75,7 @@ test.describe(`Register as candidate`, () => {
     await createCandidateProfileExperiencePage.clickSaveAndContinue();
 
     await createCandidateProfileBioPage.assertOpened();
-    await createCandidateProfileBioPage.profileBio.fillAchivements(candidateProfile.achievements);
+    await createCandidateProfileBioPage.profileBio.fillAchievements(candidateProfile.achievements);
     await createCandidateProfileBioPage.clickSaveAndContinue();
 
     await createCandidateProfileContactsPage.assertOpened();
@@ -103,7 +103,7 @@ test.describe(`Register as candidate`, () => {
       candidateProfile.desiredBaseSalary,
     );
     await candidateProfilePreviewPage.assertEnglishLevelHasText(candidateProfile.englishLevel);
-    await candidateProfilePreviewPage.assertAchivementsHaveText(candidateProfile.achievements);
+    await candidateProfilePreviewPage.assertAchievementsHaveText(candidateProfile.achievements);
     await candidateProfilePreviewPage.assertCoreTechnicalSkillsHaveText(
       candidateProfile.coreTechnicalSkills,
     );

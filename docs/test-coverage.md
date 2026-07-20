@@ -119,11 +119,11 @@
 
 ##### Bio
 
-| #   | Scenario                                                    | Type     | Severity |
-| --- | ----------------------------------------------------------- | -------- | -------- |
-| 1   | User should update achivements                              | positive | normal   |
-| 2   | User should see validation error when achivements are empty | negative | minor    |
-| 3   | User should update expectations from work                   | positive | normal   |
+| #   | Scenario                                                     | Type     | Severity |
+| --- | ------------------------------------------------------------ | -------- | -------- |
+| 1   | User should update achievements                              | positive | normal   |
+| 2   | User should see validation error when achievements are empty | negative | minor    |
+| 3   | User should update expectations from work                    | positive | normal   |
 
 ##### Contacts
 

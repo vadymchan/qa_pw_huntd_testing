@@ -12,7 +12,7 @@ test.describe(`Edit profile as candidate`, () => {
     const startYear = 2025;
     const endMonth = 'January';
     const endYear = 2026;
-    const previousJobAchivements = 'Job Achivements';
+    const previousJobAchievements = 'Job Achievements';
 
     await editCandidateProfileExperiencePage.open();
     await editCandidateProfileExperiencePage.clickAdd();
@@ -23,8 +23,8 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileExperiencePage.profileExperience.clickEndDate();
     await editCandidateProfileExperiencePage.profileExperience.selectEndMonth(endMonth);
     await editCandidateProfileExperiencePage.profileExperience.fillEndYear(`${endYear}`);
-    await editCandidateProfileExperiencePage.profileExperience.fillAchivements(
-      previousJobAchivements,
+    await editCandidateProfileExperiencePage.profileExperience.fillAchievements(
+      previousJobAchievements,
     );
     const waitForResponse = true;
     await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse, 'Create');
@@ -38,6 +38,8 @@ test.describe(`Edit profile as candidate`, () => {
       endMonth,
       endYear,
     );
-    await candidateProfilePreviewPage.assertPreviousJobAchivementsHaveText(previousJobAchivements);
+    await candidateProfilePreviewPage.assertPreviousJobAchievementsHaveText(
+      previousJobAchievements,
+    );
   });
 });

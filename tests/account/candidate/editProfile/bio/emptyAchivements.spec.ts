@@ -4,13 +4,13 @@ import { ACHIVEMENTS_ARE_REQUIRED } from '../../../../../src/ui/constants/valida
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
 
-  test(`User should update achivements`, async ({ editCandidateProfileBioPage }) => {
-    const achivements = '';
+  test(`User should update achievements`, async ({ editCandidateProfileBioPage }) => {
+    const achievements = '';
 
     await editCandidateProfileBioPage.open();
-    await editCandidateProfileBioPage.profileBio.fillAchivements(achivements);
+    await editCandidateProfileBioPage.profileBio.fillAchievements(achievements);
     const waitForResponse = false;
     await editCandidateProfileBioPage.clickSaveChanges(waitForResponse);
-    await editCandidateProfileBioPage.assertAchivementsValidationMessage(ACHIVEMENTS_ARE_REQUIRED);
+    await editCandidateProfileBioPage.assertAchievementsValidationMessage(ACHIVEMENTS_ARE_REQUIRED);
   });
 });

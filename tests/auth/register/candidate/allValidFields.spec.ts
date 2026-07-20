@@ -72,7 +72,7 @@ test.describe(`Register as candidate`, () => {
     await createCandidateProfileExperiencePage.profileExperience.fillEndYear(
       `${workPlace.endYear}`,
     );
-    await createCandidateProfileExperiencePage.profileExperience.fillAchivements(
+    await createCandidateProfileExperiencePage.profileExperience.fillAchievements(
       `${workPlace.achievements}`,
     );
     const waitForResponse = true;
@@ -83,7 +83,7 @@ test.describe(`Register as candidate`, () => {
     await createCandidateProfileExperiencePage.clickSaveAndContinue();
 
     await createCandidateProfileBioPage.assertOpened();
-    await createCandidateProfileBioPage.profileBio.fillAchivements(candidateProfile.achievements);
+    await createCandidateProfileBioPage.profileBio.fillAchievements(candidateProfile.achievements);
     await createCandidateProfileBioPage.profileBio.fillWorkExpectations(
       candidateProfile.workExpectations,
     );
@@ -124,7 +124,7 @@ test.describe(`Register as candidate`, () => {
       candidateProfile.desiredBaseSalary,
     );
     await candidateProfilePreviewPage.assertEnglishLevelHasText(candidateProfile.englishLevel);
-    await candidateProfilePreviewPage.assertAchivementsHaveText(candidateProfile.achievements);
+    await candidateProfilePreviewPage.assertAchievementsHaveText(candidateProfile.achievements);
     await candidateProfilePreviewPage.assertCoreTechnicalSkillsHaveText(
       candidateProfile.coreTechnicalSkills,
     );
@@ -138,7 +138,7 @@ test.describe(`Register as candidate`, () => {
       workPlace.endMonth,
       workPlace.endYear,
     );
-    await candidateProfilePreviewPage.assertPreviousJobAchivementsHaveText(workPlace.achievements);
+    await candidateProfilePreviewPage.assertPreviousJobAchievementsHaveText(workPlace.achievements);
     await candidateProfilePreviewPage.assertFullNameHasText(
       candidateProfileContacts.firstName,
       candidateProfileContacts.lastName,

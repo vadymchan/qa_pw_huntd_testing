@@ -2,19 +2,19 @@ import { test } from '../../../../_fixtures/fixtures';
 import { faker } from '@faker-js/faker';
 
 test.describe(`Edit profile as candidate`, () => {
-  test(`User should update achivements`, async ({
+  test(`User should update achievements`, async ({
     registerNewCandidate,
     editCandidateProfileBioPage,
     candidateProfilePreviewPage,
   }) => {
-    const achivements = faker.lorem.sentence();
+    const achievements = faker.lorem.sentence();
 
     await editCandidateProfileBioPage.open();
-    await editCandidateProfileBioPage.profileBio.fillAchivements(achivements);
+    await editCandidateProfileBioPage.profileBio.fillAchievements(achievements);
     const waitForResponse = true;
     await editCandidateProfileBioPage.clickSaveChanges(waitForResponse);
 
     await candidateProfilePreviewPage.open();
-    await candidateProfilePreviewPage.assertAchivementsHaveText(achivements);
+    await candidateProfilePreviewPage.assertAchievementsHaveText(achievements);
   });
 });
