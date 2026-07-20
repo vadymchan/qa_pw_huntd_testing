@@ -1,6 +1,7 @@
 import { APIRequestContext, APIResponse, expect } from '@playwright/test';
 import { testStep } from '../utils/playwright/testStep';
-import { SUCCESS_RESPONSE_CODE } from '../utils/constants/responseCodes';
+import { SUCCESS_RESPONSE_CODE } from './constants/responseCodes';
+import { GRAPHQL_ENDPOINT } from './constants/endpoints';
 
 export class BaseApi {
   protected endpoint: string;
@@ -8,7 +9,7 @@ export class BaseApi {
   protected request: APIRequestContext;
 
   constructor(request: APIRequestContext) {
-    this.endpoint = '/graphql';
+    this.endpoint = GRAPHQL_ENDPOINT;
     this.headers = {
       'Content-Type': 'application/json',
     };

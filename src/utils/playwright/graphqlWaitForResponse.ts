@@ -1,5 +1,6 @@
 import { Page } from '@playwright/test';
-import { SUCCESS_RESPONSE_CODE } from '../constants/responseCodes';
+import { SUCCESS_RESPONSE_CODE } from '../../api/constants/responseCodes';
+import { GRAPHQL_ENDPOINT } from '../../api/constants/endpoints';
 
 export async function graphqlWaitForResponse(
   page: Page,
@@ -9,7 +10,7 @@ export async function graphqlWaitForResponse(
   const responsePromise = page.waitForResponse(async (response) => {
     const request = response.request();
 
-    if (!response.url().includes('/graphql') || request.method() !== 'POST') {
+    if (!response.url().includes(GRAPHQL_ENDPOINT) || request.method() !== 'POST') {
       return false;
     }
 
