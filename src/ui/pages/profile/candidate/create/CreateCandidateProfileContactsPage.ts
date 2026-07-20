@@ -6,15 +6,21 @@ import { PATHS } from '../../../../constants/paths';
 export class CreateCandidateProfileContactsPage extends BasePage {
   public profileContacts: CandidateProfileContactsComponent;
   private activateProfile: Locator;
+  private activateProfileName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.candidate.createContacts);
 
     this.profileContacts = new CandidateProfileContactsComponent(page);
-    this.activateProfile = page.getByRole('button', { name: 'Activate profile' });
+
+    this.activateProfileName = 'Activate profile';
+    
+    this.activateProfile = page.getByRole('button', { name: this.activateProfileName });
   }
 
   async clickActivateProfile() {
-    await this.activateProfile.click();
+    await this.step(`Click '${this.activateProfileName}'`, async () => {
+      await this.activateProfile.click();
+    });
   }
 }

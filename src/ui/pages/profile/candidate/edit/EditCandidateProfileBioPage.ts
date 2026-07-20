@@ -7,25 +7,37 @@ import { PATHS } from '../../../../constants/paths';
 export class EditCandidateProfileBioPage extends BasePage {
   public profileBio: CandidateProfileBioComponent;
   private saveChanges: Locator;
-  private achivementsValidationMessage: Locator;
+  private achievementsValidationMessage: Locator;
+  private saveChangesName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.candidate.bio);
 
     this.profileBio = new CandidateProfileBioComponent(page);
-    this.saveChanges = page.getByRole('button', { name: 'Save changes' });
+
+    this.saveChangesName = 'Save changes';
+
+    this.saveChanges = page.getByRole('button', { name: this.saveChangesName });
+
     const validationMessage = page.locator('[class*=FormField_metaBlock]');
-    this.achivementsValidationMessage = validationMessage.first();
+    this.achievementsValidationMessage = validationMessage.first();
   }
 
   async clickSaveChanges(waitForResponse: boolean) {
-    const click = () => this.saveChanges.click();
-    await (waitForResponse
-      ? await graphqlWaitForResponse(this.page, 'updateCandidateProfile', click)
-      : click());
+    await this.step(`Click '${this.saveChangesName}'`, async () => {
+      const click = () => this.saveChanges.click();
+      await (waitForResponse
+        ? await graphqlWaitForResponse(this.page, 'updateCandidateProfile', click)
+        : click());
+    });
   }
 
-  async assertAchivementsValidationMessage(achivementsValidationMessage: string) {
-    await expect(this.achivementsValidationMessage).toHaveText(achivementsValidationMessage);
+  async assertAchievementsValidationMessage(achievementsValidationMessage: string) {
+    await this.step(
+      `Assert 'Achievements' shows '${achievementsValidationMessage}' validation message`,
+      async () => {
+        await expect(this.achievementsValidationMessage).toHaveText(achievementsValidationMessage);
+      },
+    );
   }
 }

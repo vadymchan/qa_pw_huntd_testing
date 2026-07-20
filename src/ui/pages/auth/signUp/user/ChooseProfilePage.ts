@@ -5,21 +5,30 @@ import { PATHS } from '../../../../constants/paths';
 export class ChooseProfilePage extends BasePage {
   private candidate: Locator;
   private recruiter: Locator;
+  private candidateName: string;
+  private recruiterName: string;
 
   constructor(page: Page) {
     super(page, PATHS.chooseProfile);
 
+    this.candidateName = 'Candidate hunting for interesting job offers';
+    this.recruiterName = 'Recruiter hiring talent';
+
     this.candidate = page.getByRole('link', {
-      name: 'Candidate hunting for interesting job offers',
+      name: this.candidateName,
     });
-    this.recruiter = page.getByRole('link', { name: 'Recruiter hiring talent' });
+    this.recruiter = page.getByRole('link', { name: this.recruiterName });
   }
 
   async clickCandidate() {
-    await this.candidate.click();
+    await this.step(`Click '${this.candidateName}'`, async () => {
+      await this.candidate.click();
+    });
   }
 
   async clickRecruiter() {
-    await this.recruiter.click();
+    await this.step(`Click '${this.recruiterName}'`, async () => {
+      await this.recruiter.click();
+    });
   }
 }

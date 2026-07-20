@@ -8,26 +8,38 @@ export class EditCandidateProfileJobExpectationsPage extends BasePage {
   public profileJobExpectations: CandidateProfileJobExpectationsComponent;
   private saveChanges: Locator;
   private desiredBaseSalaryValidationMessage: Locator;
+  private saveChangesName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.candidate.jobExpectations);
 
     this.profileJobExpectations = new CandidateProfileJobExpectationsComponent(page);
-    this.saveChanges = page.getByRole('button', { name: 'Save changes' });
+
+    this.saveChangesName = 'Save changes';
+
+    this.saveChanges = page.getByRole('button', { name: this.saveChangesName });
+
     const validationMessage = page.locator('[class*=FormField_metaBlock]');
     this.desiredBaseSalaryValidationMessage = validationMessage.first();
   }
 
   async clickSaveChanges(waitForResponse: boolean) {
-    const click = () => this.saveChanges.click();
-    await (waitForResponse
-      ? graphqlWaitForResponse(this.page, 'updateCandidateProfile', click)
-      : click());
+    await this.step(`Click '${this.saveChangesName}'`, async () => {
+      const click = () => this.saveChanges.click();
+      await (waitForResponse
+        ? graphqlWaitForResponse(this.page, 'updateCandidateProfile', click)
+        : click());
+    });
   }
 
   async assertDesiredBaseSalaryValidationMessage(desiredBaseSalaryValidationMessage: string) {
-    await expect(this.desiredBaseSalaryValidationMessage).toHaveText(
-      desiredBaseSalaryValidationMessage,
+    await this.step(
+      `Assert 'Desired base salary' shows '${desiredBaseSalaryValidationMessage}' validation message`,
+      async () => {
+        await expect(this.desiredBaseSalaryValidationMessage).toHaveText(
+          desiredBaseSalaryValidationMessage,
+        );
+      },
     );
   }
 }

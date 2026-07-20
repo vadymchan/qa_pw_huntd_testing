@@ -10,13 +10,24 @@ export class SignUpUserPage extends BasePage {
   private emailValidationMessage: Locator;
   private passwordValidationMessage: Locator;
   private repeatPasswordValidationMessage: Locator;
+  private emailLabel: string;
+  private passwordLabel: string;
+  private repeatPasswordLabel: string;
+  private createAccountName: string;
 
   constructor(page: Page) {
     super(page, PATHS.signUp);
-    this.email = page.getByLabel('Email');
-    this.password = page.getByLabel('Password', { exact: true });
-    this.repeatPassword = page.getByLabel('Repeat password');
-    this.createAccount = page.getByRole('button', { name: 'Create account' });
+
+    this.emailLabel = 'Email';
+    this.passwordLabel = 'Password';
+    this.repeatPasswordLabel = 'Repeat password';
+    this.createAccountName = 'Create account';
+
+    this.email = page.getByLabel(this.emailLabel);
+    this.password = page.getByLabel(this.passwordLabel, { exact: true });
+    this.repeatPassword = page.getByLabel(this.repeatPasswordLabel);
+    this.createAccount = page.getByRole('button', { name: this.createAccountName });
+
     const validationMessage = page.locator('[class*=FormField_metaBlock]');
     this.emailValidationMessage = validationMessage.first();
     this.passwordValidationMessage = validationMessage.nth(1);
@@ -24,30 +35,53 @@ export class SignUpUserPage extends BasePage {
   }
 
   async fillEmail(email: string) {
-    await this.email.fill(email);
+    await this.step(`Fill '${this.emailLabel}'`, async () => {
+      await this.email.fill(email);
+    });
   }
 
   async fillPassword(password: string) {
-    await this.password.fill(password);
+    await this.step(`Fill '${this.passwordLabel}'`, async () => {
+      await this.password.fill(password);
+    });
   }
 
   async fillRepeatPassword(repeatPassword: string) {
-    await this.repeatPassword.fill(repeatPassword);
+    await this.step(`Fill '${this.repeatPasswordLabel}'`, async () => {
+      await this.repeatPassword.fill(repeatPassword);
+    });
   }
 
   async clickCreateAccount() {
-    await this.createAccount.click();
+    await this.step(`Click '${this.createAccountName}'`, async () => {
+      await this.createAccount.click();
+    });
   }
 
   async assertEmailValidationMessage(validationMessage: string) {
-    await expect(this.emailValidationMessage).toHaveText(validationMessage);
+    await this.step(
+      `Assert '${this.emailLabel}' shows '${validationMessage}' validation message`,
+      async () => {
+        await expect(this.emailValidationMessage).toHaveText(validationMessage);
+      },
+    );
   }
 
   async assertPasswordValidationMessage(validationMessage: string) {
-    await expect(this.passwordValidationMessage).toHaveText(validationMessage);
+    await this.step(
+      `Assert '${this.passwordLabel}' shows '${validationMessage}' validation message`,
+      async () => {
+        await expect(this.passwordValidationMessage).toHaveText(validationMessage);
+      },
+    );
   }
 
   async assertRepeatPasswordValidationMessage(validationMessage: string) {
-    await expect(this.repeatPasswordValidationMessage).toHaveText(validationMessage);
+    await this.step(
+      `Assert '${this.repeatPasswordLabel}' shows '${validationMessage}' validation message`,
+      async () => {
+        await expect(this.repeatPasswordValidationMessage).toHaveText(validationMessage);
+      },
+    );
   }
 }

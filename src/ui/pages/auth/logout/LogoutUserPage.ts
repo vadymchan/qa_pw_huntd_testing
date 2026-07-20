@@ -5,19 +5,28 @@ import { PATHS } from '../../../constants/paths';
 export class LogoutUserPage extends BasePage {
   private profile: Locator;
   private signOut: Locator;
+  private profileName: string;
+  private signOutName: string;
 
   constructor(page: Page) {
     super(page, PATHS.home);
 
-    this.profile = page.getByRole('button', { name: 'Profile' });
-    this.signOut = page.getByRole('button', { name: 'Sign out' });
+    this.profileName = 'Profile';
+    this.signOutName = 'Sign out';
+
+    this.profile = page.getByRole('button', { name: this.profileName });
+    this.signOut = page.getByRole('button', { name: this.signOutName });
   }
 
   async clickProfile() {
-    await this.profile.click();
+    await this.step(`Click '${this.profileName}'`, async () => {
+      await this.profile.click();
+    });
   }
 
   async clickSignOut() {
-    await this.signOut.click();
+    await this.step(`Click '${this.signOutName}'`, async () => {
+      await this.signOut.click();
+    });
   }
 }

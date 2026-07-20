@@ -14,14 +14,23 @@ export class EditCandidateProfileExperiencePage extends BasePage {
   private startMonthValidationMessage: Locator;
   private startYearValidationMessage: Locator;
   private endYearValidationMessage: Locator;
+  private addName: string;
+  private editName: string;
+  private deleteName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.candidate.experience);
 
     this.profileExperience = new CandidateProfileExperienceComponent(page);
-    this.add = page.getByRole('button', { name: 'Add' });
+
+    this.addName = 'Add';
+    this.editName = 'Edit';
+    this.deleteName = 'Delete';
+
+    this.add = page.getByRole('button', { name: this.addName });
     this.edit = page.getByRole('button').filter({ has: page.locator('.icon-edit') });
     this.delete = page.getByRole('button').filter({ has: page.locator('.icon-trash') });
+
     const validationMessage = page.locator('[class*=FormField_metaBlock]');
     this.roleValidationMessage = validationMessage.first();
     this.companyNameValidationMessage = validationMessage.nth(1);
@@ -31,35 +40,66 @@ export class EditCandidateProfileExperiencePage extends BasePage {
   }
 
   async clickAdd() {
-    await this.add.click();
+    await this.step(`Click '${this.addName}'`, async () => {
+      await this.add.click();
+    });
   }
 
   async clickEdit() {
-    await this.edit.click();
+    await this.step(`Click '${this.editName}'`, async () => {
+      await this.edit.click();
+    });
   }
 
   async clickDelete() {
-    const click = () => this.delete.click();
-    await graphqlWaitForResponse(this.page, 'deleteWorkPlace', click);
+    await this.step(`Click '${this.deleteName}'`, async () => {
+      const click = () => this.delete.click();
+      await graphqlWaitForResponse(this.page, 'deleteWorkPlace', click);
+    });
   }
 
   async assertRoleValidationMessage(roleValidationMessage: string) {
-    await expect(this.roleValidationMessage).toHaveText(roleValidationMessage);
+    await this.step(
+      `Assert 'Role' shows '${roleValidationMessage}' validation message`,
+      async () => {
+        await expect(this.roleValidationMessage).toHaveText(roleValidationMessage);
+      },
+    );
   }
 
   async assertCompanyNameValidationMessage(companyNameValidationMessage: string) {
-    await expect(this.companyNameValidationMessage).toHaveText(companyNameValidationMessage);
+    await this.step(
+      `Assert 'Company name' shows '${companyNameValidationMessage}' validation message`,
+      async () => {
+        await expect(this.companyNameValidationMessage).toHaveText(companyNameValidationMessage);
+      },
+    );
   }
 
   async assertStartMonthValidationMessage(startMonthValidationMessage: string) {
-    await expect(this.startMonthValidationMessage).toHaveText(startMonthValidationMessage);
+    await this.step(
+      `Assert 'Start month' shows '${startMonthValidationMessage}' validation message`,
+      async () => {
+        await expect(this.startMonthValidationMessage).toHaveText(startMonthValidationMessage);
+      },
+    );
   }
 
   async assertStartYearValidationMessage(startYearValidationMessage: string) {
-    await expect(this.startYearValidationMessage).toHaveText(startYearValidationMessage);
+    await this.step(
+      `Assert 'Start year' shows '${startYearValidationMessage}' validation message`,
+      async () => {
+        await expect(this.startYearValidationMessage).toHaveText(startYearValidationMessage);
+      },
+    );
   }
 
   async assertEndYearValidationMessage(endYearValidationMessage: string) {
-    await expect(this.endYearValidationMessage).toHaveText(endYearValidationMessage);
+    await this.step(
+      `Assert 'End year' shows '${endYearValidationMessage}' validation message`,
+      async () => {
+        await expect(this.endYearValidationMessage).toHaveText(endYearValidationMessage);
+      },
+    );
   }
 }

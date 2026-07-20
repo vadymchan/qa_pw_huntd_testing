@@ -8,34 +8,59 @@ export class SignInUserPage extends BasePage {
   private signIn: Locator;
   private emailValidationMessage: Locator;
   private passwordValidationMessage: Locator;
+  private emailLabel: string;
+  private passwordLabel: string;
+  private signInName: string;
 
   constructor(page: Page) {
     super(page, PATHS.signIn);
 
-    this.email = page.getByLabel('Email');
-    this.password = page.getByLabel('Password');
-    this.signIn = page.getByRole('button', { name: 'Sign In', exact: true });
-    this.emailValidationMessage = page.locator('[class*=FormField_metaBlock]').first();
-    this.passwordValidationMessage = page.locator('[class*=FormField_metaBlock]').last();
+    this.emailLabel = 'Email';
+    this.passwordLabel = 'Password';
+    this.signInName = 'Sign In';
+
+    this.email = page.getByLabel(this.emailLabel);
+    this.password = page.getByLabel(this.passwordLabel);
+    this.signIn = page.getByRole('button', { name: this.signInName, exact: true });
+
+    const validationMessage = page.locator('[class*=FormField_metaBlock]');
+    this.emailValidationMessage = validationMessage.first();
+    this.passwordValidationMessage = validationMessage.last();
   }
 
   async fillEmail(email: string) {
-    await this.email.fill(email);
+    await this.step(`Fill '${this.emailLabel}'`, async () => {
+      await this.email.fill(email);
+    });
   }
 
   async fillPassword(password: string) {
-    await this.password.fill(password);
+    await this.step(`Fill '${this.passwordLabel}'`, async () => {
+      await this.password.fill(password);
+    });
   }
 
   async clickSignIn() {
-    await this.signIn.click();
+    await this.step(`Click '${this.signInName}'`, async () => {
+      await this.signIn.click();
+    });
   }
 
-  async assertEmailValidationMessage(validationMessage: string) {
-    await expect(this.emailValidationMessage).toHaveText(validationMessage);
+  async assertEmailValidationMessage(emailValidationMessage: string) {
+    await this.step(
+      `Assert '${this.emailLabel}' shows '${emailValidationMessage}' validation message`,
+      async () => {
+        await expect(this.emailValidationMessage).toHaveText(emailValidationMessage);
+      },
+    );
   }
 
   async assertPasswordValidationMessage(passwordValidationMessage: string) {
-    await expect(this.passwordValidationMessage).toHaveText(passwordValidationMessage);
+    await this.step(
+      `Assert '${this.passwordLabel}' shows '${passwordValidationMessage}' validation message`,
+      async () => {
+        await expect(this.passwordValidationMessage).toHaveText(passwordValidationMessage);
+      },
+    );
   }
 }

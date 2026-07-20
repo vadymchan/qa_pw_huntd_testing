@@ -6,15 +6,21 @@ import { PATHS } from '../../../../constants/paths';
 export class CreateRecruiterProfileContactsPage extends BasePage {
   public component: RecruiterProfileContactsComponent;
   private saveAndContinue: Locator;
+  private saveAndContinueName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.recruiter.contacts);
 
     this.component = new RecruiterProfileContactsComponent(page);
-    this.saveAndContinue = page.getByRole('button', { name: 'Save and continue' });
+
+    this.saveAndContinueName = 'Save and continue';
+
+    this.saveAndContinue = page.getByRole('button', { name: this.saveAndContinueName });
   }
 
   async clickSaveAndContinue() {
-    await this.saveAndContinue.click();
+    await this.step(`Click '${this.saveAndContinueName}'`, async () => {
+      await this.saveAndContinue.click();
+    });
   }
 }

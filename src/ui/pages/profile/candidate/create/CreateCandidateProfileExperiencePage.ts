@@ -6,22 +6,31 @@ import { PATHS } from '../../../../constants/paths';
 export class CreateCandidateProfileExperiencePage extends BasePage {
   public profileExperience: CandidateProfileExperienceComponent;
   private addManually: Locator;
-
   private saveAndContinue: Locator;
+  private addManuallyName: string;
+  private saveAndContinueName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.candidate.experience);
 
     this.profileExperience = new CandidateProfileExperienceComponent(page);
-    this.addManually = page.getByRole('button', { name: 'Add manually' });
-    this.saveAndContinue = page.getByRole('button', { name: 'Save and continue' });
+
+    this.addManuallyName = 'Add manually';
+    this.saveAndContinueName = 'Save and continue';
+
+    this.addManually = page.getByRole('button', { name: this.addManuallyName });
+    this.saveAndContinue = page.getByRole('button', { name: this.saveAndContinueName });
   }
 
   async clickAddManually() {
-    await this.addManually.click();
+    await this.step(`Click '${this.addManuallyName}'`, async () => {
+      await this.addManually.click();
+    });
   }
 
   async clickSaveAndContinue() {
-    await this.saveAndContinue.click();
+    await this.step(`Click '${this.saveAndContinueName}'`, async () => {
+      await this.saveAndContinue.click();
+    });
   }
 }

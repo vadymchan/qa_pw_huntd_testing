@@ -16,7 +16,7 @@ export class CandidateProfilePreviewPage extends BasePage {
   private jobExperience: Locator;
   private salary: Locator;
   private englishLevel: Locator;
-  private achivements: Locator;
+  private achievements: Locator;
   private coreTechnicalSkills: Locator;
   private expectations: Locator;
   private desiredRoles: Locator;
@@ -24,7 +24,7 @@ export class CandidateProfilePreviewPage extends BasePage {
   private previousRole: Locator;
   private previousCompany: Locator;
   private previousJobDates: Locator;
-  private previousJobAchivements: Locator;
+  private previousJobAchievements: Locator;
   private fullName: Locator;
   private email: Locator;
   private linkedin: Locator;
@@ -46,7 +46,7 @@ export class CandidateProfilePreviewPage extends BasePage {
       page.locator('[class*=ProfileInfo_item]').filter({
         has: page.locator('[class*=ProfileInfo_itemTitle]').getByText(text),
       });
-    this.achivements = section('Achievements / Key results').getByRole('definition');
+    this.achievements = section('Achievements / Key results').getByRole('definition');
     this.coreTechnicalSkills = section('Core technical skills').locator(
       '[class*=ProfileInfo_tagsContainer]',
     );
@@ -57,7 +57,7 @@ export class CandidateProfilePreviewPage extends BasePage {
     this.previousRole = this.experience.locator('[class*=typography_caption]').first();
     this.previousCompany = this.experience.locator('p[class*=typography_smallText]').first();
     this.previousJobDates = this.experience.locator('[class*=ProfileWorkHistory_term__]').first();
-    this.previousJobAchivements = this.experience
+    this.previousJobAchievements = this.experience
       .locator('[class*=ProfileWorkHistory_descriptionField]')
       .first();
     this.fullName = page.locator('p[class*=typography_smallHeading]');
@@ -70,55 +70,83 @@ export class CandidateProfilePreviewPage extends BasePage {
   }
 
   async assertDesiredPositionHasText(desiredPosition: string) {
-    await expect(this.desiredPosition).toHaveText(desiredPosition);
+    await this.step(`Assert 'Desired position' has '${desiredPosition}' text`, async () => {
+      await expect(this.desiredPosition).toHaveText(desiredPosition);
+    });
   }
 
   async assertLocationContainsText(yourLocation: CityName) {
-    await expect(this.location).toContainText(yourLocation);
+    await this.step(`Assert 'Location' has '${yourLocation}' text`, async () => {
+      await expect(this.location).toContainText(yourLocation);
+    });
   }
 
   async assertJobExperienceHasText(jobExperience: JobExperience) {
-    await expect(this.jobExperience).toHaveText(jobExperience);
+    await this.step(`Assert 'Job experience' has '${jobExperience}' text`, async () => {
+      await expect(this.jobExperience).toHaveText(jobExperience);
+    });
   }
 
   async assertSalaryHasText(salaryType: SalaryType, desiredBaseSalary: number) {
-    await expect(this.salary).toHaveText(generateSalaryString(salaryType, desiredBaseSalary));
+    const salary = generateSalaryString(salaryType, desiredBaseSalary);
+    await this.step(`Assert 'Salary type' has '${salary}' text`, async () => {
+      await expect(this.salary).toHaveText(salary);
+    });
   }
 
   async assertEnglishLevelHasText(englishLevel: EnglishLevel) {
-    await expect(this.englishLevel).toHaveText(englishLevel);
+    await this.step(`Assert 'English level' has '${englishLevel}' text`, async () => {
+      await expect(this.englishLevel).toHaveText(englishLevel);
+    });
   }
 
-  async assertAchivementsHaveText(achivements: string) {
-    await expect(this.achivements).toHaveText(achivements);
+  async assertAchievementsHaveText(achievements: string) {
+    await this.step(`Assert 'Achievements' has '${achievements}' text`, async () => {
+      await expect(this.achievements).toHaveText(achievements);
+    });
   }
 
   async assertCoreTechnicalSkillsHaveText(coreTechnicalSkills: Array<CoreTechnicalSkill>) {
-    for (const skill of coreTechnicalSkills) {
-      await expect(this.coreTechnicalSkills.getByText(skill, { exact: true })).toBeVisible();
-    }
+    await this.step(
+      `Assert 'Core technical skills' has '${coreTechnicalSkills}' elements`,
+      async () => {
+        for (const skill of coreTechnicalSkills) {
+          await expect(this.coreTechnicalSkills.getByText(skill, { exact: true })).toBeVisible();
+        }
+      },
+    );
   }
 
   async assertExpectationsHaveText(expectations: string) {
-    await expect(this.expectations).toHaveText(expectations);
+    await this.step(`Assert 'Expectations' has '${expectations}' text`, async () => {
+      await expect(this.expectations).toHaveText(expectations);
+    });
   }
 
   async assertDesiredRolesHaveText(desiredRoles: Array<Role>) {
-    for (const role of desiredRoles) {
-      await expect(this.desiredRoles.getByText(role)).toBeVisible();
-    }
+    await this.step(`Assert 'Desired roles' has '${desiredRoles}' elements`, async () => {
+      for (const role of desiredRoles) {
+        await expect(this.desiredRoles.getByText(role)).toBeVisible();
+      }
+    });
   }
 
   async assertNoWorkExperienceIsVisible() {
-    await expect(this.experience).toBeHidden();
+    await this.step(`Assert no 'Work Experience' is visible`, async () => {
+      await expect(this.experience).toBeHidden();
+    });
   }
 
   async assertPreviousRoleHasText(previousRole: string) {
-    await expect(this.previousRole).toHaveText(previousRole);
+    await this.step(`Assert 'Previous role' has '${previousRole}' text`, async () => {
+      await expect(this.previousRole).toHaveText(previousRole);
+    });
   }
 
   async assertPreviousCompanyHasText(previousCompany: string) {
-    await expect(this.previousCompany).toHaveText(previousCompany);
+    await this.step(`Assert 'Previous company' has '${previousCompany}' text`, async () => {
+      await expect(this.previousCompany).toHaveText(previousCompany);
+    });
   }
 
   async assertPreviousJobDatesHaveText(
@@ -129,31 +157,49 @@ export class CandidateProfilePreviewPage extends BasePage {
   ) {
     const startPart = `${startMonth.slice(0, 3)} ${startYear}`;
     const endPart = endMonth && endYear ? `${endMonth.slice(0, 3)} ${endYear}` : 'current time';
-
-    await expect(this.previousJobDates).toHaveText(`${startPart} - ${endPart}`);
+    const jobDates = `${startPart} - ${endPart}`;
+    await this.step(`Assert 'Previous job dates' has '${jobDates}' text`, async () => {
+      await expect(this.previousJobDates).toHaveText(jobDates);
+    });
   }
 
-  async assertPreviousJobAchivementsHaveText(previousJobAchivements: string) {
-    await expect(this.previousJobAchivements).toHaveText(previousJobAchivements);
+  async assertPreviousJobAchievementsHaveText(previousJobAchievements: string) {
+    await this.step(
+      `Assert 'Previous job achievements' has '${previousJobAchievements}' text`,
+      async () => {
+        await expect(this.previousJobAchievements).toHaveText(previousJobAchievements);
+      },
+    );
   }
 
   async assertFullNameHasText(firstName: string, lastName: string) {
-    await expect(this.fullName).toHaveText(`${firstName} ${lastName}`);
+    const fullName = `${firstName} ${lastName}`;
+    await this.step(`Assert 'Full name' has '${fullName}' text`, async () => {
+      await expect(this.fullName).toHaveText(fullName);
+    });
   }
 
   async assertEmailHasText(email: string) {
-    await expect(this.email).toHaveText(email);
+    await this.step(`Assert 'Email' has '${email}' text`, async () => {
+      await expect(this.email).toHaveText(email);
+    });
   }
 
   async assertLinkedinHasCorrectUrl(linkedin: string) {
-    await expect(this.linkedin).toHaveAttribute('href', linkedin);
+    await this.step(`Assert 'Linkedin' has '${linkedin}' text`, async () => {
+      await expect(this.linkedin).toHaveAttribute('href', linkedin);
+    });
   }
 
   async assertBehanceHasCorrectUrl(behance: string) {
-    await expect(this.behance).toHaveAttribute('href', behance);
+    await this.step(`Assert 'Behance' has '${behance}' text`, async () => {
+      await expect(this.behance).toHaveAttribute('href', behance);
+    });
   }
 
   async assertGitHubHasCorrectUrl(gitHub: string) {
-    await expect(this.gitHub).toHaveAttribute('href', gitHub);
+    await this.step(`Assert 'GitHub' has '${gitHub}' text`, async () => {
+      await expect(this.gitHub).toHaveAttribute('href', gitHub);
+    });
   }
 }

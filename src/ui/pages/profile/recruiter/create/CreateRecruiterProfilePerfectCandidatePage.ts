@@ -11,56 +11,85 @@ export class CreateRecruiterProfilePerfectCandidatePage extends BasePage {
   private next: Locator;
   private templateMessage: Locator;
   private send: Locator;
+  private rolesLabel: string;
+  private technologiesLabel: string;
+  private jobExperienceLabel: string;
+  private englishLevelLabel: string;
+  private nextName: string;
+  private templateMessageLabel: string;
+  private sendName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.recruiter.perfectCandidate);
 
-    this.roles = page.getByLabel('Role');
-    this.technologies = page.getByLabel('Technologies');
-    this.jobExperience = page.getByLabel('Job experience');
-    this.englishLevel = page.getByLabel('English level');
-    this.next = page.getByRole('button', { name: 'Next' });
+    this.rolesLabel = 'Role';
+    this.technologiesLabel = 'Technologies';
+    this.jobExperienceLabel = 'Job experience';
+    this.englishLevelLabel = 'English level';
+    this.nextName = 'Next';
+    this.templateMessageLabel = 'Template message';
+    this.sendName = 'Send';
+
+    this.roles = page.getByLabel(this.rolesLabel);
+    this.technologies = page.getByLabel(this.technologiesLabel);
+    this.jobExperience = page.getByLabel(this.jobExperienceLabel);
+    this.englishLevel = page.getByLabel(this.englishLevelLabel);
+    this.next = page.getByRole('button', { name: this.nextName });
     this.templateMessage = page.locator('#messageBody');
-    this.send = page.getByRole('button', { name: 'Send' });
-  }
-
-  async selectRoles(roles: Array<string>) {
-    for (const role of roles) {
-      await selectOption(this.page, this.roles, role);
-    }
-  }
-
-  async selectTechnologies(technologies: Array<string>) {
-    for (const technology of technologies) {
-      await this.technologies.fill(technology);
-      await this.page
-        .locator('.select__option')
-        .filter({ hasText: new RegExp(`^${technology}$`) })
-        .click();
-    }
-    await this.technologies.blur();
-  }
-
-  async selectJobExperience(jobExperience: string) {
-    await selectOption(this.page, this.jobExperience, jobExperience);
-  }
-
-  async selectEnglishLevel(englishLevel: string) {
-    await selectOption(this.page, this.englishLevel, englishLevel);
+    this.send = page.getByRole('button', { name: this.sendName });
   }
 
   async fillTemplateMessage(templateMessage: string) {
-    await this.templateMessage.fill(templateMessage);
+    await this.step(`Fill '${this.templateMessageLabel}'`, async () => {
+      await this.templateMessage.fill(templateMessage);
+    });
+  }
+
+  async selectRoles(roles: Array<string>) {
+    await this.step(`Select '${this.rolesLabel}'`, async () => {
+      for (const role of roles) {
+        await selectOption(this.page, this.roles, role);
+      }
+    });
+  }
+
+  async selectTechnologies(technologies: Array<string>) {
+    await this.step(`Select '${this.technologiesLabel}'`, async () => {
+      for (const technology of technologies) {
+        await this.technologies.fill(technology);
+        await this.page
+          .locator('.select__option')
+          .filter({ hasText: new RegExp(`^${technology}$`) })
+          .click();
+      }
+      await this.technologies.blur();
+    });
+  }
+
+  async selectJobExperience(jobExperience: string) {
+    await this.step(`Select '${this.jobExperience}'`, async () => {
+      await selectOption(this.page, this.jobExperience, jobExperience);
+    });
+  }
+
+  async selectEnglishLevel(englishLevel: string) {
+    await this.step(`Select '${this.englishLevelLabel}'`, async () => {
+      await selectOption(this.page, this.englishLevel, englishLevel);
+    });
   }
 
   async clickNext() {
-    await this.next.click();
+    await this.step(`Click '${this.nextName}'`, async () => {
+      await this.next.click();
+    });
   }
 
   async clickSend() {
-    await this.send.click();
-    // TODO: consider move to separate place (might be violation of SRP)
-    // Sending messages to candidates (bulkSendMessage) takes some time, especially under heavy load
-    await expect(this.page).toHaveURL('/chats', { timeout: 20_000 });
+    await this.step(`Click '${this.sendName}'`, async () => {
+      await this.send.click();
+      // TODO: consider move to separate place (might be violation of SRP)
+      // Sending messages to candidates (bulkSendMessage) takes some time, especially under heavy load
+      await expect(this.page).toHaveURL('/chats', { timeout: 20_000 });
+    });
   }
 }

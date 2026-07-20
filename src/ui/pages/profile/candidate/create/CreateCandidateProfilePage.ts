@@ -6,15 +6,21 @@ import { PATHS } from '../../../../constants/paths';
 export class CreateCandidateProfilePage extends BasePage {
   public candidateProfile: CandidateProfileComponent;
   private saveAndContinue: Locator;
+  private saveAndContinueName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.candidate.base);
 
     this.candidateProfile = new CandidateProfileComponent(page);
-    this.saveAndContinue = page.getByRole('button', { name: 'Save and continue' });
+
+    this.saveAndContinueName = 'Save and continue';
+    
+    this.saveAndContinue = page.getByRole('button', { name: this.saveAndContinueName });
   }
 
   async clickSaveAndContinue() {
-    await this.saveAndContinue.click();
+    await this.step(`Click '${this.saveAndContinueName}'`, async () => {
+      await this.saveAndContinue.click();
+    });
   }
 }

@@ -12,6 +12,8 @@ export class CandidateProfileFeedbackPage extends BasePage {
   }
 
   async assertHeaderHasText(header: string) {
-    await expect(this.header).toHaveText(header);
+    await this.step(`Assert header has '${header}' text`, async () => {
+      await expect(this.header).toHaveText(header);
+    });
   }
 }

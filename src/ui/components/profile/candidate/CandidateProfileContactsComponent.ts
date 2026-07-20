@@ -8,39 +8,64 @@ export class CandidateProfileContactsComponent extends BaseComponent {
   private linkedin: Locator;
   private behance: Locator;
   private gitHub: Locator;
+  private usualProfileName: string;
+  private firstNameLabel: string;
+  private lastNameLabel: string;
+  private linkedinLabel: string;
+  private behanceLabel: string;
+  private gitHubLabel: string;
 
   constructor(page: Page) {
     super(page);
 
-    this.usualProfile = page.getByRole('button', { name: 'Usual avatar' });
-    this.firstName = page.getByLabel('First name');
-    this.lastName = page.getByLabel('Last name');
-    this.linkedin = page.getByLabel('Linkedin (optional)');
-    this.behance = page.getByLabel('Behance (optional)');
-    this.gitHub = page.getByLabel('GitHub (optional)');
+    this.usualProfileName = 'Usual avatar';
+    this.firstNameLabel = 'First name';
+    this.lastNameLabel = 'Last name';
+    this.linkedinLabel = 'Linkedin (optional)';
+    this.behanceLabel = 'Behance (optional)';
+    this.gitHubLabel = 'GitHub (optional)';
+
+    this.usualProfile = page.getByRole('button', { name: this.usualProfileName });
+    this.firstName = page.getByLabel(this.firstNameLabel);
+    this.lastName = page.getByLabel(this.lastNameLabel);
+    this.linkedin = page.getByLabel(this.linkedinLabel);
+    this.behance = page.getByLabel(this.behanceLabel);
+    this.gitHub = page.getByLabel(this.gitHubLabel);
   }
 
   async fillFirstName(firstName: string) {
-    await this.firstName.fill(firstName);
+    await this.step(`Fill '${this.firstNameLabel}'`, async () => {
+      await this.firstName.fill(firstName);
+    });
   }
 
   async fillLastName(lastName: string) {
-    await this.lastName.fill(lastName);
+    await this.step(`Fill '${this.lastNameLabel}'`, async () => {
+      await this.lastName.fill(lastName);
+    });
   }
 
   async fillLinkedin(linkedin: string) {
-    await this.linkedin.fill(linkedin);
+    await this.step(`Fill '${this.linkedinLabel}'`, async () => {
+      await this.linkedin.fill(linkedin);
+    });
   }
 
   async fillBehance(behance: string) {
-    await this.behance.fill(behance);
+    await this.step(`Fill '${this.behanceLabel}'`, async () => {
+      await this.behance.fill(behance);
+    });
   }
 
   async fillGitHub(gitHub: string) {
-    await this.gitHub.fill(gitHub);
+    await this.step(`Fill '${this.gitHubLabel}'`, async () => {
+      await this.gitHub.fill(gitHub);
+    });
   }
 
   async clickUsualProfile() {
-    await this.usualProfile.click();
+    await this.step(`Click '${this.usualProfileName}'`, async () => {
+      await this.usualProfile.click();
+    });
   }
 }

@@ -4,19 +4,28 @@ import { BaseComponent } from '../../BaseComponent';
 export class RecruiterProfileComponent extends BaseComponent {
   private role: Locator;
   private company: Locator;
+  private roleLabel: string;
+  private companyLabel: string;
 
   constructor(page: Page) {
     super(page);
 
-    this.role = page.getByLabel('My role');
-    this.company = page.getByLabel('Company');
+    this.roleLabel = 'My role';
+    this.companyLabel = 'Company';
+
+    this.role = page.getByLabel(this.roleLabel);
+    this.company = page.getByLabel(this.companyLabel);
   }
 
   async fillRole(role: string) {
-    await this.role.fill(role);
+    await this.step(`Fill '${this.roleLabel}'`, async () => {
+      await this.role.fill(role);
+    });
   }
 
   async fillCompany(company: string) {
-    await this.company.fill(company);
+    await this.step(`Fill '${this.companyLabel}'`, async () => {
+      await this.company.fill(company);
+    });
   }
 }

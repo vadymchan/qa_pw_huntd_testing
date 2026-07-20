@@ -12,15 +12,27 @@ export class ChangePasswordPage extends BasePage {
   private currentPasswordValidationMessage: Locator;
   private newPasswordValidationMessage: Locator;
   private repeatNewPasswordValidationMessage: Locator;
+  private changePasswordName: string;
+  private currentPasswordLabel: string;
+  private newPasswordLabel: string;
+  private repeatNewPasswordLabel: string;
+  private saveChangesName: string;
 
   constructor(page: Page) {
     super(page, PATHS.changePassword);
 
-    this.changePassword = page.getByRole('button', { name: 'Change password' });
-    this.currentPassword = page.getByLabel('Current password');
-    this.newPassword = page.getByLabel('New password', { exact: true });
-    this.repeatNewPassword = page.getByLabel('Repeat new password');
-    this.saveChanges = page.getByRole('button', { name: 'Save changes' });
+    this.changePasswordName = 'Change password';
+    this.currentPasswordLabel = 'Current password';
+    this.newPasswordLabel = 'New password';
+    this.repeatNewPasswordLabel = 'Repeat new password';
+    this.saveChangesName = 'Save changes';
+
+    this.changePassword = page.getByRole('button', { name: this.changePasswordName });
+    this.currentPassword = page.getByLabel(this.currentPasswordLabel);
+    this.newPassword = page.getByLabel(this.newPasswordLabel, { exact: true });
+    this.repeatNewPassword = page.getByLabel(this.repeatNewPasswordLabel);
+    this.saveChanges = page.getByRole('button', { name: this.saveChangesName });
+
     const validationMessage = page.locator('[class*=FormField_metaBlock]');
     this.currentPasswordValidationMessage = validationMessage.first();
     this.newPasswordValidationMessage = validationMessage.nth(1);
@@ -28,39 +40,66 @@ export class ChangePasswordPage extends BasePage {
   }
 
   async fillCurrentPassword(currentPassword: string) {
-    await this.currentPassword.fill(currentPassword);
+    await this.step(`Fill '${this.currentPasswordLabel}'`, async () => {
+      await this.currentPassword.fill(currentPassword);
+    });
   }
 
   async fillNewPassword(newPassword: string) {
-    await this.newPassword.fill(newPassword);
+    await this.step(`Fill '${this.newPasswordLabel}'`, async () => {
+      await this.newPassword.fill(newPassword);
+    });
   }
 
   async fillRepeatNewPassword(repeatNewPassword: string) {
-    await this.repeatNewPassword.fill(repeatNewPassword);
+    await this.step(`Fill '${this.repeatNewPasswordLabel}'`, async () => {
+      await this.repeatNewPassword.fill(repeatNewPassword);
+    });
   }
 
   async clickChangePassword() {
-    await this.changePassword.click();
+    await this.step(`Click '${this.changePasswordName}'`, async () => {
+      await this.changePassword.click();
+    });
   }
 
   async clickSaveChanges(waitForResponse: boolean) {
-    const click = () => this.saveChanges.click();
-    await (waitForResponse ? graphqlWaitForResponse(this.page, 'changePassword', click) : click());
+    await this.step(`Click '${this.saveChangesName}'`, async () => {
+      const click = () => this.saveChanges.click();
+      await (waitForResponse
+        ? graphqlWaitForResponse(this.page, 'changePassword', click)
+        : click());
+    });
   }
 
   async assertCurrentPasswordValidationMessage(currentPasswordValidationMessage: string) {
-    await expect(this.currentPasswordValidationMessage).toHaveText(
-      currentPasswordValidationMessage,
+    await this.step(
+      `Assert '${this.currentPasswordLabel}' shows '${currentPasswordValidationMessage}' validation message`,
+      async () => {
+        await expect(this.currentPasswordValidationMessage).toHaveText(
+          currentPasswordValidationMessage,
+        );
+      },
     );
   }
 
   async assertNewPasswordValidationMessage(newPasswordValidationMessage: string) {
-    await expect(this.newPasswordValidationMessage).toHaveText(newPasswordValidationMessage);
+    await this.step(
+      `Assert '${this.newPasswordLabel}' shows '${newPasswordValidationMessage}' validation message`,
+      async () => {
+        await expect(this.newPasswordValidationMessage).toHaveText(newPasswordValidationMessage);
+      },
+    );
   }
 
   async assertRepeatNewPasswordValidationMessage(repeatNewPasswordValidationMessage: string) {
-    await expect(this.repeatNewPasswordValidationMessage).toHaveText(
-      repeatNewPasswordValidationMessage,
+    await this.step(
+      `Assert '${this.repeatNewPasswordLabel}' shows '${repeatNewPasswordValidationMessage}' validation message`,
+      async () => {
+        await expect(this.repeatNewPasswordValidationMessage).toHaveText(
+          repeatNewPasswordValidationMessage,
+        );
+      },
     );
   }
 }

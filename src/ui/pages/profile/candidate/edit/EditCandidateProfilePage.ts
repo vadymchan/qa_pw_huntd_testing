@@ -11,48 +11,73 @@ export class EditCandidateProfilePage extends BasePage {
   private clearCoreTechnicalSkills: Locator;
   private desiredPositionValidationMessage: Locator;
   private coreTechnicalSkillsValidationMessage: Locator;
+  private saveChangesName: string;
+  private clearDesiredRolesName: string;
+  private clearCoreTechnicalSkillsName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.candidate.base);
 
     this.candidateProfile = new CandidateProfileComponent(page);
-    this.saveChanges = page.getByRole('button', { name: 'Save changes' });
+
+    this.saveChangesName = 'Save changes';
+    this.clearDesiredRolesName = 'Desired roles';
+    this.clearCoreTechnicalSkillsName = 'Core technical skills';
+
+    this.saveChanges = page.getByRole('button', { name: this.saveChangesName });
     const clearButton = (buttonName: string) =>
       this.page
         .locator('.select__control')
         .filter({ has: page.getByLabel(buttonName) })
         .locator('.select__clear-indicator');
-    this.clearDesiredRoles = clearButton('Desired roles');
-    this.clearCoreTechnicalSkills = clearButton('Core technical skills');
+    this.clearDesiredRoles = clearButton(this.clearDesiredRolesName);
+    this.clearCoreTechnicalSkills = clearButton(this.clearCoreTechnicalSkillsName);
+
     const validationMessage = page.locator('[class*=FormField_metaBlock]');
     this.desiredPositionValidationMessage = validationMessage.first();
     this.coreTechnicalSkillsValidationMessage = validationMessage.last();
   }
 
   async clickSaveChanges(waitForResponse: boolean) {
-    const click = () => this.saveChanges.click();
-    await (waitForResponse
-      ? graphqlWaitForResponse(this.page, 'updateCandidateProfile', click)
-      : click());
+    await this.step(`Click '${this.saveChangesName}'`, async () => {
+      const click = () => this.saveChanges.click();
+      await (waitForResponse
+        ? graphqlWaitForResponse(this.page, 'updateCandidateProfile', click)
+        : click());
+    });
   }
 
   async clickClearDesiredRoles() {
-    await this.clearDesiredRoles.click();
+    await this.step(`Click '${this.clearDesiredRolesName}'`, async () => {
+      await this.clearDesiredRoles.click();
+    });
   }
 
   async clickClearCoreTechnicalSkills() {
-    await this.clearCoreTechnicalSkills.click();
+    await this.step(`Click '${this.clearCoreTechnicalSkillsName}'`, async () => {
+      await this.clearCoreTechnicalSkills.click();
+    });
   }
 
   async assertDesiredPositionValidationMessage(desiredPositionValidationMessage: string) {
-    await expect(this.desiredPositionValidationMessage).toHaveText(
-      desiredPositionValidationMessage,
+    await this.step(
+      `Assert 'Desired position' shows '${desiredPositionValidationMessage}' validation message`,
+      async () => {
+        await expect(this.desiredPositionValidationMessage).toHaveText(
+          desiredPositionValidationMessage,
+        );
+      },
     );
   }
 
   async assertCoreTechnicalSkillsValidationMessage(coreTechnicalSkillsValidationMessage: string) {
-    await expect(this.coreTechnicalSkillsValidationMessage).toHaveText(
-      coreTechnicalSkillsValidationMessage,
+    await this.step(
+      `Assert 'Core technical skills' shows '${coreTechnicalSkillsValidationMessage}' validation message`,
+      async () => {
+        await expect(this.coreTechnicalSkillsValidationMessage).toHaveText(
+          coreTechnicalSkillsValidationMessage,
+        );
+      },
     );
   }
 }

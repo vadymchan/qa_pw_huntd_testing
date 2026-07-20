@@ -21,16 +21,33 @@ export class GuestJobsPage extends BasePage {
   private modalWindow: Locator;
   private flashMessageTitle: Locator;
   private flashMessageText: Locator;
+  private applyName: string;
+  private emailLabel: string;
+  private receiveJobsName: string;
+  private categoryName: string;
+  private topCompaniesName: string;
+  private companyLogoName: string;
+  private jobDetailsName: string;
+  private viewMoreName: string;
 
   constructor(page: Page) {
     super(page, PATHS.jobs);
 
-    this.apply = page.locator('button', { hasText: '1-click apply' }).first();
-    this.email = page.getByPlaceholder('Email');
+    this.applyName = '1-click apply';
+    this.emailLabel = 'Email';
+    this.receiveJobsName = 'Receive jobs';
+    this.categoryName = 'Category';
+    this.topCompaniesName = 'Top companies';
+    this.companyLogoName = 'Company logo';
+    this.jobDetailsName = 'Job details';
+    this.viewMoreName = 'View more';
+
+    this.apply = page.locator('button', { hasText: this.applyName }).first();
+    this.email = page.getByPlaceholder(this.emailLabel);
     this.emailValidationMessage = page.locator('[class*=FormField_metaBlock]').last();
-    this.receiveJobs = page.getByRole('button', { name: 'Receive jobs' });
+    this.receiveJobs = page.getByRole('button', { name: this.receiveJobsName });
     this.category = page.locator('a[class*=VacanciesNav_link]').first();
-    this.topCompanies = page.getByRole('link', { name: 'Top companies' });
+    this.topCompanies = page.getByRole('link', { name: this.topCompaniesName });
     this.company = page.locator('[class*=Web3Companies_companyWrapper]').first();
     this.companyName = this.company.locator('[class*=Web3Companies_companyTitle]');
     this.companyLogo = this.company.locator('a[class*=Web3Companies_companyLogoContainer]');
@@ -39,97 +56,138 @@ export class GuestJobsPage extends BasePage {
     this.jobDetailsButton = page.locator('[class*=VacancyCard_detailsButton]').first();
     this.jobDetailsText = page.locator('article[class*="VacancyCard_detailedInfo"]').first();
     this.jobs = page.getByRole('list').filter({ has: page.locator('[class*=VacancyCard]') });
-    this.viewMore = page.getByRole('button', { name: 'View more' });
+    this.viewMore = page.getByRole('button', { name: this.viewMoreName });
     this.modalWindow = page.locator('[class*=VacanciesModal_modalWrapper]').getByRole('paragraph');
     this.flashMessageTitle = page.locator('[class*=FlashMessageItem_profileTitle]');
     this.flashMessageText = page.locator('[class*=FlashMessageItem_text]');
   }
 
   async fillEmail(email: string) {
-    await this.email.fill(email);
+    await this.step(`Fill '${this.emailLabel}'`, async () => {
+      await this.email.fill(email);
+    });
   }
 
   async clickApply() {
-    await this.apply.click();
+    await this.step(`Click '${this.categoryName}'`, async () => {
+      await this.apply.click();
+    });
   }
 
   async clickReceiveJobs() {
-    await this.receiveJobs.click();
+    await this.step(`Click '${this.categoryName}'`, async () => {
+      await this.receiveJobs.click();
+    });
   }
 
   async clickCategory() {
-    await this.category.click();
+    await this.step(`Click '${this.categoryName}'`, async () => {
+      await this.category.click();
+    });
   }
 
   async clickTopCompanies() {
-    await this.topCompanies.click();
+    await this.step(`Click '${this.categoryName}'`, async () => {
+      await this.topCompanies.click();
+    });
   }
 
   async clickCompanyLogo() {
-    await this.companyLogo.click();
+    await this.step(`Click '${this.categoryName}'`, async () => {
+      await this.companyLogo.click();
+    });
   }
 
   async clickJobDetails() {
-    await this.jobDetailsButton.click();
+    await this.step(`Click '${this.categoryName}'`, async () => {
+      await this.jobDetailsButton.click();
+    });
   }
 
   async clickViewMore() {
-    await this.viewMore.click();
+    await this.step(`Click '${this.categoryName}'`, async () => {
+      await this.viewMore.click();
+    });
   }
 
   async getCategoryUrl() {
-    return await this.category.getAttribute('href');
+    return await this.step(`Get category url`, async () => {
+      return await this.category.getAttribute('href');
+    });
   }
 
   async getCompanyImageUrl() {
-    return await this.company.getByRole('img').getAttribute('src');
+    return await this.step(`Get company image url`, async () => {
+      return await this.company.getByRole('img').getAttribute('src');
+    });
   }
 
   async getCompanyName() {
-    return await this.companyName.textContent();
+    return await this.step(`Get company name`, async () => {
+      return await this.companyName.textContent();
+    });
   }
 
   async assertEmailValidationMessage(emailValidationMessage: string) {
-    await expect(this.emailValidationMessage).toHaveText(emailValidationMessage);
+    await this.step(
+      `Assert '${this.emailLabel}' shows '${emailValidationMessage}' validation message`,
+      async () => {
+        await expect(this.emailValidationMessage).toHaveText(emailValidationMessage);
+      },
+    );
   }
 
   // TODO: consider moving outside (not tightly related to GuestJobsPage)
   async assertRedirectedToCategoryPage(categoryUrl: string) {
-    await expect(this.page).toHaveURL(categoryUrl);
+    await this.step(`Assert page is redirrected to '${categoryUrl}'`, async () => {
+      await expect(this.page).toHaveURL(categoryUrl);
+    });
   }
 
   async assertJobsAreFilteredByCompany(companyName: string, companyImageUrl: string) {
-    const jobsCount = await this.companyJobs.count();
+    await this.step(`Assert jobs are filtered by '${companyName}' company`, async () => {
+      const jobsCount = await this.companyJobs.count();
 
-    const expectedCompanyNames = Array(jobsCount).fill(companyName);
+      const expectedCompanyNames = Array(jobsCount).fill(companyName);
 
-    await expect(this.companyNames).toHaveText(expectedCompanyNames);
+      await expect(this.companyNames).toHaveText(expectedCompanyNames);
 
-    const companyImages = this.companyJobs.getByRole('img');
+      const companyImages = this.companyJobs.getByRole('img');
 
-    for (let i = 0; i < jobsCount; i++) {
-      const companyImage = companyImages.nth(i);
-      await expect(companyImage).toHaveAttribute('src', companyImageUrl);
-    }
+      for (let i = 0; i < jobsCount; i++) {
+        const companyImage = companyImages.nth(i);
+        await expect(companyImage).toHaveAttribute('src', companyImageUrl);
+      }
+    });
   }
 
   async assertJobDetailsHaveSomeText() {
-    await expect(this.jobDetailsText).toHaveText(new RegExp('\\w+'));
+    await this.step(`Assert jobs details have some text`, async () => {
+      await expect(this.jobDetailsText).toHaveText(new RegExp('\\w+'));
+    });
   }
 
   async assertJobsToBeVisible() {
-    await expect(this.jobs).toBeVisible();
+    await this.step(`Assert jobs are visible`, async () => {
+      await expect(this.jobs).toBeVisible();
+    });
   }
 
   async assertModalWindowHasText(modalWindow: string) {
-    await expect(this.modalWindow).toHaveText(modalWindow);
+    await this.step(`Assert modal window has '${modalWindow}' text`, async () => {
+      await expect(this.modalWindow).toHaveText(modalWindow);
+    });
   }
 
   async assertFlashMessageTitleHasText(flashMessageTitle: string) {
-    await expect(this.flashMessageTitle).toHaveText(flashMessageTitle);
+    await this.step(`Assert flash message title has '${flashMessageTitle}' text`, async () => {
+      await expect(this.flashMessageTitle).toHaveText(flashMessageTitle);
+    });
   }
 
   async assertFlashMessageTextHasText(flashMessageText: string) {
-    await expect(this.flashMessageText).toHaveText(flashMessageText);
+    await this.step(`Assert flash message text has '${flashMessageText}' text`, async () => {
+      await expect(this.flashMessageText).toHaveText(flashMessageText);
+    });
   }
 }

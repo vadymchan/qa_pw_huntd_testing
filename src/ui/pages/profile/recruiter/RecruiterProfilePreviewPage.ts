@@ -19,18 +19,27 @@ export class RecruiterProfilePreviewPage extends BasePage {
   }
 
   async assertFullNameHasText(firstName: string, lastName: string) {
-    await expect(this.fullName).toHaveText(`${firstName} ${lastName}`);
+    const fullName = `${firstName} ${lastName}`;
+    await this.step(`Assert 'Full name' has '${fullName}' text`, async () => {
+      await expect(this.fullName).toHaveText(fullName);
+    });
   }
 
   async assertRoleHasText(role: string) {
-    await expect(this.role).toHaveText(role);
+    await this.step(`Assert 'Role' has '${role}' text`, async () => {
+      await expect(this.role).toHaveText(role);
+    });
   }
 
   async assertCompanyHasText(company: string) {
-    await expect(this.company).toHaveText(company);
+    await this.step(`Assert 'Company' has '${company}' text`, async () => {
+      await expect(this.company).toHaveText(company);
+    });
   }
 
   async assertEmailHasText(email: string) {
-    await expect(this.email).toHaveText(email);
+    await this.step(`Assert 'Email' has '${email}' text`, async () => {
+      await expect(this.email).toHaveText(email);
+    });
   }
 }
