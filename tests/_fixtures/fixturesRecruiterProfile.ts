@@ -8,9 +8,9 @@ import { CreateRecruiterProfilePerfectCandidatePage } from '../../src/ui/pages/p
 import { RecruiterProfilePreviewPage } from '../../src/ui/pages/profile/recruiter/RecruiterProfilePreviewPage';
 import { EditRecruiterProfileContactsPage } from '../../src/ui/pages/profile/recruiter/edit/EditRecruiterProfileContactsPage';
 import { EditRecruiterProfilePage } from '../../src/ui/pages/profile/recruiter/edit/EditRecruiterProfilePage';
-import { generateRecruiterProfile } from '../../src/utils/generators/generateRecruiterProfile';
-import { generateProfileContacts } from '../../src/utils/generators/generateProfileContacts';
-import { generatePerfectCandidate } from '../../src/utils/generators/generatePerfectCandidate';
+import { createRecruiterProfile } from '../../src/common/factories/createRecruiterProfile';
+import { createProfileContacts } from '../../src/common/factories/createProfileContacts';
+import { createPerfectCandidate } from '../../src/common/factories/createPerfectCandidate';
 
 type MyFixtures = {
   recruiterProfile: RecruiterProfile;
@@ -26,16 +26,16 @@ type MyFixtures = {
 
 export const test = base.extend<MyFixtures>({
   recruiterProfile: async ({}, use) => {
-    const recruiterProfile = generateRecruiterProfile();
+    const recruiterProfile = createRecruiterProfile();
     await use(recruiterProfile);
   },
   recruiterProfileContacts: async ({}, use) => {
     // TODO: make parameterized with Builder (instead of generator)
-    const recruiterProfileContacts = generateProfileContacts();
+    const recruiterProfileContacts = createProfileContacts();
     await use(recruiterProfileContacts);
   },
   perfectCandidate: async ({}, use) => {
-    const perfectCandidate = generatePerfectCandidate();
+    const perfectCandidate = createPerfectCandidate();
     await use(perfectCandidate);
   },
   createRecruiterProfileContactsPage: async ({ page }, use) => {

@@ -1,6 +1,6 @@
 import { test } from '../../../../_fixtures/fixtures';
 
-import { generateProfileContacts } from '../../../../../src/utils/generators/generateProfileContacts';
+import { createProfileContacts } from '../../../../../src/common/factories/createProfileContacts';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update Linkedin`, async ({
@@ -8,7 +8,7 @@ test.describe(`Edit profile as candidate`, () => {
     editCandidateProfileContactsPage,
     candidateProfilePreviewPage,
   }) => {
-    const linkedinUrl = generateProfileContacts().linkedinUrl;
+    const linkedinUrl = createProfileContacts().linkedinUrl;
 
     await editCandidateProfileContactsPage.open();
     await editCandidateProfileContactsPage.profileContacts.fillLinkedin(linkedinUrl);

@@ -1,7 +1,7 @@
 import { mergeTests } from '@playwright/test';
 import { test as testCandidateProfile } from './fixturesCandidateProfile';
 import { test as recruiterTestProfile } from './fixturesRecruiterProfile';
-import { generateUserCredentials } from '../../src/utils/generators/generateUserCredentials';
+import { createUserCredentials } from '../../src/common/factories/createUserCredentials';
 import { UserCredentials } from '../../src/models/auth/UserCredentials';
 import {
   CandidateProfile,
@@ -53,7 +53,7 @@ type MyFixtures = {
 
 export const test = base.extend<MyFixtures>({
   userCredentials: async ({}, use) => {
-    const userCredentials = generateUserCredentials();
+    const userCredentials = createUserCredentials();
 
     await use(userCredentials);
   },

@@ -14,9 +14,9 @@ import { EditCandidateProfileExperiencePage } from '../../src/ui/pages/profile/c
 import { EditCandidateProfileJobExpectationsPage } from '../../src/ui/pages/profile/candidate/edit/EditCandidateProfileJobExpectationsPage';
 import { CandidateProfileFeedbackPage } from '../../src/ui/pages/profile/candidate/CandidateProfileFeedbackPage';
 import { CandidateProfilePreviewPage } from '../../src/ui/pages/profile/candidate/CandidateProfilePreviewPage';
-import { generateCandidateProfile } from '../../src/utils/generators/generateCandidateProfile';
-import { generateWorkPlace } from '../../src/utils/generators/generateWorkPlace';
-import { generateProfileContacts } from '../../src/utils/generators/generateProfileContacts';
+import { createCandidateProfile } from '../../src/common/factories/createCandidateProfile';
+import { createWorkPlace } from '../../src/common/factories/createWorkPlace';
+import { createProfileContacts } from '../../src/common/factories/createProfileContacts';
 
 type MyFixtures = {
   candidateProfile: CandidateProfile;
@@ -38,15 +38,15 @@ type MyFixtures = {
 
 export const test = base.extend<MyFixtures>({
   candidateProfile: async ({}, use) => {
-    const candidateProfile = generateCandidateProfile();
+    const candidateProfile = createCandidateProfile();
     await use(candidateProfile);
   },
   workPlace: async ({}, use) => {
-    const workPlace = generateWorkPlace();
+    const workPlace = createWorkPlace();
     await use(workPlace);
   },
   candidateProfileContacts: async ({}, use) => {
-    const candidateProfileContacts = generateProfileContacts();
+    const candidateProfileContacts = createProfileContacts();
     await use(candidateProfileContacts);
   },
   createCandidateProfileBioPage: async ({ page }, use) => {

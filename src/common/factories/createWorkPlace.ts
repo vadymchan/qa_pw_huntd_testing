@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
-import { Month } from '../../models/auth/candidate/Month';
 import { WorkPlace } from '../../models/auth/candidate/WorkPlace';
+import { Month } from '../../models/auth/candidate/Month';
 
-export function generateWorkPlace(): WorkPlace {
+export function createWorkPlace(overrides: Partial<WorkPlace> = {}): WorkPlace {
   const role = 'Automation Qa';
   const companyName = 'Mate Academy';
   const description = 'Work description';
@@ -21,5 +21,6 @@ export function generateWorkPlace(): WorkPlace {
     endMonth,
     endYear,
     achievements,
+    ...overrides,
   };
 }

@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { ProfileContacts } from '../../models/auth/ProfileContacts';
 
-export function generateProfileContacts(): ProfileContacts {
+export function createProfileContacts(overrides: Partial<ProfileContacts> = {}): ProfileContacts {
   const firstName = faker.person.firstName();
   const lastName = faker.person.lastName();
   const nameFormatted = `${firstName.toLowerCase()}-${lastName.toLowerCase()}`;
@@ -15,5 +15,6 @@ export function generateProfileContacts(): ProfileContacts {
     linkedinUrl,
     behanceUrl,
     githubUrl,
+    ...overrides,
   };
 }
