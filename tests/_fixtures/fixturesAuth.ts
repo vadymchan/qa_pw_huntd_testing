@@ -16,9 +16,9 @@ import {
 import { SignUpUserApi } from '../../src/api/auth/SignUpUserApi';
 import { SignUpCandidateApi } from '../../src/api/auth/SignUpCandidateApi';
 import { SignUpRecruiterApi } from '../../src/api/auth/SignUpRecruiterApi';
-import { SignUpUserPage } from '../../src/ui/pages/auth/signUp/user/SignUpUserPage';
-import { ChooseProfilePage } from '../../src/ui/pages/auth/signUp/user/ChooseProfilePage';
-import { SignInUserPage } from '../../src/ui/pages/auth/signIn/SignInUserPage';
+import { SignUpUserPage } from '../../src/ui/pages/auth/sign-up/user/SignUpUserPage';
+import { ChooseProfilePage } from '../../src/ui/pages/auth/sign-up/user/ChooseProfilePage';
+import { SignInUserPage } from '../../src/ui/pages/auth/sign-in/SignInUserPage';
 import { LogoutUserPage } from '../../src/ui/pages/auth/logout/LogoutUserPage';
 
 const base = mergeTests(testCandidateProfile, recruiterTestProfile);

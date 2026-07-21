@@ -40,7 +40,7 @@ export class EditRecruiterProfilePage extends BasePage {
     });
   }
 
-  async assertCompanyValidationMessage(vgalidationMessage: string) {
+  async assertCompanyValidationMessage(validationMessage: string) {
     await this.step(
       `Assert 'Company' shows '${validationMessage}' validation message`,
       async () => {

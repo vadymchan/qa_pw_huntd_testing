@@ -1,5 +1,5 @@
 import { test } from '../../_fixtures/fixtures';
-import { SignInUserPage } from '../../../src/ui/pages/auth/signIn/SignInUserPage';
+import { SignInUserPage } from '../../../src/ui/pages/auth/sign-in/SignInUserPage';
 import { faker } from '@faker-js/faker';
 import { WRONG_CREDENTIALS } from '../../../src/ui/constants/validationMessages';
 

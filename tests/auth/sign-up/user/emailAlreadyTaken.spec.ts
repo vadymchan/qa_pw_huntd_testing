@@ -1,6 +1,6 @@
 import { test } from '../../../_fixtures/fixtures';
 import { faker } from '@faker-js/faker';
-import { SignUpUserPage } from '../../../../src/ui/pages/auth/signUp/user/SignUpUserPage';
+import { SignUpUserPage } from '../../../../src/ui/pages/auth/sign-up/user/SignUpUserPage';
 import { EMAIL_IS_ALREADY_TAKEN } from '../../../../src/ui/constants/validationMessages';
 
 test.describe(`Register as user`, () => {
