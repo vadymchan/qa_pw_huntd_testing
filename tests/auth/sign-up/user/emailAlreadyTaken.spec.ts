@@ -11,8 +11,7 @@ test.describe(`Register as user`, () => {
   }) => {
     await reporter.severity('normal');
 
-    const context = await browser.newContext();
-    const page = await context.newPage();
+    const page = await browser.newPage();
 
     const signUpUserPage = new SignUpUserPage(page);
 

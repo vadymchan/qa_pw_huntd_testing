@@ -13,8 +13,7 @@ test.describe(`Login user`, () => {
 
     const email = faker.internet.email();
     const password = registerNewUser.userCredentials.password;
-    const context = await browser.newContext();
-    const page = await context.newPage();
+    const page = await browser.newPage();
 
     const signInUserPage = new SignInUserPage(page);
     await signInUserPage.open();
