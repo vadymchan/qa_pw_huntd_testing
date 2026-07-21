@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 import { BaseComponent } from '../../BaseComponent';
 import { selectOption } from '../../../../utils/playwright/selectOption';
-import { Month } from '../../../../models/auth/candidate/Month';
+import { Month } from '../../../../common/models/auth/candidate/Month';
 import { graphqlWaitForResponse } from '../../../../utils/playwright/graphqlWaitForResponse';
 
 export class CandidateProfileExperienceComponent extends BaseComponent {

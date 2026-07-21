@@ -1,4 +1,4 @@
-import { RecruiterProfile } from '../../models/auth/recruiter/RecruiterProfile';
+import { RecruiterProfile } from '../../common/models/auth/recruiter/RecruiterProfile';
 
 export function createRecruiterProfile(
   overrides: Partial<RecruiterProfile> = {},

@@ -1,7 +1,7 @@
 import { test as base } from '@playwright/test';
-import { CandidateProfile } from '../../src/models/auth/candidate/CandidateProfile';
-import { WorkPlace } from '../../src/models/auth/candidate/WorkPlace';
-import { ProfileContacts } from '../../src/models/auth/ProfileContacts';
+import { CandidateProfile } from '../../src/common/models/auth/candidate/CandidateProfile';
+import { WorkPlace } from '../../src/common/models/auth/candidate/WorkPlace';
+import { ProfileContacts } from '../../src/common/models/auth/ProfileContacts';
 import { CreateCandidateProfileBioPage } from '../../src/ui/pages/profile/candidate/create/CreateCandidateProfileBioPage';
 import { CreateCandidateProfileContactsPage } from '../../src/ui/pages/profile/candidate/create/CreateCandidateProfileContactsPage';
 import { CreateCandidateProfileExperiencePage } from '../../src/ui/pages/profile/candidate/create/CreateCandidateProfileExperiencePage';

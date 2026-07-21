@@ -1,10 +1,10 @@
 import { Locator, Page } from '@playwright/test';
 import { BaseComponent } from '../../BaseComponent';
 import { selectOption } from '../../../../utils/playwright/selectOption';
-import { SalaryType } from '../../../../models/auth/candidate/SalaryType';
-import { EnglishLevel } from '../../../../models/auth/candidate/EnglishLevel';
-import { JobExperience } from '../../../../models/auth/candidate/JobExperience';
-import { CityName } from '../../../../models/auth/candidate/CityName';
+import { SalaryType } from '../../../../common/models/auth/candidate/SalaryType';
+import { EnglishLevel } from '../../../../common/models/auth/candidate/EnglishLevel';
+import { JobExperience } from '../../../../common/models/auth/candidate/JobExperience';
+import { CityName } from '../../../../common/models/auth/candidate/CityName';
 
 export class CandidateProfileJobExpectationsComponent extends BaseComponent {
   private desiredBaseSalary: Locator;

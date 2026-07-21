@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { PerfectCandidate } from '../../models/auth/recruiter/PerfectCandidate';
-import { Role } from '../../models/auth/candidate/Role';
-import { PerfectCandidateTechnology } from '../../models/auth/recruiter/PerfectCandidateTechnology';
+import { PerfectCandidate } from '../../common/models/auth/recruiter/PerfectCandidate';
+import { Role } from '../../common/models/auth/candidate/Role';
+import { PerfectCandidateTechnology } from '../../common/models/auth/recruiter/PerfectCandidateTechnology';
 
 export function createPerfectCandidate(
   overrides: Partial<PerfectCandidate> = {},

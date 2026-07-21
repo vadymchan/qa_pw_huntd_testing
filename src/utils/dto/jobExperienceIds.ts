@@ -1,4 +1,4 @@
-import { JobExperience } from '../../models/auth/candidate/JobExperience';
+import { JobExperience } from '../../common/models/auth/candidate/JobExperience';
 
 const JOB_EXPERIENCE_ID: Record<JobExperience, number> = {
   'Less than 1 year': 1,

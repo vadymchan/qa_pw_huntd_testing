@@ -1,5 +1,5 @@
 import { test } from '../../../../_fixtures/fixtures';
-import { CoreTechnicalSkill } from '../../../../../src/models/auth/candidate/CoreTechnicalSkill';
+import { CoreTechnicalSkill } from '../../../../../src/common/models/auth/candidate/CoreTechnicalSkill';
 import { CORE_TECHNICAL_SKILLS_BELOW_MINIMUM } from '../../../../../src/ui/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {

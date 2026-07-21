@@ -1,4 +1,4 @@
-import { CoreTechnicalSkill } from '../../models/auth/candidate/CoreTechnicalSkill';
+import { CoreTechnicalSkill } from '../../common/models/auth/candidate/CoreTechnicalSkill';
 
 const TECHNOLOGY_ID: Record<CoreTechnicalSkill, number> = {
   DevOps: 528,

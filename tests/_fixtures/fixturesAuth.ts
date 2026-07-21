@@ -2,17 +2,17 @@ import { mergeTests } from '@playwright/test';
 import { test as testCandidateProfile } from './fixturesCandidateProfile';
 import { test as recruiterTestProfile } from './fixturesRecruiterProfile';
 import { createUserCredentials } from '../../src/common/factories/createUserCredentials';
-import { UserCredentials } from '../../src/models/auth/UserCredentials';
+import { UserCredentials } from '../../src/common/models/auth/UserCredentials';
 import {
   CandidateProfile,
   toCandidateProfileDto,
-} from '../../src/models/auth/candidate/CandidateProfile';
-import { WorkPlace, toWorkPlaceDto } from '../../src/models/auth/candidate/WorkPlace';
-import { ProfileContacts } from '../../src/models/auth/ProfileContacts';
+} from '../../src/common/models/auth/candidate/CandidateProfile';
+import { WorkPlace, toWorkPlaceDto } from '../../src/common/models/auth/candidate/WorkPlace';
+import { ProfileContacts } from '../../src/common/models/auth/ProfileContacts';
 import {
   RecruiterProfile,
   toRecruiterProfileDto,
-} from '../../src/models/auth/recruiter/RecruiterProfile';
+} from '../../src/common/models/auth/recruiter/RecruiterProfile';
 import { SignUpUserApi } from '../../src/api/auth/SignUpUserApi';
 import { SignUpCandidateApi } from '../../src/api/auth/SignUpCandidateApi';
 import { SignUpRecruiterApi } from '../../src/api/auth/SignUpRecruiterApi';

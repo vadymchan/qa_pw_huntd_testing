@@ -1,4 +1,4 @@
-import { formatDate } from '../../../utils/format/formatDate';
+import { formatDate } from '../../../../utils/format/formatDate';
 import { Month } from './Month';
 
 export type WorkPlace = {

@@ -1,7 +1,7 @@
 import { APIRequestContext } from '@playwright/test';
 import { BaseApi } from '../BaseApi';
-import { UserCredentials } from '../../models/auth/UserCredentials';
-import { ProfileContacts } from '../../models/auth/ProfileContacts';
+import { UserCredentials } from '../../common/models/auth/UserCredentials';
+import { ProfileContacts } from '../../common/models/auth/ProfileContacts';
 
 export class SignUpUserApi extends BaseApi {
   constructor(request: APIRequestContext) {

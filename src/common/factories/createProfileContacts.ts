@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { ProfileContacts } from '../../models/auth/ProfileContacts';
+import { ProfileContacts } from '../../common/models/auth/ProfileContacts';
 
 export function createProfileContacts(overrides: Partial<ProfileContacts> = {}): ProfileContacts {
   const firstName = faker.person.firstName();

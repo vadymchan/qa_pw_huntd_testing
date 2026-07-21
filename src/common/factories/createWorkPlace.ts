@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
-import { WorkPlace } from '../../models/auth/candidate/WorkPlace';
-import { Month } from '../../models/auth/candidate/Month';
+import { WorkPlace } from '../../common/models/auth/candidate/WorkPlace';
+import { Month } from '../../common/models/auth/candidate/Month';
 
 export function createWorkPlace(overrides: Partial<WorkPlace> = {}): WorkPlace {
   const role = 'Automation Qa';

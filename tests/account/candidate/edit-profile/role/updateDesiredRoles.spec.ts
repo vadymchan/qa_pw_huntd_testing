@@ -1,4 +1,4 @@
-import { Role } from '../../../../../src/models/auth/candidate/Role';
+import { Role } from '../../../../../src/common/models/auth/candidate/Role';
 import { test } from '../../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {

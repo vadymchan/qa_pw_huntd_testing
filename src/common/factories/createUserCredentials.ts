@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { UserCredentials } from '../../models/auth/UserCredentials';
+import { UserCredentials } from '../../common/models/auth/UserCredentials';
 
 export function createUserCredentials(overrides: Partial<UserCredentials> = {}): UserCredentials {
   const email = faker.internet.email().toLowerCase();

@@ -1,4 +1,4 @@
-import { CityName } from '../../models/auth/candidate/CityName';
+import { CityName } from '../../common/models/auth/candidate/CityName';
 
 export type CityDto = {
   cityId: string;

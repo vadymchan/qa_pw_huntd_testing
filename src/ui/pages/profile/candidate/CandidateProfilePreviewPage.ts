@@ -1,13 +1,13 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../../BasePage';
 import { generateSalaryString } from '../../../../utils/generators/generateSalaryString';
-import { SalaryType } from '../../../../models/auth/candidate/SalaryType';
-import { Month } from '../../../../models/auth/candidate/Month';
-import { Role } from '../../../../models/auth/candidate/Role';
-import { CoreTechnicalSkill } from '../../../../models/auth/candidate/CoreTechnicalSkill';
-import { EnglishLevel } from '../../../../models/auth/candidate/EnglishLevel';
-import { JobExperience } from '../../../../models/auth/candidate/JobExperience';
-import { CityName } from '../../../../models/auth/candidate/CityName';
+import { SalaryType } from '../../../../common/models/auth/candidate/SalaryType';
+import { Month } from '../../../../common/models/auth/candidate/Month';
+import { Role } from '../../../../common/models/auth/candidate/Role';
+import { CoreTechnicalSkill } from '../../../../common/models/auth/candidate/CoreTechnicalSkill';
+import { EnglishLevel } from '../../../../common/models/auth/candidate/EnglishLevel';
+import { JobExperience } from '../../../../common/models/auth/candidate/JobExperience';
+import { CityName } from '../../../../common/models/auth/candidate/CityName';
 import { PATHS } from '../../../constants/paths';
 
 export class CandidateProfilePreviewPage extends BasePage {

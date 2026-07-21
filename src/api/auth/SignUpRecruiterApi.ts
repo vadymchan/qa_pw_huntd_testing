@@ -1,6 +1,6 @@
 import { APIRequestContext } from '@playwright/test';
 import { SignUpUserApi } from './SignUpUserApi';
-import { RecruiterProfileDto } from '../../models/auth/recruiter/RecruiterProfile';
+import { RecruiterProfileDto } from '../../common/models/auth/recruiter/RecruiterProfile';
 
 export class SignUpRecruiterApi extends SignUpUserApi {
   constructor(request: APIRequestContext) {

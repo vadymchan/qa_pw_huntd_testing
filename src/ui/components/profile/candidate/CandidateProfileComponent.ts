@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BaseComponent } from '../../BaseComponent';
-import { Role } from '../../../../models/auth/candidate/Role';
-import { CoreTechnicalSkill } from '../../../../models/auth/candidate/CoreTechnicalSkill';
+import { Role } from '../../../../common/models/auth/candidate/Role';
+import { CoreTechnicalSkill } from '../../../../common/models/auth/candidate/CoreTechnicalSkill';
 import { selectOption } from '../../../../utils/playwright/selectOption';
 
 export class CandidateProfileComponent extends BaseComponent {

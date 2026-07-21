@@ -4,12 +4,12 @@ import { JobExperience } from './JobExperience';
 import { Role } from './Role';
 import { CoreTechnicalSkill } from './CoreTechnicalSkill';
 import { EmploymentOption } from './EmploymentOption';
-import { CityDto, getCities } from '../../../utils/dto/cities';
-import { getTechnologyIds } from '../../../utils/dto/technologyIds';
-import { getSpecializationIds } from '../../../utils/dto/specializationIds';
-import { getJobExperienceId } from '../../../utils/dto/jobExperienceIds';
-import { getEnglishLevelId } from '../../../utils/dto/englishLevelId';
-import { getEmploymentLocationIds } from '../../../utils/dto/employmentLocationIds';
+import { CityDto, getCities } from '../../../../utils/dto/cities';
+import { getTechnologyIds } from '../../../../utils/dto/technologyIds';
+import { getSpecializationIds } from '../../../../utils/dto/specializationIds';
+import { getJobExperienceId } from '../../../../utils/dto/jobExperienceIds';
+import { getEnglishLevelId } from '../../../../utils/dto/englishLevelId';
+import { getEmploymentLocationIds } from '../../../../utils/dto/employmentLocationIds';
 import { SalaryType } from './SalaryType';
 
 export type CandidateProfile = {
