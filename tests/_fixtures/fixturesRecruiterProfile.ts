@@ -31,7 +31,10 @@ export const test = base.extend<MyFixtures>({
   },
   recruiterProfileContacts: async ({}, use) => {
     // TODO: make parameterized with Builder (instead of generator)
-    const recruiterProfileContacts = createProfileContacts();
+    const recruiterProfileContacts = createProfileContacts({
+      behanceUrl: undefined,
+      githubUrl: undefined,
+    });
     await use(recruiterProfileContacts);
   },
   perfectCandidate: async ({}, use) => {

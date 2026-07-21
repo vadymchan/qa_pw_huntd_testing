@@ -3,16 +3,10 @@ import { test as testCandidateProfile } from './fixturesCandidateProfile';
 import { test as recruiterTestProfile } from './fixturesRecruiterProfile';
 import { createUserCredentials } from '../../src/common/factories/createUserCredentials';
 import { UserCredentials } from '../../src/common/models/auth/UserCredentials';
-import {
-  CandidateProfile,
-  toCandidateProfileDto,
-} from '../../src/common/models/auth/candidate/CandidateProfile';
-import { WorkPlace, toWorkPlaceDto } from '../../src/common/models/auth/candidate/WorkPlace';
+import { CandidateProfile } from '../../src/common/models/auth/candidate/CandidateProfile';
+import { WorkPlace } from '../../src/common/models/auth/candidate/WorkPlace';
 import { ProfileContacts } from '../../src/common/models/auth/ProfileContacts';
-import {
-  RecruiterProfile,
-  toRecruiterProfileDto,
-} from '../../src/common/models/auth/recruiter/RecruiterProfile';
+import { RecruiterProfile } from '../../src/common/models/auth/recruiter/RecruiterProfile';
 import { SignUpUserApi } from '../../src/api/auth/SignUpUserApi';
 import { SignUpCandidateApi } from '../../src/api/auth/SignUpCandidateApi';
 import { SignUpRecruiterApi } from '../../src/api/auth/SignUpRecruiterApi';
@@ -20,6 +14,8 @@ import { SignUpUserPage } from '../../src/ui/pages/auth/sign-up/user/SignUpUserP
 import { ChooseProfilePage } from '../../src/ui/pages/auth/sign-up/user/ChooseProfilePage';
 import { SignInUserPage } from '../../src/ui/pages/auth/sign-in/SignInUserPage';
 import { LogoutUserPage } from '../../src/ui/pages/auth/logout/LogoutUserPage';
+import { CandidateSeeder } from '../../src/api/seeders/candidateSeeder';
+import { RecruiterSeeder } from '../../src/api/seeders/recruiterSeeder';
 
 const base = mergeTests(testCandidateProfile, recruiterTestProfile);
 
@@ -71,18 +67,14 @@ export const test = base.extend<MyFixtures>({
     use,
   ) => {
     const signUpCandidateApi = new SignUpCandidateApi(context.request);
+    const candidateSeeder = new CandidateSeeder(signUpCandidateApi);
 
-    await signUpCandidateApi.createUser(userCredentials);
-
-    const candidateProfileDto = toCandidateProfileDto(candidateProfile);
-    const { profileId } = await signUpCandidateApi.updateProfile(candidateProfileDto);
-
-    const workPlaceDto = toWorkPlaceDto(workPlace);
-    await signUpCandidateApi.createWorkPlace(profileId, workPlaceDto);
-
-    await signUpCandidateApi.updateProfileContacts(candidateProfileContacts);
-
-    await signUpCandidateApi.sendProfileToReview();
+    await candidateSeeder.seedReadyCandidate(
+      userCredentials,
+      candidateProfile,
+      workPlace,
+      candidateProfileContacts,
+    );
 
     await use({
       userCredentials,
@@ -96,15 +88,13 @@ export const test = base.extend<MyFixtures>({
     use,
   ) => {
     const signUpRecruiterApi = new SignUpRecruiterApi(context.request);
+    const recruiterSeeder = new RecruiterSeeder(signUpRecruiterApi);
 
-    await signUpRecruiterApi.createUser(userCredentials);
-
-    const recruiterProfileDto = toRecruiterProfileDto(recruiterProfile);
-    await signUpRecruiterApi.updateProfile(recruiterProfileDto);
-
-    await signUpRecruiterApi.updateProfileContacts(recruiterProfileContacts);
-
-    await signUpRecruiterApi.sendProfileToReview();
+    await recruiterSeeder.seedReadyRecruiter(
+      userCredentials,
+      recruiterProfile,
+      recruiterProfileContacts,
+    );
 
     await use({
       userCredentials,
