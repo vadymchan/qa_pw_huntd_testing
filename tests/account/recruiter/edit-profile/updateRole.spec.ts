@@ -2,10 +2,13 @@ import { test } from '../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as recruiter`, () => {
   test(`User should update role`, async ({
+    reporter,
     registerNewRecruiter,
     editRecruiterProfilePage,
     recruiterProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const role = 'PM';
 
     const waitForResponse = true;

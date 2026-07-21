@@ -3,12 +3,15 @@ import { faker } from '@faker-js/faker';
 
 test.describe(`Update candidate account settings`, () => {
   test(`User should change password successfully`, async ({
+    reporter,
     registerNewCandidate,
     changePasswordPage,
     logoutUserPage,
     signInUserPage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const currentPassword = registerNewCandidate.userCredentials.password;
     const newPassword = faker.internet.password();
 

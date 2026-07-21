@@ -3,9 +3,12 @@ import { REPEAT_PASSWORD_IS_REQUIRED } from '../../../../src/ui/constants/valida
 
 test.describe(`Update recruiter account settings`, () => {
   test(`User should see validation error when repeat new password is empty`, async ({
+    reporter,
     registerNewRecruiter,
     changePasswordPage,
   }) => {
+    await reporter.severity('minor');
+
     const newPassword = '';
 
     const waitForResponse = false;

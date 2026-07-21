@@ -5,8 +5,11 @@ test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
 
   test(`User should see validation error when desired monthly base salary is empty`, async ({
+    reporter,
     editCandidateProfileJobExpectationsPage,
   }) => {
+    await reporter.severity('minor');
+
     const salaryType = 'Monthly';
 
     await editCandidateProfileJobExpectationsPage.open();

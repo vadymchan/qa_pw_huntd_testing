@@ -3,10 +3,13 @@ import { CoreTechnicalSkill } from '../../../../../src/common/models/auth/candid
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update core technical skills`, async ({
+    reporter,
     registerNewCandidate,
     editCandidateProfilePage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const coreTechnicalSkills: Array<CoreTechnicalSkill> = [
       'Python',
       'GraphQL',

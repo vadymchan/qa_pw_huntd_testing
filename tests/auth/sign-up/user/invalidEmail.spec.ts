@@ -4,7 +4,12 @@ import { EMAIL_IS_INCORRECT } from '../../../../src/ui/constants/validationMessa
 // TODO: can be made parameterized (different formats)
 
 test.describe(`Register as user`, () => {
-  test(`User should see validation error when email is invalid`, async ({ signUpUserPage }) => {
+  test(`User should see validation error when email is invalid`, async ({
+    reporter,
+    signUpUserPage,
+  }) => {
+    await reporter.severity('normal');
+
     const email = 'incorrect email format';
 
     await signUpUserPage.open();

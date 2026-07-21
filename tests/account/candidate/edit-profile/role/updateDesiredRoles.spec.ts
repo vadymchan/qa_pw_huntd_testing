@@ -3,10 +3,13 @@ import { test } from '../../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update desired roles`, async ({
+    reporter,
     registerNewCandidate,
     editCandidateProfilePage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const desiredRoles: Array<Role> = ['QA'];
 
     await editCandidateProfilePage.open();

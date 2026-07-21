@@ -3,9 +3,12 @@ import { PASSWORD_IS_REQUIRED } from '../../../../src/ui/constants/validationMes
 
 test.describe(`Update candidate account settings`, () => {
   test(`User should see validation error when current password is empty`, async ({
+    reporter,
     registerNewCandidate,
     changePasswordPage,
   }) => {
+    await reporter.severity('critical');
+
     const currentPassword = '';
 
     const waitForResponse = false;

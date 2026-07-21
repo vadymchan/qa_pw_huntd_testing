@@ -5,9 +5,12 @@ import { WRONG_CREDENTIALS } from '../../../src/ui/constants/validationMessages'
 
 test.describe(`Login user`, () => {
   test(`User should see validation error when email is incorrect`, async ({
+    reporter,
     browser,
     registerNewUser,
   }) => {
+    await reporter.severity('critical');
+
     const email = faker.internet.email();
     const password = registerNewUser.userCredentials.password;
     const context = await browser.newContext();

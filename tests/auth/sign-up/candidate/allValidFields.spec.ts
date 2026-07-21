@@ -2,6 +2,7 @@ import { test } from '../../../_fixtures/fixtures';
 
 test.describe(`Register as candidate`, () => {
   test(`User should register with all valid fields`, async ({
+    reporter,
     userCredentials,
     candidateProfile,
     workPlace,
@@ -16,6 +17,8 @@ test.describe(`Register as candidate`, () => {
     candidateProfilePreviewPage,
     candidateProfileFeedbackPage,
   }) => {
+    await reporter.severity('critical');
+
     await signUpUserPage.open();
     await signUpUserPage.fillEmail(userCredentials.email);
     await signUpUserPage.fillPassword(userCredentials.password);

@@ -4,7 +4,9 @@ import { ACHIVEMENTS_ARE_REQUIRED } from '../../../../../src/ui/constants/valida
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
 
-  test(`User should update achievements`, async ({ editCandidateProfileBioPage }) => {
+  test(`User should update achievements`, async ({ reporter, editCandidateProfileBioPage }) => {
+    await reporter.severity('minor');
+
     const achievements = '';
 
     await editCandidateProfileBioPage.open();

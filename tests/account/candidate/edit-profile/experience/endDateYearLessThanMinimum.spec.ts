@@ -5,8 +5,11 @@ test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
 
   test(`User should see validation error when job experience end date year is less than minimum`, async ({
+    reporter,
     editCandidateProfileExperiencePage,
   }) => {
+    await reporter.severity('minor');
+
     const endYear = 1924;
 
     await editCandidateProfileExperiencePage.open();

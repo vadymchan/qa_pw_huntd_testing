@@ -3,7 +3,9 @@ import { SignInUserPage } from '../../../src/ui/pages/auth/sign-in/SignInUserPag
 import { PASSWORD_IS_REQUIRED } from '../../../src/ui/constants/validationMessages';
 
 test.describe(`Login user`, () => {
-  test(`User should see validation error when password is empty`, async ({ browser }) => {
+  test(`User should see validation error when password is empty`, async ({ reporter, browser }) => {
+    await reporter.severity('critical');
+
     const context = await browser.newContext();
     const page = await context.newPage();
 

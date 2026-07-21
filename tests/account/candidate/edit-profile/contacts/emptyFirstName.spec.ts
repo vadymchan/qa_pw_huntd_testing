@@ -5,8 +5,11 @@ test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
 
   test(`User should see validation error when first name is empty`, async ({
+    reporter,
     editCandidateProfileContactsPage,
   }) => {
+    await reporter.severity('minor');
+
     const firstName = '';
 
     await editCandidateProfileContactsPage.open();

@@ -2,6 +2,7 @@ import { test } from '../../../_fixtures/fixtures';
 
 test.describe('Register as recruiter', () => {
   test(`User should register with valid required-only fields`, async ({
+    reporter,
     userCredentials,
     recruiterProfile,
     recruiterProfileContacts,
@@ -13,6 +14,8 @@ test.describe('Register as recruiter', () => {
     createRecruiterProfilePerfectCandidatePage: recruiterProfilePerfectCandidatePage,
     recruiterProfilePreviewPage: recruiterProfilePreviewPage,
   }) => {
+    await reporter.severity('blocker');
+
     await signUpUserPage.open();
     await signUpUserPage.fillEmail(userCredentials.email);
     await signUpUserPage.fillPassword(userCredentials.password);

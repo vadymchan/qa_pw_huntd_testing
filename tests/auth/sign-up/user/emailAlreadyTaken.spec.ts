@@ -5,9 +5,12 @@ import { EMAIL_IS_ALREADY_TAKEN } from '../../../../src/ui/constants/validationM
 
 test.describe(`Register as user`, () => {
   test(`User should see validation error when email is already taken`, async ({
+    reporter,
     browser,
     registerNewUser,
   }) => {
+    await reporter.severity('normal');
+
     const context = await browser.newContext();
     const page = await context.newPage();
 

@@ -3,10 +3,13 @@ import { faker } from '@faker-js/faker';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update expectations from work`, async ({
+    reporter,
     registerNewCandidate,
     editCandidateProfileBioPage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const expectations = faker.lorem.sentence();
 
     await editCandidateProfileBioPage.open();

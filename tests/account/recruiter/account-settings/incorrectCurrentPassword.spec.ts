@@ -4,9 +4,12 @@ import { WRONG_CREDENTIALS } from '../../../../src/ui/constants/validationMessag
 
 test.describe(`Update recruiter account settings`, () => {
   test(`User should see validation error when current password is incorrect`, async ({
+    reporter,
     registerNewRecruiter,
     changePasswordPage,
   }) => {
+    await reporter.severity('critical');
+
     const incorrectPassword = faker.internet.password();
     const newPassword = faker.internet.password();
 

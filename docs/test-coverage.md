@@ -2,7 +2,7 @@
 
 ## Auth
 
-### Register
+### Sign Up
 
 #### User
 
@@ -29,7 +29,7 @@
 | 1   | User should register with valid required-only fields | positive | blocker  |
 | 2   | User should register with all valid fields           | positive | critical |
 
-### Login
+### Sign In
 
 | #   | Scenario                                                    | Type     | Severity |
 | --- | ----------------------------------------------------------- | -------- | -------- |

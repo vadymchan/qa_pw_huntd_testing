@@ -5,8 +5,11 @@ test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
 
   test(`User should see validation error when job experience end date year has incorrect format`, async ({
+    reporter,
     editCandidateProfileExperiencePage,
   }) => {
+    await reporter.severity('minor');
+
     const endYear = 'incorrect format';
 
     await editCandidateProfileExperiencePage.open();

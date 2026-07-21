@@ -2,10 +2,13 @@ import { test } from '../../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update location`, async ({
+    reporter,
     registerNewCandidate,
     editCandidateProfileJobExpectationsPage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const location = 'Kyiv';
 
     await editCandidateProfileJobExpectationsPage.open();

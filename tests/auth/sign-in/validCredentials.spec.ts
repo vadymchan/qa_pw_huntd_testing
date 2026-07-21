@@ -3,7 +3,13 @@ import { SignInUserPage } from '../../../src/ui/pages/auth/sign-in/SignInUserPag
 import { ChooseProfilePage } from '../../../src/ui/pages/auth/sign-up/user/ChooseProfilePage';
 
 test.describe(`Login user`, () => {
-  test(`User should login with valid credentials`, async ({ browser, registerNewUser }) => {
+  test(`User should login with valid credentials`, async ({
+    reporter,
+    browser,
+    registerNewUser,
+  }) => {
+    await reporter.severity('blocker');
+
     const email = registerNewUser.userCredentials.email;
     const password = registerNewUser.userCredentials.password;
     const context = await browser.newContext();

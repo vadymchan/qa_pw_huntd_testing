@@ -4,7 +4,12 @@ import { EMAIL_IS_REQUIRED } from '../../../../src/ui/constants/validationMessag
 // TODO: negative tests related to sign up could be moved in one file and be made parameterized
 
 test.describe(`Register as user`, () => {
-  test(`User should see validation error when email is empty`, async ({ signUpUserPage }) => {
+  test(`User should see validation error when email is empty`, async ({
+    reporter,
+    signUpUserPage,
+  }) => {
+    await reporter.severity('normal');
+
     await signUpUserPage.open();
     await signUpUserPage.clickCreateAccount();
     await signUpUserPage.assertEmailValidationMessage(EMAIL_IS_REQUIRED);

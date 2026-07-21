@@ -2,10 +2,13 @@ import { test } from '../../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update job experience`, async ({
+    reporter,
     registerNewCandidate,
     editCandidateProfileExperiencePage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const previousRole = 'Manual Qa';
     const previousCompany = 'Google';
     const startMonth = 'March';

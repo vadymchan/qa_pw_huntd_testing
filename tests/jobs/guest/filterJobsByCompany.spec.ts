@@ -1,7 +1,9 @@
 import { test } from '../../_fixtures/fixtures';
 
 test.describe(`Browse jobs as a guest`, () => {
-  test(`Jobs should filtered by company`, async ({ guestJobsPage }) => {
+  test(`Jobs should filtered by company`, async ({ reporter, guestJobsPage }) => {
+    await reporter.severity('normal');
+
     await guestJobsPage.open();
     await guestJobsPage.clickTopCompanies();
     const companyImageUrl = (await guestJobsPage.getCompanyImageUrl())!;

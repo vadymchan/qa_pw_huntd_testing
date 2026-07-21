@@ -6,8 +6,11 @@ test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
 
   test(`User should see validation error when core technical skills are fewer than minimum`, async ({
+    reporter,
     editCandidateProfilePage,
   }) => {
+    await reporter.severity('normal');
+
     const coreTechnicalSkills: Array<CoreTechnicalSkill> = [
       'Python',
       'GraphQL',

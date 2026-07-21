@@ -3,7 +3,12 @@ import { test } from '../../../_fixtures/fixtures';
 import { faker } from '@faker-js/faker';
 
 test.describe(`Register as user`, () => {
-  test(`User should see validation error when email is invalid`, async ({ signUpUserPage }) => {
+  test(`User should see validation error when email is invalid`, async ({
+    reporter,
+    signUpUserPage,
+  }) => {
+    await reporter.severity('normal');
+
     const password = faker.internet.password();
     const repeatPassword = password.slice(0, -1);
 

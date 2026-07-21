@@ -5,8 +5,11 @@ test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
 
   test(`User should see validation error when job experience start date is after end date`, async ({
+    reporter,
     editCandidateProfileExperiencePage,
   }) => {
+    await reporter.severity('minor');
+
     const previousRole = 'Manual Qa';
     const previousCompany = 'Google';
     const startMonth = 'January';

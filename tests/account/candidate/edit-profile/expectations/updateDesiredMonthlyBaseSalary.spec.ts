@@ -2,10 +2,13 @@ import { test } from '../../../../_fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update desired monthly base salary`, async ({
+    reporter,
     registerNewCandidate,
     editCandidateProfileJobExpectationsPage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('minor');
+
     const salaryType = 'Monthly';
     const desiredBaseSalary = 2_500;
 

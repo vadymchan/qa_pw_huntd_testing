@@ -3,10 +3,13 @@ import { faker } from '@faker-js/faker';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update first name`, async ({
+    reporter,
     registerNewCandidate,
     editCandidateProfileContactsPage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const firstName = faker.person.firstName();
     const lastName = registerNewCandidate.profileContacts.lastName;
 

@@ -7,8 +7,11 @@ import {
 
 test.describe(`Browse jobs as a guest`, () => {
   test(`Newsletter form should subscribe successfully with valid email`, async ({
+    reporter,
     guestJobsPage,
   }) => {
+    await reporter.severity('normal');
+
     const email = faker.internet.email();
 
     await guestJobsPage.open();

@@ -4,10 +4,13 @@ import { createProfileContacts } from '../../../../../src/common/factories/creat
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update Linkedin`, async ({
+    reporter,
     registerNewCandidate,
     editCandidateProfileContactsPage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const linkedinUrl = createProfileContacts().linkedinUrl;
 
     await editCandidateProfileContactsPage.open();

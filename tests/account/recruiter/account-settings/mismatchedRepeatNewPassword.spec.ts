@@ -4,9 +4,12 @@ import { PASSWORD_IS_MISMATCHED } from '../../../../src/ui/constants/validationM
 
 test.describe(`Update recruiter account settings`, () => {
   test(`User should see validation error when repeat new password is mismatched`, async ({
+    reporter,
     registerNewRecruiter,
     changePasswordPage,
   }) => {
+    await reporter.severity('minor');
+
     const currentPassword = registerNewRecruiter.userCredentials.password;
     const newPassword = faker.internet.password();
     const repeatNewPassword = faker.internet.password();

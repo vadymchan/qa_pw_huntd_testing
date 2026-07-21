@@ -3,10 +3,13 @@ import { createProfileContacts } from '../../../../../src/common/factories/creat
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update GitHub`, async ({
+    reporter,
     registerNewCandidate,
     editCandidateProfileContactsPage,
     candidateProfilePreviewPage,
   }) => {
+    await reporter.severity('normal');
+
     const githubUrl = createProfileContacts().githubUrl;
 
     await editCandidateProfileContactsPage.open();
