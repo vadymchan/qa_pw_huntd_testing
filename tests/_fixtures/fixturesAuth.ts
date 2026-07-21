@@ -14,8 +14,8 @@ import { SignUpUserPage } from '../../src/ui/pages/auth/sign-up/user/SignUpUserP
 import { ChooseProfilePage } from '../../src/ui/pages/auth/sign-up/user/ChooseProfilePage';
 import { SignInUserPage } from '../../src/ui/pages/auth/sign-in/SignInUserPage';
 import { LogoutUserPage } from '../../src/ui/pages/auth/logout/LogoutUserPage';
-import { CandidateSeeder } from '../../src/api/seeders/candidateSeeder';
-import { RecruiterSeeder } from '../../src/api/seeders/recruiterSeeder';
+import { CandidateSeeder } from '../../src/api/seeders/CandidateSeeder';
+import { RecruiterSeeder } from '../../src/api/seeders/RecruiterSeeder';
 
 const base = mergeTests(testCandidateProfile, recruiterTestProfile);
 

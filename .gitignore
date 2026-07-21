@@ -8,3 +8,5 @@ playwright/.auth
 /playwright/.cache/
 /playwright/.auth/
 .VSCodeCounter/
+allure-results/
+allure-report/
