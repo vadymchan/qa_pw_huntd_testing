@@ -1,0 +1,111 @@
+name: E2E tests and Allure report
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurency:
+  group: e2e-publish
+  cancel-in-progress: false
+
+env:
+  PAGES_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+
+jobs:
+  test:
+    name: Run E2E tests
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
+      options: --ipc=host
+    steps:
+      - uses: actions/checkout@v5
+
+      - run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Write executor metadata
+        if: ${{ !cancelled() }}
+        run: |
+          mkdir -p allure-results
+          cat > allure-results/executor.json <<'EOF'
+          {
+            "name": "GitHub Actions",
+            "type": "github",
+            "buildOrder": ${{ github.run_number }},
+            "buildName": "#${{ github.run_number }}",
+            "buildUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "reportName": "E2E",
+            "reportUrl": "${{ env.PAGES_URL }}/"
+          }
+          EOF
+
+      - name: Upload Allure results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+          retention-days: 7
+
+  report:
+    name: Generate and publish report
+    if: ${{ !cancelled() }}
+    needs: test
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - run: npm ci
+
+      - uses: actions/setup-java@v5
+        with: 
+          distribution: 'microsoft'
+          java-version: '17'
+
+      - name: Download Allure results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+
+      - name: Fetch previous history
+        uses: actions/checkout@v5
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: previous-report
+
+      - name: Generate report
+        run: npm run report
+        env:
+          ALLURE_HISTORY: previous-report/history
+
+      - name: Upload report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+
+      - name: Publish to gh-pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-report
+
+      - name: Report link
+        if: github.ref == 'refs/heads/main'
+        run: echo "Report link: ${{ env.PAGES_URL }}/" >> $GITHUB_STEP_SUMMARY
