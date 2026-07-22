@@ -1,7 +1,3 @@
-# Task Description
-
-To see the description of the task assignment [follow the link](https://github.com/mate-academy/qa_pw_huntd_testing/blob/main/TaskDescription.md).
-
 # Repository Overview
 
 This repository contains a test automation framework for the [Huntd](https://huntd.tech/) application testing.
@@ -13,28 +9,54 @@ This repository contains a test automation framework for the [Huntd](https://hun
 To install the project follow the next steps:
 
 1. Install Node.js.
-2. Run the installation command in the project root.:
+2. Install Java (8 or higher)
+3. Run the installation command in the project root.:
 
 ```bash
 npm ci
 ```
 
-3. Run the browsers installation in the project root.
+4. Run the browsers installation in the project root.
 
 ```bash
 npx playwright install
 ```
 
-4. Install Allure commandline tool (Allure requires Java 8 or higher).
-
-```bash
-npm install -g allure-commandline
-```
-
 ## How to run the tests
 
-// TODO
+Locally
+
+```bash
+npm test
+```
+
+Docker
+
+```bash
+docker compose run --rm e2e
+```
+
+CI/CD - GitHub Actions
+
+- Automatically during push / pull requests
+- Manually in GitHub (Workflow dispatch)
 
 ## How to generate report
 
-// TODO
+### Locally
+
+Generate report
+
+```
+npm run report
+```
+
+Open report (it also generates report before opening)
+
+```
+npm run report:open
+```
+
+### CI/CD
+
+Automatically generated and can be seen [here](https://vadymchan.github.io/qa_pw_huntd_testing/)
