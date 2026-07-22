@@ -62,7 +62,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v5
-      
+
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -70,7 +70,7 @@ jobs:
       - run: npm ci
 
       - uses: actions/setup-java@v5
-        with: 
+        with:
           distribution: 'microsoft'
           java-version: '17'
 
@@ -108,4 +108,5 @@ jobs:
 
       - name: Report link
         if: github.ref == 'refs/heads/main'
-        run: echo "Report link: ${{ env.PAGES_URL }}/" >> $GITHUB_STEP_SUMMARY
+        run: |
+          echo "Report link: ${{ env.PAGES_URL }}/" >> $GITHUB_STEP_SUMMARY
