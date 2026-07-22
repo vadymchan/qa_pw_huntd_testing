@@ -7,7 +7,11 @@
     "doc": "docs"
   },
   "scripts": {
+    "pretest": "node scripts/allure-clean.mts",
     "test": "playwright test",
+    "report": "node scripts/allure-report.mts",
+    "report:open": "npm run report && allure open allure-report",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
