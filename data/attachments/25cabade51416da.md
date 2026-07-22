@@ -1,0 +1,599 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: auth/sign-up/recruiter/validRequiredFields.spec.ts >> Register as recruiter >> User should register with valid required-only fields
+- Location: tests/auth/sign-up/recruiter/validRequiredFields.spec.ts:4:7
+
+# Error details
+
+```
+Error: expect(page).toHaveURL(expected) failed
+
+Expected: "https://huntd.tech/profile/perfect-candidate"
+Received: "https://huntd.tech/candidates"
+Timeout:  10000ms
+
+Call log:
+  - Expect "toHaveURL" with timeout 10000ms
+    5 × unexpected value "https://huntd.tech/profile/contacts?preview=recruiter"
+    18 × unexpected value "https://huntd.tech/candidates"
+
+```
+
+```yaml
+- banner:
+  - link "Huntd":
+    - /url: /
+    - img
+  - navigation:
+    - link "Candidates":
+      - /url: /candidates
+    - link "Jobs":
+      - /url: /jobs
+    - link "Chats":
+      - /url: /chats
+  - link "Spread the word and get NFT":
+    - /url: "https://twitter.com/intent/tweet?url=https://www.producthunt.com/posts/hunted&text=Folks, on Hunted Web3 startups apply to hire you at your desired salary. You're anonymous, and we both get $1k-worth NFTs if you're hired. Take a look:"
+    - img
+  - paragraph: Bonus
+  - button "?"
+  - button "Profile"
+- heading "Candidates" [level=1]
+- text: Role Select roles
+- textbox
+- img
+- text: Technologies Type or select technologies
+- textbox
+- text: Desired base salary
+- button "Annual"
+- button "Monthly"
+- text: $0 - $120000+
+- slider
+- slider
+- text: Job experience Job experience
+- textbox
+- img
+- text: English level English level
+- textbox
+- img
+- paragraph: Candidate's location
+- img
+- paragraph: "Timezone: search by timezone the candidate is located in. Country/City: search by country or city the candidate is located in or willing to work in."
+- button "Timezone"
+- button "Country/city"
+- paragraph: Show map
+- checkbox [checked]
+- text: "[-12 Dateline] - [12 New Zealand]"
+- img
+- slider
+- slider
+- img
+- text: 0/10
+- paragraph: You've contacted 0 candidates. We recommend reaching out to at least 10 candidates to get started
+- paragraph: 5031 anonymous candidates
+- button "qa 50+ Popular candidate! Connected by 50+ companies Ukraine, Ternopil 5+ years $10k ($833 / month) Advanced Core technical skills React.js HTML & CSS Mobile testing manual testing JavaScript API testing MySQL TypeScript DevOps PostgreSQL Node.js SASS AWS Smoke testing Solidity Python Achievements / Key results я молодець Considering roles QA Start chat Show experience":
+  - heading "qa" [level=2]
+  - text: 50+
+  - paragraph: Popular candidate! Connected by 50+ companies
+  - list:
+    - img
+    - listitem: Ukraine, Ternopil
+    - listitem: 5+ years
+    - listitem: $10k ($833 / month)
+    - listitem: Advanced
+  - term: Core technical skills
+  - text: React.js HTML & CSS Mobile testing manual testing JavaScript API testing MySQL TypeScript DevOps PostgreSQL Node.js SASS AWS Smoke testing Solidity Python
+  - term: Achievements / Key results
+  - definition: я молодець
+  - term: Considering roles
+  - text: QA
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Senior Java scriptr 15+ Popular candidate! Connected by 15+ companies Ukraine, Lviv 1-3 years $5k ($417 / month) Upper intermediate Core technical skills qa manual testing Sanity testing Smoke testing HTML & CSS Achievements / Key results кекуф3ц4уікшнг54 Considering roles QA Start chat Show experience":
+  - heading "Senior Java scriptr" [level=2]
+  - text: 15+
+  - paragraph: Popular candidate! Connected by 15+ companies
+  - list:
+    - img
+    - listitem: Ukraine, Lviv
+    - listitem: 1-3 years
+    - listitem: $5k ($417 / month)
+    - listitem: Upper intermediate
+  - term: Core technical skills
+  - text: qa manual testing Sanity testing Smoke testing HTML & CSS
+  - term: Achievements / Key results
+  - definition: кекуф3ц4уікшнг54
+  - term: Considering roles
+  - text: QA
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "junior qa Ukraine, Lviv Less than 1 year $8.4k ($700 / month) Intermediate Core technical skills Automation testing MySQL Manual testing API testing Testing Typescript API TESTING Mobile testing Achievements / Key results SNEFCNSWUWEFUS Considering roles QA Start chat Show experience":
+  - heading "junior qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Lviv
+    - listitem: Less than 1 year
+    - listitem: $8.4k ($700 / month)
+    - listitem: Intermediate
+  - term: Core technical skills
+  - text: Automation testing MySQL Manual testing API testing Testing Typescript API TESTING Mobile testing
+  - term: Achievements / Key results
+  - definition: SNEFCNSWUWEFUS
+  - term: Considering roles
+  - text: QA
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $2.4k ($200 / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Volup doloremque tui conqueror pariatur magni caute textus cupio cotidie. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $2.4k ($200 / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Volup doloremque tui conqueror pariatur magni caute textus cupio cotidie.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $2.4k ($200 / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Creator considero consuasor. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $2.4k ($200 / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Creator considero consuasor.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Cena nobis fugit torqueo libero consectetur cursim catena viriliter. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Cena nobis fugit torqueo libero consectetur cursim catena viriliter.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Canonicus caries tracto aliqua dolorum accusamus magni arcus impedit advoco. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Canonicus caries tracto aliqua dolorum accusamus magni arcus impedit advoco.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Appello bibo consequatur. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Appello bibo consequatur.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Tener virga caries damno ultra. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Tener virga caries damno ultra.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Tergiversatio basium suffragium tero adflicto voluptates bibo. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Tergiversatio basium suffragium tero adflicto voluptates bibo.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Comminor ancilla adicio comparo vestigium. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Comminor ancilla adicio comparo vestigium.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Conservo capillus stultus carmen ancilla crustulum. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Conservo capillus stultus carmen ancilla crustulum.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Defero solio curia. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Defero solio curia.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Traho suasoria acidus ambitus spiculum tenus acidus thesis. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Traho suasoria acidus ambitus spiculum tenus acidus thesis.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Baiulus compello tibi adeptio sollicito delectus capitulus theatrum versus. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Baiulus compello tibi adeptio sollicito delectus capitulus theatrum versus.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Defessus assumenda tamquam vesica curvo qui. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Defessus assumenda tamquam vesica curvo qui.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Denique tenuis umbra colligo pauper. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Denique tenuis umbra colligo pauper.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $28.8k ($2.4k / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Sublime trucido velum suffragium. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $28.8k ($2.4k / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Sublime trucido velum suffragium.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $2.4k ($200 / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Virga cito vesica cervus armarium truculenter ademptio accusator. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $2.4k ($200 / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Virga cito vesica cervus armarium truculenter ademptio accusator.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "Qa Ukraine, Kharkiv Less than 1 year $2.4k ($200 / month) Elementary Core technical skills DevOps JavaScript API testing manual testing Mobile testing Achievements / Key results Cubo totus deludo ambitus unde omnis. Considering roles PM Start chat Show experience":
+  - heading "Qa" [level=2]
+  - list:
+    - img
+    - listitem: Ukraine, Kharkiv
+    - listitem: Less than 1 year
+    - listitem: $2.4k ($200 / month)
+    - listitem: Elementary
+  - term: Core technical skills
+  - text: DevOps JavaScript API testing manual testing Mobile testing
+  - term: Achievements / Key results
+  - definition: Cubo totus deludo ambitus unde omnis.
+  - term: Considering roles
+  - text: PM
+  - button "Start chat"
+  - button "Show experience":
+    - text: Show experience
+    - img
+- button "10 more"
+- contentinfo:
+  - paragraph: Join the future
+  - heading "Top 100 web3 companies" [level=2]
+  - link "Coinbase":
+    - /url: /jobs/company/coinbase
+    - img "Coinbase"
+  - heading "Coinbase" [level=3]
+  - link "Binance":
+    - /url: /jobs/company/binance
+    - img "Binance"
+  - heading "Binance" [level=3]
+  - link "Near":
+    - /url: /jobs/company/near
+    - img "Near"
+  - heading "Near" [level=3]
+  - link "GlobalID":
+    - /url: /jobs/company/globalid
+    - img "GlobalID"
+  - heading "GlobalID" [level=3]
+  - link "Consensys":
+    - /url: /jobs/company/consensys
+    - img "Consensys"
+  - heading "Consensys" [level=3]
+  - link "View top 100":
+    - /url: /web3-companies
+    - text: View top 100
+    - img
+  - heading "Hire Web3 Developer" [level=3]
+  - link "Hire Backend Web3 Developer":
+    - /url: /developers/web3-backend
+  - link "Hire Frontend Web3 Developer":
+    - /url: /developers/web3-frontend
+  - link "Hire Mobile Web3 Developer":
+    - /url: /developers/web3-mobile
+  - link "Hire Full-Stack Web3 Developer":
+    - /url: /developers/web3-full-stack
+  - link "Hire React Web3 Developer":
+    - /url: /developers/web3-react
+  - link "Hire Blockchain Web3 Developer":
+    - /url: /developers/blockchain
+  - link "Hire Defi Web3 Developer":
+    - /url: /developers/web3-defi
+  - link "Hire Nft Web3 Developer":
+    - /url: /developers/web3-nft
+  - link "Hire Smart Contract Web3 Developer":
+    - /url: /developers/web3-smart-contract
+  - link "Hire Solidity Web3 Developer":
+    - /url: /developers/solidity
+  - link "Hire Solana Web3 Developer":
+    - /url: /developers/solana
+  - heading "Remote Web3 jobs" [level=3]
+  - link "Backend Remote Web3 jobs":
+    - /url: /jobs/web3-backend
+  - link "Frontend Remote Web3 jobs":
+    - /url: /jobs/web3-frontend
+  - link "Mobile Remote Web3 jobs":
+    - /url: /jobs/web3-mobile
+  - link "Full-Stack Remote Web3 jobs":
+    - /url: /jobs/web3-full-stack
+  - link "React Remote Web3 jobs":
+    - /url: /jobs/web3-react
+  - link "Defi Remote Web3 jobs":
+    - /url: /jobs/web3-defi
+  - link "Nft Remote Web3 jobs":
+    - /url: /jobs/web3-nft
+  - link "Javascript Remote Web3 jobs":
+    - /url: /jobs/web3-javascript
+  - link "Smart Contract Remote Web3 jobs":
+    - /url: /jobs/web3-smart-contract
+  - link "Solidity Remote Web3 jobs":
+    - /url: /jobs/web3-solidity
+  - link "Solana Remote Web3 jobs":
+    - /url: /jobs/web3-solana
+  - heading "Remote Web3 Salaries" [level=3]
+  - link "Backend Remote Web3 Salaries":
+    - /url: /salaries/web3-backend
+  - link "Frontend Remote Web3 Salaries":
+    - /url: /salaries/web3-frontend
+  - link "Mobile Remote Web3 Salaries":
+    - /url: /salaries/web3-mobile
+  - link "Full-Stack Remote Web3 Salaries":
+    - /url: /salaries/web3-full-stack
+  - link "React Remote Web3 Salaries":
+    - /url: /salaries/web3-react
+  - link "Defi Remote Web3 Salaries":
+    - /url: /salaries/web3-defi
+  - link "Nft Remote Web3 Salaries":
+    - /url: /salaries/web3-nft
+  - link "Javascript Remote Web3 Salaries":
+    - /url: /salaries/web3-javascript
+  - link "Smart Contract Remote Web3 Salaries":
+    - /url: /salaries/web3-smart-contract
+  - link "Solidity Remote Web3 Salaries":
+    - /url: /salaries/web3-solidity
+  - link "Solana Remote Web3 Salaries":
+    - /url: /salaries/web3-solana
+  - link "Huntd":
+    - /url: /
+    - img
+  - link "LinkedIn":
+    - /url: https://www.linkedin.com/company/huntd-tech
+    - img
+  - link "Facebook":
+    - /url: https://www.facebook.com/huntd.tech
+    - img
+  - link "Twitter":
+    - /url: https://twitter.com/huntd_tech
+    - img
+  - link "Instagram":
+    - /url: https://www.instagram.com/huntd.tech/
+    - img
+  - link "Terms of use":
+    - /url: /terms-of-use.pdf
+  - link "Cookies policy":
+    - /url: /cookies-policy.pdf
+  - link "Privacy policy":
+    - /url: /privacy-policy.pdf
+  - link "About us":
+    - /url: /about-us
+  - link "FAQs":
+    - /url: /pricing#faq
+  - link "Pricing":
+    - /url: /pricing
+  - paragraph: All rights reserved. 2026
+- alert: Contacts
+```
+
+# Test source
+
+```ts
+  1  | import { expect, Page } from '@playwright/test';
+  2  | import { testStep } from '../../utils/playwright/testStep';
+  3  | 
+  4  | export class BasePage {
+  5  |   constructor(
+  6  |     protected page: Page,
+  7  |     protected path: string,
+  8  |   ) {}
+  9  | 
+  10 |   protected async step<T>(title: string, stepToRun: () => Promise<T> | T): Promise<T> {
+  11 |     return await testStep(title, stepToRun);
+  12 |   }
+  13 | 
+  14 |   async open() {
+  15 |     await this.page.goto(this.path);
+  16 |   }
+  17 | 
+  18 |   async assertOpened() {
+  19 |     await this.step(`Assert '${this.page}' is opened`, async () => {
+> 20 |       await expect(this.page).toHaveURL(this.path);
+     |                               ^ Error: expect(page).toHaveURL(expected) failed
+  21 |     });
+  22 |   }
+  23 | }
+  24 | 
+```
