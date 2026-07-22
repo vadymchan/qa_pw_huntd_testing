@@ -1,0 +1,13 @@
+services:
+  e2e:
+    build: .
+    ipc: host
+    init: true
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./playwright.config.ts:/app/playwright.config.ts
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
