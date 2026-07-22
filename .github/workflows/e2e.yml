@@ -7,7 +7,7 @@ on:
     branches: [main]
   workflow_dispatch:
 
-concurency:
+concurrency:
   group: e2e-publish
   cancel-in-progress: false
 
