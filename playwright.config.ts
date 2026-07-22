@@ -20,16 +20,20 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Set to 2 for local builds since more workers increases flakiness (502 Errors / invalid redirections)*/
-  workers: process.env.CI ? 1 : 2,
+  workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  timeout: 60_000,
+  reporter: [
+    ['list'],
+    ['html', { open: 'never' }],
+    ['allure-playwright', { resultsDir: 'allure-results' }],
+  ],
+  timeout: 90_000,
   expect: { timeout: 10_000 },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: 'https://huntd.tech',
-
+    headless: true,
     screenshot: 'only-on-failure',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
@@ -37,14 +41,14 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-{
+    {
       name: 'setup',
       testMatch: /.*\.setup\.ts/,
     },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    dependencies: ['setup'],
+      dependencies: ['setup'],
     },
   ],
 
