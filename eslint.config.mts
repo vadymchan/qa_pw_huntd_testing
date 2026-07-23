@@ -6,7 +6,7 @@ import playwright from 'eslint-plugin-playwright';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 
 export default defineConfig([
-  globalIgnores(['playwright-report/', 'test-results/']),
+  globalIgnores(['playwright-report/', 'test-results/', 'allure-results/', 'allure-report/']),
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
     plugins: { js },
