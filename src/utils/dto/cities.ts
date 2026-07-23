@@ -18,6 +18,14 @@ const CITY: Record<CityName, CityDto> = {
     cityTimezone: 180,
     type: 'CANDIDATE_CITY',
   },
+  Kyiv: {
+    cityId: 'ChIJBUVa4U7P1EAR_kYBF9IxSXY',
+    cityName: 'Kyiv',
+    cityCountryName: 'Ukraine',
+    cityCountrySlug: 'UA',
+    cityTimezone: 180,
+    type: 'CANDIDATE_CITY',
+  },
 };
 
 export const getCities = (cityNames: Array<CityName>) =>
