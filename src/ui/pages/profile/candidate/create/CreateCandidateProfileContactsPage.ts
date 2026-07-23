@@ -14,7 +14,7 @@ export class CreateCandidateProfileContactsPage extends BasePage {
     this.profileContacts = new CandidateProfileContactsComponent(page);
 
     this.activateProfileName = 'Activate profile';
-    
+
     this.activateProfile = page.getByRole('button', { name: this.activateProfileName });
   }
 

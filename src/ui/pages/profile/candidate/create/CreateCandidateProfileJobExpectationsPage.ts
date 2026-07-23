@@ -14,7 +14,7 @@ export class CreateCandidateProfileJobExpectationsPage extends BasePage {
     this.profileJobExpectations = new CandidateProfileJobExpectationsComponent(page);
 
     this.saveAndContinueName = 'Save and continue';
-    
+
     this.saveAndContinue = page.getByRole('button', { name: this.saveAndContinueName });
   }
 

@@ -36,9 +36,7 @@ export class EditCandidateProfileJobExpectationsPage extends BasePage {
     await this.step(
       `Assert 'Desired base salary' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.desiredBaseSalaryValidationMessage).toHaveText(
-          validationMessage,
-        );
+        await expect(this.desiredBaseSalaryValidationMessage).toHaveText(validationMessage);
       },
     );
   }

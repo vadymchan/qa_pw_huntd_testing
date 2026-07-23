@@ -63,9 +63,7 @@ export class EditCandidateProfilePage extends BasePage {
     await this.step(
       `Assert 'Desired position' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.desiredPositionValidationMessage).toHaveText(
-          validationMessage,
-        );
+        await expect(this.desiredPositionValidationMessage).toHaveText(validationMessage);
       },
     );
   }
@@ -74,9 +72,7 @@ export class EditCandidateProfilePage extends BasePage {
     await this.step(
       `Assert 'Core technical skills' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.coreTechnicalSkillsValidationMessage).toHaveText(
-          validationMessage,
-        );
+        await expect(this.coreTechnicalSkillsValidationMessage).toHaveText(validationMessage);
       },
     );
   }

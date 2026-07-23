@@ -14,7 +14,7 @@ export class CreateCandidateProfilePage extends BasePage {
     this.candidateProfile = new CandidateProfileComponent(page);
 
     this.saveAndContinueName = 'Save and continue';
-    
+
     this.saveAndContinue = page.getByRole('button', { name: this.saveAndContinueName });
   }
 

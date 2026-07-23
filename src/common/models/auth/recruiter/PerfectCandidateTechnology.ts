@@ -1,1 +1,1 @@
-export type PerfectCandidateTechnology = 'JavaScript' ;
+export type PerfectCandidateTechnology = 'JavaScript';

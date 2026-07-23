@@ -59,12 +59,9 @@ export class EditCandidateProfileExperiencePage extends BasePage {
   }
 
   async assertRoleValidationMessage(validationMessage: string) {
-    await this.step(
-      `Assert 'Role' shows '${validationMessage}' validation message`,
-      async () => {
-        await expect(this.roleValidationMessage).toHaveText(validationMessage);
-      },
-    );
+    await this.step(`Assert 'Role' shows '${validationMessage}' validation message`, async () => {
+      await expect(this.roleValidationMessage).toHaveText(validationMessage);
+    });
   }
 
   async assertCompanyNameValidationMessage(validationMessage: string) {

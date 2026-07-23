@@ -77,11 +77,8 @@ export class EditCandidateProfileContactsPage extends BasePage {
   }
 
   async assertGitHubValidationMessage(validationMessage: string) {
-    await this.step(
-      `Assert 'GitHub' shows '${validationMessage}' validation message`,
-      async () => {
-        await expect(this.gitHubValidationMessage).toHaveText(validationMessage);
-      },
-    );
+    await this.step(`Assert 'GitHub' shows '${validationMessage}' validation message`, async () => {
+      await expect(this.gitHubValidationMessage).toHaveText(validationMessage);
+    });
   }
 }

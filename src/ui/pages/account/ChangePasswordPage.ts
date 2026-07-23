@@ -76,9 +76,7 @@ export class ChangePasswordPage extends BasePage {
     await this.step(
       `Assert '${this.currentPasswordLabel}' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.currentPasswordValidationMessage).toHaveText(
-          validationMessage,
-        );
+        await expect(this.currentPasswordValidationMessage).toHaveText(validationMessage);
       },
     );
   }
@@ -96,9 +94,7 @@ export class ChangePasswordPage extends BasePage {
     await this.step(
       `Assert '${this.repeatNewPasswordLabel}' shows '${validationMessage}' validation message`,
       async () => {
-        await expect(this.repeatNewPasswordValidationMessage).toHaveText(
-          validationMessage,
-        );
+        await expect(this.repeatNewPasswordValidationMessage).toHaveText(validationMessage);
       },
     );
   }
