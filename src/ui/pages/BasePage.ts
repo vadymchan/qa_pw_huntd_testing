@@ -16,7 +16,7 @@ export class BasePage {
   }
 
   async assertOpened() {
-    await this.step(`Assert '${this.page}' is opened`, async () => {
+    await this.step(`Assert '${this.path}' is opened`, async () => {
       await expect(this.page).toHaveURL(this.path);
     });
   }

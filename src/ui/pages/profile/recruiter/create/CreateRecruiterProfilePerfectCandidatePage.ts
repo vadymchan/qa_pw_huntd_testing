@@ -2,6 +2,10 @@ import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '../../../BasePage';
 import { selectOption } from '../../../../../utils/playwright/selectOption';
 import { PATHS } from '../../../../constants/paths';
+import { PerfectCandidateTechnology } from '../../../../../common/models/auth/recruiter/PerfectCandidateTechnology';
+import { PerfectCandidateRole } from '../../../../../common/models/auth/recruiter/PerfectCandidateRole';
+import { PerfectCandidateJobExperience } from '../../../../../common/models/auth/recruiter/PerfectCandidateJobExperience';
+import { PerfectCandidateEnglishLevel } from '../../../../../common/models/auth/recruiter/PerfectCandidateEnglishLevel';
 
 export class CreateRecruiterProfilePerfectCandidatePage extends BasePage {
   private roles: Locator;
@@ -45,7 +49,7 @@ export class CreateRecruiterProfilePerfectCandidatePage extends BasePage {
     });
   }
 
-  async selectRoles(roles: Array<string>) {
+  async selectRoles(roles: Array<PerfectCandidateRole>) {
     await this.step(`Select '${this.rolesLabel}'`, async () => {
       for (const role of roles) {
         await selectOption(this.page, this.roles, role);
@@ -53,7 +57,7 @@ export class CreateRecruiterProfilePerfectCandidatePage extends BasePage {
     });
   }
 
-  async selectTechnologies(technologies: Array<string>) {
+  async selectTechnologies(technologies: Array<PerfectCandidateTechnology>) {
     await this.step(`Select '${this.technologiesLabel}'`, async () => {
       for (const technology of technologies) {
         await this.technologies.fill(technology);
@@ -66,13 +70,13 @@ export class CreateRecruiterProfilePerfectCandidatePage extends BasePage {
     });
   }
 
-  async selectJobExperience(jobExperience: string) {
+  async selectJobExperience(jobExperience: PerfectCandidateJobExperience) {
     await this.step(`Select '${this.jobExperience}'`, async () => {
       await selectOption(this.page, this.jobExperience, jobExperience);
     });
   }
 
-  async selectEnglishLevel(englishLevel: string) {
+  async selectEnglishLevel(englishLevel: PerfectCandidateEnglishLevel) {
     await this.step(`Select '${this.englishLevelLabel}'`, async () => {
       await selectOption(this.page, this.englishLevel, englishLevel);
     });

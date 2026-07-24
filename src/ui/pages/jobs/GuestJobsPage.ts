@@ -69,13 +69,13 @@ export class GuestJobsPage extends BasePage {
   }
 
   async clickApply() {
-    await this.step(`Click '${this.categoryName}'`, async () => {
+    await this.step(`Click '${this.applyName}'`, async () => {
       await this.apply.click();
     });
   }
 
   async clickReceiveJobs() {
-    await this.step(`Click '${this.categoryName}'`, async () => {
+    await this.step(`Click '${this.receiveJobsName}'`, async () => {
       await this.receiveJobs.click();
     });
   }
@@ -87,25 +87,25 @@ export class GuestJobsPage extends BasePage {
   }
 
   async clickTopCompanies() {
-    await this.step(`Click '${this.categoryName}'`, async () => {
+    await this.step(`Click '${this.topCompaniesName}'`, async () => {
       await this.topCompanies.click();
     });
   }
 
   async clickCompanyLogo() {
-    await this.step(`Click '${this.categoryName}'`, async () => {
+    await this.step(`Click '${this.companyLogoName}'`, async () => {
       await this.companyLogo.click();
     });
   }
 
   async clickJobDetails() {
-    await this.step(`Click '${this.categoryName}'`, async () => {
+    await this.step(`Click '${this.jobDetailsText}'`, async () => {
       await this.jobDetailsButton.click();
     });
   }
 
   async clickViewMore() {
-    await this.step(`Click '${this.categoryName}'`, async () => {
+    await this.step(`Click '${this.viewMoreName}'`, async () => {
       await this.viewMore.click();
     });
   }
