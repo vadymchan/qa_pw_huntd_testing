@@ -1,7 +1,7 @@
 ## 2026-07-19 - Increased test suite speed by 4 times while keeping the tests stable
 
-- What: reducing the number of workers slows down test runs; using auto set workers caused flakiness because of server load
-- Numbers: 25/85 failed on default config; tests 4 times faster on auto set workers (compared to previous fix of 2 workers)
+- What: auto set workers previously caused test flakiness due to per-test user creation
+- Numbers: 25/85 failed on default config -> all tests green; tests 4 times faster on auto set workers (compared to previous fix of 2 workers)
 - How: remove user creation for read-only tests by adding setup auth stage and reusing session - server is less loaded
 - Artifacts: https://playwright.dev/docs/auth; tests/auth.setup.ts
 
