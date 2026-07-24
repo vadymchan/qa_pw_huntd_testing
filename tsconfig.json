@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "@models/*": ["./src/common/models/*"],
+      "@factories/*": ["./src/common/factories/*"],
+      "@api/*": ["./src/api/*"],
+      "@ui/*": ["./src/ui/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@fixtures/*": ["./tests/_fixtures/*"]
+    }
   }
 }
