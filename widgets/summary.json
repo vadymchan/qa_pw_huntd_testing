@@ -1,1 +1,1 @@
-{"reportName":"E2E","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":85,"unknown":0,"total":85},"time":{"start":1784875192056,"stop":1784875433426,"duration":241370,"minDuration":531,"maxDuration":14741,"sumDuration":238752}}
+{"reportName":"E2E","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":85,"unknown":0,"total":85},"time":{"start":1784891023072,"stop":1784891286719,"duration":263647,"minDuration":660,"maxDuration":14356,"sumDuration":259594}}
