@@ -42,5 +42,22 @@ export default defineConfig([
     },
   },
   tseslint.configs.recommended,
+  {
+    files: ['src/**/*.ts', 'tests/**/*.ts'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              regex: '^\\.\\.?/',
+              message:
+                'Use a configured path alias (see tsconfig "paths") instead of a relative import.',
+            },
+          ],
+        },
+      ],
+    },
+  },
   eslintConfigPrettier,
 ]);
