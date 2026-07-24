@@ -1,5 +1,5 @@
 import { Locator, Page } from '@playwright/test';
-import { BaseComponent } from '../../BaseComponent';
+import { BaseComponent } from '@ui/components/BaseComponent';
 
 export class CandidateProfileContactsComponent extends BaseComponent {
   private usualProfile: Locator;

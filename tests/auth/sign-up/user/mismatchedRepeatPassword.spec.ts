@@ -1,5 +1,5 @@
-import { PASSWORD_IS_MISMATCHED } from '../../../../src/ui/constants/validationMessages';
-import { test } from '../../../_fixtures/fixtures';
+import { PASSWORD_IS_MISMATCHED } from '@ui/constants/validationMessages';
+import { test } from '@fixtures/fixtures';
 import { faker } from '@faker-js/faker';
 
 test.describe(`Register as user`, () => {

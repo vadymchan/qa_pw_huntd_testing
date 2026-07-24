@@ -1,4 +1,4 @@
-import { test } from '../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 
 test.describe(`Browse jobs as a guest`, () => {
   test(`Jobs should filtered by category`, async ({ reporter, guestJobsPage }) => {

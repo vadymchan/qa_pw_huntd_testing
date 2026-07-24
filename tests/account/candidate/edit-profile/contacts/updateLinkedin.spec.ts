@@ -1,6 +1,6 @@
-import { test } from '../../../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 
-import { createProfileContacts } from '../../../../../src/common/factories/createProfileContacts';
+import { createProfileContacts } from '@factories/createProfileContacts';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update Linkedin`, async ({

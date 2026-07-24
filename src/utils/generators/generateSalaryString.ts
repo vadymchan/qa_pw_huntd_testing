@@ -1,4 +1,4 @@
-import { SalaryType } from '../../common/models/auth/candidate/SalaryType';
+import { SalaryType } from '@models/auth/candidate/SalaryType';
 
 export function generateSalaryString(salaryType: SalaryType, salaryAmount: number) {
   const salaryInThousands = salaryAmount / 1000;

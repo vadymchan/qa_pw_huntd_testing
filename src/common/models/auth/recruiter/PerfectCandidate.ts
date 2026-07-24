@@ -1,7 +1,7 @@
-import { PerfectCandidateEnglishLevel } from './PerfectCandidateEnglishLevel';
-import { PerfectCandidateJobExperience } from './PerfectCandidateJobExperience';
-import { PerfectCandidateRole } from './PerfectCandidateRole';
-import { PerfectCandidateTechnology } from './PerfectCandidateTechnology';
+import { PerfectCandidateEnglishLevel } from '@models/auth/recruiter/PerfectCandidateEnglishLevel';
+import { PerfectCandidateJobExperience } from '@models/auth/recruiter/PerfectCandidateJobExperience';
+import { PerfectCandidateRole } from '@models/auth/recruiter/PerfectCandidateRole';
+import { PerfectCandidateTechnology } from '@models/auth/recruiter/PerfectCandidateTechnology';
 
 export type PerfectCandidate = {
   candidateRoles: Array<PerfectCandidateRole>;

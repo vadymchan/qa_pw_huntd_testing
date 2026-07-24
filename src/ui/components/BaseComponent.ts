@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test';
-import { testStep } from '../../utils/playwright/testStep';
+import { testStep } from '@utils/playwright/testStep';
 
 export class BaseComponent {
   constructor(protected page: Page) {}

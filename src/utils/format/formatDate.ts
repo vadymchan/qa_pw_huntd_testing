@@ -1,4 +1,4 @@
-import { Month } from '../../common/models/auth/candidate/Month';
+import { Month } from '@models/auth/candidate/Month';
 
 const MONTH_NUMBERS: Record<Month, number> = {
   January: 1,

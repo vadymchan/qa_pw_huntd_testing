@@ -1,21 +1,21 @@
 import { mergeTests } from '@playwright/test';
-import { test as testCandidateProfile } from './fixturesCandidateProfile';
-import { test as recruiterTestProfile } from './fixturesRecruiterProfile';
-import { createUserCredentials } from '../../src/common/factories/createUserCredentials';
-import { UserCredentials } from '../../src/common/models/auth/UserCredentials';
-import { CandidateProfile } from '../../src/common/models/auth/candidate/CandidateProfile';
-import { WorkPlace } from '../../src/common/models/auth/candidate/WorkPlace';
-import { ProfileContacts } from '../../src/common/models/auth/ProfileContacts';
-import { RecruiterProfile } from '../../src/common/models/auth/recruiter/RecruiterProfile';
-import { SignUpUserApi } from '../../src/api/auth/SignUpUserApi';
-import { SignUpCandidateApi } from '../../src/api/auth/SignUpCandidateApi';
-import { SignUpRecruiterApi } from '../../src/api/auth/SignUpRecruiterApi';
-import { SignUpUserPage } from '../../src/ui/pages/auth/sign-up/user/SignUpUserPage';
-import { ChooseProfilePage } from '../../src/ui/pages/auth/sign-up/user/ChooseProfilePage';
-import { SignInUserPage } from '../../src/ui/pages/auth/sign-in/SignInUserPage';
-import { LogoutUserPage } from '../../src/ui/pages/auth/logout/LogoutUserPage';
-import { CandidateSeeder } from '../../src/api/seeders/CandidateSeeder';
-import { RecruiterSeeder } from '../../src/api/seeders/RecruiterSeeder';
+import { test as testCandidateProfile } from '@fixtures/fixturesCandidateProfile';
+import { test as recruiterTestProfile } from '@fixtures/fixturesRecruiterProfile';
+import { createUserCredentials } from '@factories/createUserCredentials';
+import { UserCredentials } from '@models/auth/UserCredentials';
+import { CandidateProfile } from '@models/auth/candidate/CandidateProfile';
+import { WorkPlace } from '@models/auth/candidate/WorkPlace';
+import { ProfileContacts } from '@models/auth/ProfileContacts';
+import { RecruiterProfile } from '@models/auth/recruiter/RecruiterProfile';
+import { SignUpUserApi } from '@api/auth/SignUpUserApi';
+import { SignUpCandidateApi } from '@api/auth/SignUpCandidateApi';
+import { SignUpRecruiterApi } from '@api/auth/SignUpRecruiterApi';
+import { SignUpUserPage } from '@ui/pages/auth/sign-up/user/SignUpUserPage';
+import { ChooseProfilePage } from '@ui/pages/auth/sign-up/user/ChooseProfilePage';
+import { SignInUserPage } from '@ui/pages/auth/sign-in/SignInUserPage';
+import { LogoutUserPage } from '@ui/pages/auth/logout/LogoutUserPage';
+import { CandidateSeeder } from '@api/seeders/CandidateSeeder';
+import { RecruiterSeeder } from '@api/seeders/RecruiterSeeder';
 
 const base = mergeTests(testCandidateProfile, recruiterTestProfile);
 

@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
-import { BasePage } from '../../../BasePage';
-import { CandidateProfileExperienceComponent } from '../../../../components/profile/candidate/CandidateProfileExperienceComponent';
-import { PATHS } from '../../../../constants/paths';
+import { BasePage } from '@ui/pages/BasePage';
+import { CandidateProfileExperienceComponent } from '@ui/components/profile/candidate/CandidateProfileExperienceComponent';
+import { PATHS } from '@ui/constants/paths';
 
 export class CreateCandidateProfileExperiencePage extends BasePage {
   public profileExperience: CandidateProfileExperienceComponent;

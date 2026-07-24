@@ -1,5 +1,5 @@
-import { formatDate } from '../../../../utils/format/formatDate';
-import { Month } from './Month';
+import { formatDate } from '@utils/format/formatDate';
+import { Month } from '@models/auth/candidate/Month';
 
 export type WorkPlace = {
   role: string;

@@ -1,5 +1,5 @@
-import { test } from '../../../_fixtures/fixtures';
-import { PASSWORD_IS_REQUIRED } from '../../../../src/ui/constants/validationMessages';
+import { test } from '@fixtures/fixtures';
+import { PASSWORD_IS_REQUIRED } from '@ui/constants/validationMessages';
 
 test.describe(`Update candidate account settings`, () => {
   test(`User should see validation error when new password is empty`, async ({

@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
-import { SUCCESS_RESPONSE_CODE } from '../../api/constants/responseCodes';
-import { GRAPHQL_ENDPOINT } from '../../api/constants/endpoints';
+import { SUCCESS_RESPONSE_CODE } from '@api/constants/responseCodes';
+import { GRAPHQL_ENDPOINT } from '@api/constants/endpoints';
 
 export async function graphqlWaitForResponse(
   page: Page,

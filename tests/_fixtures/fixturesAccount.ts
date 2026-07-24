@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import { ChangePasswordPage } from '../../src/ui/pages/account/ChangePasswordPage';
+import { ChangePasswordPage } from '@ui/pages/account/ChangePasswordPage';
 
 type MyFixtures = {
   changePasswordPage: ChangePasswordPage;

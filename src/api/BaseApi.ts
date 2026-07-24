@@ -1,7 +1,7 @@
 import { APIRequestContext, APIResponse, expect } from '@playwright/test';
-import { testStep } from '../utils/playwright/testStep';
-import { SUCCESS_RESPONSE_CODE } from './constants/responseCodes';
-import { GRAPHQL_ENDPOINT } from './constants/endpoints';
+import { testStep } from '@utils/playwright/testStep';
+import { SUCCESS_RESPONSE_CODE } from '@api/constants/responseCodes';
+import { GRAPHQL_ENDPOINT } from '@api/constants/endpoints';
 
 export class BaseApi {
   protected endpoint: string;

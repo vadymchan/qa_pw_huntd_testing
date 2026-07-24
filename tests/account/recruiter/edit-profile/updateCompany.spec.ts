@@ -1,4 +1,4 @@
-import { test } from '../../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 
 test.describe(`Update recruiter profile`, () => {
   test(`User should update company`, async ({

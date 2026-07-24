@@ -1,4 +1,4 @@
-import { test as setup } from './_fixtures/fixtures';
+import { test as setup } from '@fixtures/fixtures';
 import path from 'path';
 
 const candidate = path.join(__dirname, '../playwright/.auth/candidate.json');

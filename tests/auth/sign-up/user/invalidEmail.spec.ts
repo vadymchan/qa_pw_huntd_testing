@@ -1,5 +1,5 @@
-import { test } from '../../../_fixtures/fixtures';
-import { EMAIL_IS_INCORRECT } from '../../../../src/ui/constants/validationMessages';
+import { test } from '@fixtures/fixtures';
+import { EMAIL_IS_INCORRECT } from '@ui/constants/validationMessages';
 
 // TODO: can be made parameterized (different formats)
 

@@ -1,8 +1,8 @@
 import { expect, Locator, Page } from '@playwright/test';
-import { BasePage } from '../../../BasePage';
-import { graphqlWaitForResponse } from '../../../../../utils/playwright/graphqlWaitForResponse';
-import { CandidateProfileJobExpectationsComponent } from '../../../../components/profile/candidate/CandidateProfileJobExpectationsComponent';
-import { PATHS } from '../../../../constants/paths';
+import { BasePage } from '@ui/pages/BasePage';
+import { graphqlWaitForResponse } from '@utils/playwright/graphqlWaitForResponse';
+import { CandidateProfileJobExpectationsComponent } from '@ui/components/profile/candidate/CandidateProfileJobExpectationsComponent';
+import { PATHS } from '@ui/constants/paths';
 
 export class EditCandidateProfileJobExpectationsPage extends BasePage {
   public profileJobExpectations: CandidateProfileJobExpectationsComponent;

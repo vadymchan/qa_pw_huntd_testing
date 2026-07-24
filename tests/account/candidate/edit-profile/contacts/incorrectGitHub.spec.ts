@@ -1,5 +1,5 @@
-import { test } from '../../../../_fixtures/fixtures';
-import { GITHUB_IS_INCORRECT } from '../../../../../src/ui/constants/validationMessages';
+import { test } from '@fixtures/fixtures';
+import { GITHUB_IS_INCORRECT } from '@ui/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });

@@ -1,4 +1,4 @@
-import { Role } from '../../common/models/auth/candidate/Role';
+import { Role } from '@models/auth/candidate/Role';
 
 const SPECIALIZATION_ID: Record<Role, number> = {
   PM: 22,

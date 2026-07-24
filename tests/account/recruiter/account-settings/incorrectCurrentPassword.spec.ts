@@ -1,6 +1,6 @@
-import { test } from '../../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 import { faker } from '@faker-js/faker';
-import { WRONG_CREDENTIALS } from '../../../../src/ui/constants/validationMessages';
+import { WRONG_CREDENTIALS } from '@ui/constants/validationMessages';
 
 test.describe(`Update recruiter account settings`, () => {
   test(`User should see validation error when current password is incorrect`, async ({

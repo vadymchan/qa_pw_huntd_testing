@@ -1,4 +1,4 @@
-import { test } from '../../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 
 test.describe('Register as recruiter', () => {
   test(`User should register with valid required-only fields`, async ({

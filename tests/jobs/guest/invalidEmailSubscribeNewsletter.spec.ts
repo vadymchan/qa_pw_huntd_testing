@@ -1,5 +1,5 @@
-import { EMAIL_IS_INCORRECT } from '../../../src/ui/constants/validationMessages';
-import { test } from '../../_fixtures/fixtures';
+import { EMAIL_IS_INCORRECT } from '@ui/constants/validationMessages';
+import { test } from '@fixtures/fixtures';
 
 test.describe(`Browse jobs as a guest`, () => {
   test(`Newsletter should show error when email has incorrect format`, async ({

@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
-import { BasePage } from '../../BasePage';
-import { PATHS } from '../../../constants/paths';
+import { BasePage } from '@ui/pages/BasePage';
+import { PATHS } from '@ui/constants/paths';
 
 export class SignInUserPage extends BasePage {
   private email: Locator;

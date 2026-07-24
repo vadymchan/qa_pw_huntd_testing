@@ -1,11 +1,11 @@
 import { expect, Locator, Page } from '@playwright/test';
-import { BasePage } from '../../../BasePage';
-import { selectOption } from '../../../../../utils/playwright/selectOption';
-import { PATHS } from '../../../../constants/paths';
-import { PerfectCandidateTechnology } from '../../../../../common/models/auth/recruiter/PerfectCandidateTechnology';
-import { PerfectCandidateRole } from '../../../../../common/models/auth/recruiter/PerfectCandidateRole';
-import { PerfectCandidateJobExperience } from '../../../../../common/models/auth/recruiter/PerfectCandidateJobExperience';
-import { PerfectCandidateEnglishLevel } from '../../../../../common/models/auth/recruiter/PerfectCandidateEnglishLevel';
+import { BasePage } from '@ui/pages/BasePage';
+import { selectOption } from '@utils/playwright/selectOption';
+import { PATHS } from '@ui/constants/paths';
+import { PerfectCandidateTechnology } from '@models/auth/recruiter/PerfectCandidateTechnology';
+import { PerfectCandidateRole } from '@models/auth/recruiter/PerfectCandidateRole';
+import { PerfectCandidateJobExperience } from '@models/auth/recruiter/PerfectCandidateJobExperience';
+import { PerfectCandidateEnglishLevel } from '@models/auth/recruiter/PerfectCandidateEnglishLevel';
 
 export class CreateRecruiterProfilePerfectCandidatePage extends BasePage {
   private roles: Locator;

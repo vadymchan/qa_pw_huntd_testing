@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test';
-import { BasePage } from '../BasePage';
-import { graphqlWaitForResponse } from '../../../utils/playwright/graphqlWaitForResponse';
-import { PATHS } from '../../constants/paths';
+import { BasePage } from '@ui/pages/BasePage';
+import { graphqlWaitForResponse } from '@utils/playwright/graphqlWaitForResponse';
+import { PATHS } from '@ui/constants/paths';
 
 export class ChangePasswordPage extends BasePage {
   private changePassword: Locator;

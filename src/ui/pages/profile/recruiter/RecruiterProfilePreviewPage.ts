@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
-import { BasePage } from '../../BasePage';
-import { PATHS } from '../../../constants/paths';
+import { BasePage } from '@ui/pages/BasePage';
+import { PATHS } from '@ui/constants/paths';
 
 export class RecruiterProfilePreviewPage extends BasePage {
   private fullName: Locator;

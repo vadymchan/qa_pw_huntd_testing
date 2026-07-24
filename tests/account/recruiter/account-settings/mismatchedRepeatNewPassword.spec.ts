@@ -1,6 +1,6 @@
-import { test } from '../../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 import { faker } from '@faker-js/faker';
-import { PASSWORD_IS_MISMATCHED } from '../../../../src/ui/constants/validationMessages';
+import { PASSWORD_IS_MISMATCHED } from '@ui/constants/validationMessages';
 
 test.describe(`Update recruiter account settings`, () => {
   test(`User should see validation error when repeat new password is mismatched`, async ({

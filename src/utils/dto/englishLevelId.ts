@@ -1,4 +1,4 @@
-import { EnglishLevel } from '../../common/models/auth/candidate/EnglishLevel';
+import { EnglishLevel } from '@models/auth/candidate/EnglishLevel';
 
 const ENGLISH_LEVEL_ID: Record<EnglishLevel, number> = {
   Elementary: 1,

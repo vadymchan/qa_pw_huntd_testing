@@ -1,11 +1,11 @@
 import {
   CandidateProfile,
   toCandidateProfileDto,
-} from '../../common/models/auth/candidate/CandidateProfile';
-import { toWorkPlaceDto, WorkPlace } from '../../common/models/auth/candidate/WorkPlace';
-import { ProfileContacts } from '../../common/models/auth/ProfileContacts';
-import { UserCredentials } from '../../common/models/auth/UserCredentials';
-import { SignUpCandidateApi } from '../auth/SignUpCandidateApi';
+} from '@models/auth/candidate/CandidateProfile';
+import { toWorkPlaceDto, WorkPlace } from '@models/auth/candidate/WorkPlace';
+import { ProfileContacts } from '@models/auth/ProfileContacts';
+import { UserCredentials } from '@models/auth/UserCredentials';
+import { SignUpCandidateApi } from '@api/auth/SignUpCandidateApi';
 
 export class CandidateSeeder {
   constructor(private api: SignUpCandidateApi) {}

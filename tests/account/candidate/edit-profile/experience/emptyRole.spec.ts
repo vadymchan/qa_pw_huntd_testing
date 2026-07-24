@@ -1,5 +1,5 @@
-import { ROLE_IS_REQUIRED } from '../../../../../src/ui/constants/validationMessages';
-import { test } from '../../../../_fixtures/fixtures';
+import { ROLE_IS_REQUIRED } from '@ui/constants/validationMessages';
+import { test } from '@fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });

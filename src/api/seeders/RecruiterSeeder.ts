@@ -1,10 +1,10 @@
-import { ProfileContacts } from '../../common/models/auth/ProfileContacts';
+import { ProfileContacts } from '@models/auth/ProfileContacts';
 import {
   RecruiterProfile,
   toRecruiterProfileDto,
-} from '../../common/models/auth/recruiter/RecruiterProfile';
-import { UserCredentials } from '../../common/models/auth/UserCredentials';
-import { SignUpRecruiterApi } from '../auth/SignUpRecruiterApi';
+} from '@models/auth/recruiter/RecruiterProfile';
+import { UserCredentials } from '@models/auth/UserCredentials';
+import { SignUpRecruiterApi } from '@api/auth/SignUpRecruiterApi';
 
 export class RecruiterSeeder {
   constructor(private api: SignUpRecruiterApi) {}

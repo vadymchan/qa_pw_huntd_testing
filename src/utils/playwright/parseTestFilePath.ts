@@ -3,7 +3,7 @@ import {
   formatCamelCaseToPhrase,
   formatKebabCaseToPhrase,
   formatPhraseToTitleCase,
-} from '../format/formatString';
+} from '@utils/format/formatString';
 
 export function parseTestFilePath(filePath: string) {
   const attributes = [];

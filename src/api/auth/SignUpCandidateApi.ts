@@ -1,6 +1,6 @@
-import { SignUpUserApi } from './SignUpUserApi';
-import { CandidateProfileDto } from '../../common/models/auth/candidate/CandidateProfile';
-import { WorkPlaceDto } from '../../common/models/auth/candidate/WorkPlace';
+import { SignUpUserApi } from '@api/auth/SignUpUserApi';
+import { CandidateProfileDto } from '@models/auth/candidate/CandidateProfile';
+import { WorkPlaceDto } from '@models/auth/candidate/WorkPlace';
 import { APIRequestContext, APIResponse } from '@playwright/test';
 
 export class SignUpCandidateApi extends SignUpUserApi {

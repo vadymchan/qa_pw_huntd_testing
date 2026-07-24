@@ -1,6 +1,6 @@
 import { test as base } from '@playwright/test';
-import { Reporter } from '../../src/common/reporter';
-import { parseTestFilePath } from '../../src/utils/playwright/parseTestFilePath';
+import { Reporter } from '@utils/reporter';
+import { parseTestFilePath } from '@utils/playwright/parseTestFilePath';
 
 type MyTestFixtures = {
   addSuiteHierarchy: void;

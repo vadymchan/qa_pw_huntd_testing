@@ -1,16 +1,16 @@
 import { test as base } from '@playwright/test';
-import { ProfileContacts } from '../../src/common/models/auth/ProfileContacts';
-import { RecruiterProfile } from '../../src/common/models/auth/recruiter/RecruiterProfile';
-import { PerfectCandidate } from '../../src/common/models/auth/recruiter/PerfectCandidate';
-import { CreateRecruiterProfileContactsPage } from '../../src/ui/pages/profile/recruiter/create/CreateRecruiterProfileContactsPage';
-import { CreateRecruiterProfilePage } from '../../src/ui/pages/profile/recruiter/create/CreateRecruiterProfilePage';
-import { CreateRecruiterProfilePerfectCandidatePage } from '../../src/ui/pages/profile/recruiter/create/CreateRecruiterProfilePerfectCandidatePage';
-import { RecruiterProfilePreviewPage } from '../../src/ui/pages/profile/recruiter/RecruiterProfilePreviewPage';
-import { EditRecruiterProfileContactsPage } from '../../src/ui/pages/profile/recruiter/edit/EditRecruiterProfileContactsPage';
-import { EditRecruiterProfilePage } from '../../src/ui/pages/profile/recruiter/edit/EditRecruiterProfilePage';
-import { createRecruiterProfile } from '../../src/common/factories/createRecruiterProfile';
-import { createProfileContacts } from '../../src/common/factories/createProfileContacts';
-import { createPerfectCandidate } from '../../src/common/factories/createPerfectCandidate';
+import { ProfileContacts } from '@models/auth/ProfileContacts';
+import { RecruiterProfile } from '@models/auth/recruiter/RecruiterProfile';
+import { PerfectCandidate } from '@models/auth/recruiter/PerfectCandidate';
+import { CreateRecruiterProfileContactsPage } from '@ui/pages/profile/recruiter/create/CreateRecruiterProfileContactsPage';
+import { CreateRecruiterProfilePage } from '@ui/pages/profile/recruiter/create/CreateRecruiterProfilePage';
+import { CreateRecruiterProfilePerfectCandidatePage } from '@ui/pages/profile/recruiter/create/CreateRecruiterProfilePerfectCandidatePage';
+import { RecruiterProfilePreviewPage } from '@ui/pages/profile/recruiter/RecruiterProfilePreviewPage';
+import { EditRecruiterProfileContactsPage } from '@ui/pages/profile/recruiter/edit/EditRecruiterProfileContactsPage';
+import { EditRecruiterProfilePage } from '@ui/pages/profile/recruiter/edit/EditRecruiterProfilePage';
+import { createRecruiterProfile } from '@factories/createRecruiterProfile';
+import { createProfileContacts } from '@factories/createProfileContacts';
+import { createPerfectCandidate } from '@factories/createPerfectCandidate';
 
 type MyFixtures = {
   recruiterProfile: RecruiterProfile;

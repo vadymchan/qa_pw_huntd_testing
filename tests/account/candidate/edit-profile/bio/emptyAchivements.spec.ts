@@ -1,5 +1,5 @@
-import { test } from '../../../../_fixtures/fixtures';
-import { ACHIVEMENTS_ARE_REQUIRED } from '../../../../../src/ui/constants/validationMessages';
+import { test } from '@fixtures/fixtures';
+import { ACHIVEMENTS_ARE_REQUIRED } from '@ui/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });

@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
-import { BasePage } from '../../../BasePage';
-import { RecruiterProfileComponent } from '../../../../components/profile/recruiter/RecruiterProfileComponent';
-import { PATHS } from '../../../../constants/paths';
+import { BasePage } from '@ui/pages/BasePage';
+import { RecruiterProfileComponent } from '@ui/components/profile/recruiter/RecruiterProfileComponent';
+import { PATHS } from '@ui/constants/paths';
 
 export class CreateRecruiterProfilePage extends BasePage {
   public recruiterProfile: RecruiterProfileComponent;

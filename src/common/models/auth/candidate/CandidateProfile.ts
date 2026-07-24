@@ -1,16 +1,16 @@
-import { CityName } from './CityName';
-import { EnglishLevel } from './EnglishLevel';
-import { JobExperience } from './JobExperience';
-import { Role } from './Role';
-import { CoreTechnicalSkill } from './CoreTechnicalSkill';
-import { EmploymentOption } from './EmploymentOption';
-import { CityDto, getCities } from '../../../../utils/dto/cities';
-import { getTechnologyIds } from '../../../../utils/dto/technologyIds';
-import { getSpecializationIds } from '../../../../utils/dto/specializationIds';
-import { getJobExperienceId } from '../../../../utils/dto/jobExperienceIds';
-import { getEnglishLevelId } from '../../../../utils/dto/englishLevelId';
-import { getEmploymentLocationIds } from '../../../../utils/dto/employmentLocationIds';
-import { SalaryType } from './SalaryType';
+import { CityName } from '@models/auth/candidate/CityName';
+import { EnglishLevel } from '@models/auth/candidate/EnglishLevel';
+import { JobExperience } from '@models/auth/candidate/JobExperience';
+import { Role } from '@models/auth/candidate/Role';
+import { CoreTechnicalSkill } from '@models/auth/candidate/CoreTechnicalSkill';
+import { EmploymentOption } from '@models/auth/candidate/EmploymentOption';
+import { CityDto, getCities } from '@utils/dto/cities';
+import { getTechnologyIds } from '@utils/dto/technologyIds';
+import { getSpecializationIds } from '@utils/dto/specializationIds';
+import { getJobExperienceId } from '@utils/dto/jobExperienceIds';
+import { getEnglishLevelId } from '@utils/dto/englishLevelId';
+import { getEmploymentLocationIds } from '@utils/dto/employmentLocationIds';
+import { SalaryType } from '@models/auth/candidate/SalaryType';
 
 export type CandidateProfile = {
   desiredPosition: string;

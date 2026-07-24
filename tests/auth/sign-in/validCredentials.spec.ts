@@ -1,6 +1,6 @@
-import { test } from '../../_fixtures/fixtures';
-import { SignInUserPage } from '../../../src/ui/pages/auth/sign-in/SignInUserPage';
-import { ChooseProfilePage } from '../../../src/ui/pages/auth/sign-up/user/ChooseProfilePage';
+import { test } from '@fixtures/fixtures';
+import { SignInUserPage } from '@ui/pages/auth/sign-in/SignInUserPage';
+import { ChooseProfilePage } from '@ui/pages/auth/sign-up/user/ChooseProfilePage';
 
 test.describe(`Login user`, () => {
   test(`User should login with valid credentials`, async ({

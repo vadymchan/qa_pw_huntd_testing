@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { test } from '../../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 
 test.describe(`Edit profile as recruiter`, () => {
   test(`User should update first name`, async ({

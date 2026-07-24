@@ -1,9 +1,9 @@
 import { faker } from '@faker-js/faker';
-import { test } from '../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 import {
   SUBSCRIPTION_SUCCESS_TEXT,
   SUBSCRIPTION_SUCCESS_TITLE,
-} from '../../../src/ui/constants/guestJobsMessages';
+} from '@ui/constants/guestJobsMessages';
 
 test.describe(`Browse jobs as a guest`, () => {
   test(`Newsletter form should subscribe successfully with valid email`, async ({

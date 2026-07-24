@@ -1,5 +1,5 @@
-import { test } from '../../../../_fixtures/fixtures';
-import { CoreTechnicalSkill } from '../../../../../src/common/models/auth/candidate/CoreTechnicalSkill';
+import { test } from '@fixtures/fixtures';
+import { CoreTechnicalSkill } from '@models/auth/candidate/CoreTechnicalSkill';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update core technical skills`, async ({

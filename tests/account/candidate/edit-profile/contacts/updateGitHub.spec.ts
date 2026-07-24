@@ -1,5 +1,5 @@
-import { test } from '../../../../_fixtures/fixtures';
-import { createProfileContacts } from '../../../../../src/common/factories/createProfileContacts';
+import { test } from '@fixtures/fixtures';
+import { createProfileContacts } from '@factories/createProfileContacts';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update GitHub`, async ({

@@ -1,4 +1,4 @@
-import { test } from '../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 
 test.describe(`Logout user`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });

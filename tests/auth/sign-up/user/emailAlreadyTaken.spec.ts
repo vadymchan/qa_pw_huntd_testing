@@ -1,7 +1,7 @@
-import { test } from '../../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 import { faker } from '@faker-js/faker';
-import { SignUpUserPage } from '../../../../src/ui/pages/auth/sign-up/user/SignUpUserPage';
-import { EMAIL_IS_ALREADY_TAKEN } from '../../../../src/ui/constants/validationMessages';
+import { SignUpUserPage } from '@ui/pages/auth/sign-up/user/SignUpUserPage';
+import { EMAIL_IS_ALREADY_TAKEN } from '@ui/constants/validationMessages';
 
 test.describe(`Register as user`, () => {
   test(`User should see validation error when email is already taken`, async ({

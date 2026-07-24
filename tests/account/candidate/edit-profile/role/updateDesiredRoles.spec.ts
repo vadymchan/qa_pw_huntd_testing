@@ -1,5 +1,5 @@
-import { Role } from '../../../../../src/common/models/auth/candidate/Role';
-import { test } from '../../../../_fixtures/fixtures';
+import { Role } from '@models/auth/candidate/Role';
+import { test } from '@fixtures/fixtures';
 
 test.describe(`Edit profile as candidate`, () => {
   test(`User should update desired roles`, async ({

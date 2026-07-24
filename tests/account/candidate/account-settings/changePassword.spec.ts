@@ -1,4 +1,4 @@
-import { test } from '../../../_fixtures/fixtures';
+import { test } from '@fixtures/fixtures';
 import { faker } from '@faker-js/faker';
 
 test.describe(`Update candidate account settings`, () => {

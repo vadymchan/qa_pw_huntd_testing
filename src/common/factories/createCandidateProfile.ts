@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
-import { CandidateProfile } from '../../common/models/auth/candidate/CandidateProfile';
-import { EmploymentOption } from '../../common/models/auth/candidate/EmploymentOption';
-import { CoreTechnicalSkill } from '../../common/models/auth/candidate/CoreTechnicalSkill';
-import { Role } from '../../common/models/auth/candidate/Role';
+import { CandidateProfile } from '@models/auth/candidate/CandidateProfile';
+import { EmploymentOption } from '@models/auth/candidate/EmploymentOption';
+import { CoreTechnicalSkill } from '@models/auth/candidate/CoreTechnicalSkill';
+import { Role } from '@models/auth/candidate/Role';
 
 export function createCandidateProfile(
   overrides: Partial<CandidateProfile> = {},
