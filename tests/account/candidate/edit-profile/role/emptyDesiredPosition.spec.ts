@@ -4,7 +4,7 @@ import { DESIRED_POSITION_IS_REQUIRED } from '@ui/constants/validationMessages';
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
 
-  test(`User should see validation error when desired position is empt`, async ({
+  test(`User should see validation error when desired position is empty`, async ({
     reporter,
     editCandidateProfilePage,
   }) => {
