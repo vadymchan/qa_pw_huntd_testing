@@ -15,9 +15,13 @@ test.describe(`Browse jobs as a guest`, () => {
     const email = faker.internet.email();
 
     await guestJobsPage.open();
-    await guestJobsPage.fillEmail(email);
-    await guestJobsPage.clickReceiveJobs();
-    await guestJobsPage.assertFlashMessageTitleHasText(SUBSCRIPTION_SUCCESS_TITLE);
-    await guestJobsPage.assertFlashMessageTextHasText(SUBSCRIPTION_SUCCESS_TEXT);
+    await guestJobsPage.newsletterSubscription.fillEmail(email);
+    await guestJobsPage.newsletterSubscription.clickReceiveJobs();
+    await guestJobsPage.newsletterSubscription.assertFlashMessageTitleHasText(
+      SUBSCRIPTION_SUCCESS_TITLE,
+    );
+    await guestJobsPage.newsletterSubscription.assertFlashMessageTextHasText(
+      SUBSCRIPTION_SUCCESS_TEXT,
+    );
   });
 });

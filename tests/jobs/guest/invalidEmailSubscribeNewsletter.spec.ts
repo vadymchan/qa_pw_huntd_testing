@@ -11,8 +11,8 @@ test.describe(`Browse jobs as a guest`, () => {
     const email = 'incorrect format';
 
     await guestJobsPage.open();
-    await guestJobsPage.fillEmail(email);
-    await guestJobsPage.clickReceiveJobs();
-    await guestJobsPage.assertEmailValidationMessage(EMAIL_IS_INCORRECT);
+    await guestJobsPage.newsletterSubscription.fillEmail(email);
+    await guestJobsPage.newsletterSubscription.clickReceiveJobs();
+    await guestJobsPage.newsletterSubscription.assertEmailValidationMessage(EMAIL_IS_INCORRECT);
   });
 });

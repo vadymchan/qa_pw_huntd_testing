@@ -170,7 +170,7 @@
 Notes:
 
 - filter by category (just by url that has changed)
-- filter by company (image and company name the same for each job in the filtered list)
+- filter by company (company name the same for each job in the filtered list)
 
 ## Out of scope
 

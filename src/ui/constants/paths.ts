@@ -1,14 +1,21 @@
+import { JobCategory } from '@models/jobs/JobCategory';
+
 const CANDIDATE_BASE_PROFILE = '/profile/candidate';
 const PROFILE_CONTACTS_PREVIEW = (preview: 'candidate' | 'recruiter') =>
   `/profile/contacts?preview=${preview}`;
 const PROFILE_PREVIEW = '/profile-preview';
+const JOBS_BASE = '/jobs';
 
 export const PATHS = {
   home: '/',
   signIn: '/sign-in',
   signUp: '/sign-up',
   chooseProfile: '/choose-profile',
-  jobs: '/jobs',
+  jobs: {
+    base: JOBS_BASE,
+    category: (c: JobCategory) => `${JOBS_BASE}/web3-${c}`,
+  },
+  web3Companies: '/web3-companies',
   changePassword: '/settings/change-password',
   profile: {
     candidate: {
