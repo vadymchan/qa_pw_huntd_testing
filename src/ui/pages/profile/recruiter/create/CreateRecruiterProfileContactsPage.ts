@@ -4,14 +4,14 @@ import { RecruiterProfileContactsComponent } from '@ui/components/profile/recrui
 import { PATHS } from '@ui/constants/paths';
 
 export class CreateRecruiterProfileContactsPage extends BasePage {
-  public component: RecruiterProfileContactsComponent;
+  public profileContacts: RecruiterProfileContactsComponent;
   private saveAndContinue: Locator;
   private saveAndContinueName: string;
 
   constructor(page: Page) {
     super(page, PATHS.profile.recruiter.contacts);
 
-    this.component = new RecruiterProfileContactsComponent(page);
+    this.profileContacts = new RecruiterProfileContactsComponent(page);
 
     this.saveAndContinueName = 'Save and continue';
 

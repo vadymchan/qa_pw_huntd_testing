@@ -31,9 +31,15 @@ test.describe('Register as recruiter', () => {
     await recruiterProfilePage.clickSaveAndContinue();
 
     await recruiterProfileContactsPage.assertOpened();
-    await recruiterProfileContactsPage.component.fillFirstName(recruiterProfileContacts.firstName);
-    await recruiterProfileContactsPage.component.fillLastName(recruiterProfileContacts.lastName);
-    await recruiterProfileContactsPage.component.fillLinkedin(recruiterProfileContacts.linkedinUrl);
+    await recruiterProfileContactsPage.profileContacts.fillFirstName(
+      recruiterProfileContacts.firstName,
+    );
+    await recruiterProfileContactsPage.profileContacts.fillLastName(
+      recruiterProfileContacts.lastName,
+    );
+    await recruiterProfileContactsPage.profileContacts.fillLinkedin(
+      recruiterProfileContacts.linkedinUrl,
+    );
     await recruiterProfileContactsPage.clickSaveAndContinue();
 
     await recruiterProfilePerfectCandidatePage.assertOpened();
