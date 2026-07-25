@@ -2,8 +2,6 @@ import { test } from '@fixtures/fixtures';
 import { SignInUserPage } from '@ui/pages/auth/sign-in/SignInUserPage';
 import { EMAIL_IS_REQUIRED } from '@ui/constants/validationMessages';
 
-// TODO: negative tests related to sign up could be moved in one file and be made parameterized
-
 test.describe(`Login user`, () => {
   test(`User should see validation error when email is empty`, async ({ reporter, browser }) => {
     await reporter.severity('critical');
