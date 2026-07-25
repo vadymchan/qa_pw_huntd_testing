@@ -1,7 +1,4 @@
-import {
-  CandidateProfile,
-  toCandidateProfileDto,
-} from '@models/auth/candidate/CandidateProfile';
+import { CandidateProfile, toCandidateProfileDto } from '@models/auth/candidate/CandidateProfile';
 import { toWorkPlaceDto, WorkPlace } from '@models/auth/candidate/WorkPlace';
 import { ProfileContacts } from '@models/auth/ProfileContacts';
 import { UserCredentials } from '@models/auth/UserCredentials';

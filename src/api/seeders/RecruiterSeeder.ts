@@ -1,8 +1,5 @@
 import { ProfileContacts } from '@models/auth/ProfileContacts';
-import {
-  RecruiterProfile,
-  toRecruiterProfileDto,
-} from '@models/auth/recruiter/RecruiterProfile';
+import { RecruiterProfile, toRecruiterProfileDto } from '@models/auth/recruiter/RecruiterProfile';
 import { UserCredentials } from '@models/auth/UserCredentials';
 import { SignUpRecruiterApi } from '@api/auth/SignUpRecruiterApi';
 

@@ -21,7 +21,7 @@ export class EditCandidateProfileJobExpectationsPage extends BasePage {
     const validationMessage = page.locator('[class*=FormField_metaBlock]');
     this.desiredBaseSalaryValidationMessage = validationMessage.first();
   }
-  
+
   async clickSaveChanges() {
     await this.step(`Click '${this.saveChangesName}'`, async () => {
       await this.saveChanges.click();
