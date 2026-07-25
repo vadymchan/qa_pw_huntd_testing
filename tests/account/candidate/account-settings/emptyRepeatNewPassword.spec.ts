@@ -11,12 +11,10 @@ test.describe(`Update candidate account settings`, () => {
 
     const newPassword = '';
 
-    const waitForResponse = false;
-
     await changePasswordPage.open();
     await changePasswordPage.clickChangePassword();
     await changePasswordPage.fillRepeatNewPassword(newPassword);
-    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.clickSaveChanges();
     await changePasswordPage.assertRepeatNewPasswordValidationMessage(REPEAT_PASSWORD_IS_REQUIRED);
   });
 });

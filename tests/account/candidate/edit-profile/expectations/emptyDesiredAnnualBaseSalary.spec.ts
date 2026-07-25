@@ -17,8 +17,7 @@ test.describe(`Edit profile as candidate`, () => {
       salaryType,
     );
     await editCandidateProfileJobExpectationsPage.profileJobExpectations.clearDesiredBaseSalary();
-    const waitForResponse = false;
-    await editCandidateProfileJobExpectationsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileJobExpectationsPage.clickSaveChanges();
     await editCandidateProfileJobExpectationsPage.assertDesiredBaseSalaryValidationMessage(
       SALARY_IS_REQUIRED,
     );

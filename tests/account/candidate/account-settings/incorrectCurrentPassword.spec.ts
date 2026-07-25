@@ -13,14 +13,12 @@ test.describe(`Update candidate account settings`, () => {
     const incorrectPassword = faker.internet.password();
     const newPassword = faker.internet.password();
 
-    const waitForResponse = false;
-
     await changePasswordPage.open();
     await changePasswordPage.clickChangePassword();
     await changePasswordPage.fillCurrentPassword(incorrectPassword);
     await changePasswordPage.fillNewPassword(newPassword);
     await changePasswordPage.fillRepeatNewPassword(newPassword);
-    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.clickSaveChanges();
     await changePasswordPage.assertCurrentPasswordValidationMessage(WRONG_CREDENTIALS);
   });
 });

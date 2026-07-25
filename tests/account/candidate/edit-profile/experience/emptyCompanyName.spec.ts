@@ -12,8 +12,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfileExperiencePage.open();
     await editCandidateProfileExperiencePage.clickAdd();
-    const waitForResponse = false;
-    await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
+    await editCandidateProfileExperiencePage.profileExperience.clickSave();
     await editCandidateProfileExperiencePage.assertCompanyNameValidationMessage(
       CANDIDATE_COMPANY_NAME_IS_REQUIRED,
     );

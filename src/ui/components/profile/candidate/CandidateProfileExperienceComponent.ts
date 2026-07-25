@@ -48,6 +48,12 @@ export class CandidateProfileExperienceComponent extends BaseComponent {
     this.save = page.getByRole('button', { name: this.saveName });
   }
 
+  private async clickAndWaitForOperation(locator: Locator, operationName: string) {
+    await graphqlWaitForResponse(this.page, operationName, async () => {
+      await locator.click();
+    });
+  }
+
   async fillRole(role: string) {
     await this.step(`Fill '${this.roleLabel}'`, async () => {
       await this.role.fill(role);
@@ -96,17 +102,21 @@ export class CandidateProfileExperienceComponent extends BaseComponent {
     });
   }
 
-  async clickSave(waitForResponse: boolean, operationType?: 'Create' | 'Update') {
+  async clickSave() {
     await this.step(`Click '${this.saveName}'`, async () => {
-      const click = () => this.save.click();
+      await this.save.click();
+    });
+  }
 
-      if (!waitForResponse) {
-        await click();
-        return;
-      }
+  async clickSaveAndWaitForCreate() {
+    await this.step(`Click '${this.saveName}'`, async () => {
+      await this.clickAndWaitForOperation(this.save, 'createWorkPlace');
+    });
+  }
 
-      const operationName = operationType === 'Create' ? 'createWorkPlace' : 'updateWorkPlace';
-      await graphqlWaitForResponse(this.page, operationName, click);
+  async clickSaveAndWaitForUpdate() {
+    await this.step(`Click '${this.saveName}'`, async () => {
+      await this.clickAndWaitForOperation(this.save, 'updateWorkPlace');
     });
   }
 }

@@ -15,8 +15,7 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileJobExpectationsPage.profileJobExpectations.selectEnglishLevel(
       englishLevel,
     );
-    const waitForResponse = true;
-    await editCandidateProfileJobExpectationsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileJobExpectationsPage.clickSaveChangesAndWaitForSave();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertEnglishLevelHasText(englishLevel);

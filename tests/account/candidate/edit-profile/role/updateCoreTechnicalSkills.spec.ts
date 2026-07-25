@@ -21,8 +21,7 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfilePage.open();
     await editCandidateProfilePage.clickClearCoreTechnicalSkills();
     await editCandidateProfilePage.candidateProfile.selectCoreTechnicalSkills(coreTechnicalSkills);
-    const waitForResponse = true;
-    await editCandidateProfilePage.clickSaveChanges(waitForResponse);
+    await editCandidateProfilePage.clickSaveChangesAndWaitForSave();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertCoreTechnicalSkillsHaveText(coreTechnicalSkills);

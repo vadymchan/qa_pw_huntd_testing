@@ -20,8 +20,7 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileJobExpectationsPage.profileJobExpectations.fillDesiredBaseSalary(
       `${desiredBaseSalary}`,
     );
-    const waitForResponse = true;
-    await editCandidateProfileJobExpectationsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileJobExpectationsPage.clickSaveChangesAndWaitForSave();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertSalaryHasText(salaryType, desiredBaseSalary);

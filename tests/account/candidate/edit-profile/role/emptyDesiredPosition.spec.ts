@@ -14,8 +14,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfilePage.open();
     await editCandidateProfilePage.candidateProfile.fillDesiredPosition(desiredPosition);
-    const waitForResponse = false;
-    await editCandidateProfilePage.clickSaveChanges(waitForResponse);
+    await editCandidateProfilePage.clickSaveChanges();
     await editCandidateProfilePage.assertDesiredPositionValidationMessage(
       DESIRED_POSITION_IS_REQUIRED,
     );

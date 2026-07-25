@@ -11,12 +11,10 @@ test.describe(`Update recruiter account settings`, () => {
 
     const currentPassword = '';
 
-    const waitForResponse = false;
-
     await changePasswordPage.open();
     await changePasswordPage.clickChangePassword();
     await changePasswordPage.fillCurrentPassword(currentPassword);
-    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.clickSaveChanges();
     await changePasswordPage.assertCurrentPasswordValidationMessage(PASSWORD_IS_REQUIRED);
   });
 });

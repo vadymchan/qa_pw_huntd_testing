@@ -24,8 +24,7 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileExperiencePage.profileExperience.fillStartYear(`${startYear}`);
     await editCandidateProfileExperiencePage.profileExperience.clickEndDate();
     await editCandidateProfileExperiencePage.profileExperience.fillEndYear(`${endYear}`);
-    const waitForResponse = false;
-    await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
+    await editCandidateProfileExperiencePage.profileExperience.clickSave();
     await editCandidateProfileExperiencePage.assertEndYearValidationMessage(
       END_DATE_CANNOT_PRECEDE_START_DATE,
     );

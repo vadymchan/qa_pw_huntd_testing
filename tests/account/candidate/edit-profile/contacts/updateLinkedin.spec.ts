@@ -15,8 +15,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfileContactsPage.open();
     await editCandidateProfileContactsPage.profileContacts.fillLinkedin(linkedinUrl);
-    const waitForResponse = true;
-    await editCandidateProfileContactsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileContactsPage.clickSaveChangesAndWaitForSave();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertLinkedinHasCorrectUrl(linkedinUrl);

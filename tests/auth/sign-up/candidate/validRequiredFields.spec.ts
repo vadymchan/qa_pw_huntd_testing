@@ -70,11 +70,7 @@ test.describe(`Register as candidate`, () => {
     await createCandidateProfileExperiencePage.profileExperience.fillStartYear(
       `${workPlace.startYear}`,
     );
-    const waitForResponse = true;
-    await createCandidateProfileExperiencePage.profileExperience.clickSave(
-      waitForResponse,
-      'Create',
-    );
+    await createCandidateProfileExperiencePage.profileExperience.clickSaveAndWaitForCreate();
     await createCandidateProfileExperiencePage.clickSaveAndContinue();
 
     await createCandidateProfileBioPage.assertOpened();

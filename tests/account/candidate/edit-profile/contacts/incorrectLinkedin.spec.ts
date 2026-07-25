@@ -14,8 +14,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfileContactsPage.open();
     await editCandidateProfileContactsPage.profileContacts.fillLinkedin(linkedinUrl);
-    const waitForResponse = false;
-    await editCandidateProfileContactsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileContactsPage.clickSaveChanges();
     await editCandidateProfileContactsPage.assertLinkedinValidationMessage(LINKEDIN_IS_INCORRECT);
   });
 });

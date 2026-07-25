@@ -14,8 +14,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfileContactsPage.open();
     await editCandidateProfileContactsPage.profileContacts.fillLastName(lastName);
-    const waitForResponse = false;
-    await editCandidateProfileContactsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileContactsPage.clickSaveChanges();
     await editCandidateProfileContactsPage.assertLastNameValidationMessage(LAST_NAME_IS_REQUIRED);
   });
 });

@@ -14,8 +14,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfileContactsPage.open();
     await editCandidateProfileContactsPage.profileContacts.fillBehance(behanceUrl);
-    const waitForResponse = true;
-    await editCandidateProfileContactsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileContactsPage.clickSaveChangesAndWaitForSave();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertBehanceHasCorrectUrl(behanceUrl);

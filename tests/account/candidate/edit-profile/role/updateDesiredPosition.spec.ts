@@ -13,8 +13,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfilePage.open();
     await editCandidateProfilePage.candidateProfile.fillDesiredPosition(desiredPosition);
-    const waitForResponse = true;
-    await editCandidateProfilePage.clickSaveChanges(waitForResponse);
+    await editCandidateProfilePage.clickSaveChangesAndWaitForSave();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertDesiredPositionHasText(desiredPosition);

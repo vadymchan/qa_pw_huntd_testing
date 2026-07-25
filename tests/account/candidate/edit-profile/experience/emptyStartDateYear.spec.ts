@@ -12,8 +12,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfileExperiencePage.open();
     await editCandidateProfileExperiencePage.clickAdd();
-    const waitForResponse = false;
-    await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
+    await editCandidateProfileExperiencePage.profileExperience.clickSave();
     await editCandidateProfileExperiencePage.assertStartYearValidationMessage(
       START_YEAR_IS_REQUIRED,
     );

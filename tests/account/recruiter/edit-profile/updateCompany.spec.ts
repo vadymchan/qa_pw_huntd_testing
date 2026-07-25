@@ -11,11 +11,9 @@ test.describe(`Update recruiter profile`, () => {
 
     const company = 'Google';
 
-    const waitForResponse = true;
-
     await editRecruiterProfilePage.open();
     await editRecruiterProfilePage.recruiterProfile.fillCompany(company);
-    await editRecruiterProfilePage.clickSaveChanges(waitForResponse);
+    await editRecruiterProfilePage.clickSaveChangesAndWaitForSave();
     await recruiterProfilePreviewPage.open();
     await recruiterProfilePreviewPage.assertCompanyHasText(company);
   });

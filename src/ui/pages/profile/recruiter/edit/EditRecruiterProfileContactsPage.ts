@@ -1,7 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '@ui/pages/BasePage';
 import { RecruiterProfileContactsComponent } from '@ui/components/profile/recruiter/RecruiterProfileContactsComponent';
-import { graphqlWaitForResponse } from '@utils/playwright/graphqlWaitForResponse';
 import { PATHS } from '@ui/constants/paths';
 
 export class EditRecruiterProfileContactsPage extends BasePage {
@@ -22,12 +21,15 @@ export class EditRecruiterProfileContactsPage extends BasePage {
     this.lastNameValidationMessage = validationMessage.nth(2);
   }
 
-  async clickSaveChanges(waitForResponse: boolean) {
+  async clickSaveChanges() {
     await this.step(`Click '${this.saveChangesName}'`, async () => {
-      const click = () => this.saveChanges.click();
-      await (waitForResponse
-        ? graphqlWaitForResponse(this.page, 'updateProfileContacts', click)
-        : click());
+      await this.saveChanges.click();
+    });
+  }
+
+  async clickSaveChangesAndWaitForSave() {
+    await this.step(`Click '${this.saveChangesName}'`, async () => {
+      await this.clickAndWaitForOperation(this.saveChanges, 'updateProfileContacts');
     });
   }
 

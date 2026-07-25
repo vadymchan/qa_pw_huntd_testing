@@ -12,11 +12,9 @@ test.describe(`Update recruiter profile`, () => {
 
     const role = '';
 
-    const waitForResponse = false;
-
     await editRecruiterProfilePage.open();
     await editRecruiterProfilePage.recruiterProfile.fillRole(role);
-    await editRecruiterProfilePage.clickSaveChanges(waitForResponse);
+    await editRecruiterProfilePage.clickSaveChanges();
     await editRecruiterProfilePage.assertRoleValidationMessage(ROLE_IS_REQUIRED);
   });
 });

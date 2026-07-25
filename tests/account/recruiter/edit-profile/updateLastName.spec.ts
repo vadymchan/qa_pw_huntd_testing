@@ -13,11 +13,9 @@ test.describe(`Edit profile as recruiter`, () => {
     const firstName = registerNewRecruiter.profileContacts.firstName;
     const lastName = faker.person.lastName();
 
-    const waitForResponse = true;
-
     await editRecruiterProfileContactsPage.open();
     await editRecruiterProfileContactsPage.profileContacts.fillLastName(lastName);
-    await editRecruiterProfileContactsPage.clickSaveChanges(waitForResponse);
+    await editRecruiterProfileContactsPage.clickSaveChangesAndWaitForSave();
     await recruiterProfilePreviewPage.open();
     await recruiterProfilePreviewPage.assertFullNameHasText(firstName, lastName);
   });

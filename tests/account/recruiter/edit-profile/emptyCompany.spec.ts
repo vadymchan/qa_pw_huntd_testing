@@ -12,11 +12,9 @@ test.describe(`Update recruiter profile`, () => {
 
     const company = '';
 
-    const waitForResponse = false;
-
     await editRecruiterProfilePage.open();
     await editRecruiterProfilePage.recruiterProfile.fillCompany(company);
-    await editRecruiterProfilePage.clickSaveChanges(waitForResponse);
+    await editRecruiterProfilePage.clickSaveChanges();
     await editRecruiterProfilePage.assertCompanyValidationMessage(RECRUITER_COMPANY_IS_REQUIRED);
   });
 });

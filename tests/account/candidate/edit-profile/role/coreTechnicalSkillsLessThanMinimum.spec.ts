@@ -21,8 +21,7 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfilePage.open();
     await editCandidateProfilePage.clickClearCoreTechnicalSkills();
     await editCandidateProfilePage.candidateProfile.selectCoreTechnicalSkills(coreTechnicalSkills);
-    const waitForResponse = false;
-    await editCandidateProfilePage.clickSaveChanges(waitForResponse);
+    await editCandidateProfilePage.clickSaveChanges();
     await editCandidateProfilePage.assertCoreTechnicalSkillsValidationMessage(
       CORE_TECHNICAL_SKILLS_BELOW_MINIMUM,
     );

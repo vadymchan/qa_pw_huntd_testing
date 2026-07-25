@@ -16,8 +16,7 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileExperiencePage.clickAdd();
     await editCandidateProfileExperiencePage.profileExperience.clickEndDate();
     await editCandidateProfileExperiencePage.profileExperience.fillEndYear(`${endYear}`);
-    const waitForResponse = false;
-    await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse);
+    await editCandidateProfileExperiencePage.profileExperience.clickSave();
     await editCandidateProfileExperiencePage.assertEndYearValidationMessage(
       YEAR_IS_LESS_THAN_MINIMUM,
     );

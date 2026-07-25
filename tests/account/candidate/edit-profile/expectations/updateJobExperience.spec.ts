@@ -15,8 +15,7 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileJobExpectationsPage.profileJobExpectations.selectJobExperience(
       jobExperience,
     );
-    const waitForResponse = true;
-    await editCandidateProfileJobExpectationsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileJobExpectationsPage.clickSaveChangesAndWaitForSave();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertJobExperienceHasText(jobExperience);

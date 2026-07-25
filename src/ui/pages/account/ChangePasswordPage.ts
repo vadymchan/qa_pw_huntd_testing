@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '@ui/pages/BasePage';
-import { graphqlWaitForResponse } from '@utils/playwright/graphqlWaitForResponse';
 import { PATHS } from '@ui/constants/paths';
 
 export class ChangePasswordPage extends BasePage {
@@ -63,12 +62,15 @@ export class ChangePasswordPage extends BasePage {
     });
   }
 
-  async clickSaveChanges(waitForResponse: boolean) {
+  async clickSaveChanges() {
     await this.step(`Click '${this.saveChangesName}'`, async () => {
-      const click = () => this.saveChanges.click();
-      await (waitForResponse
-        ? graphqlWaitForResponse(this.page, 'changePassword', click)
-        : click());
+      await this.saveChanges.click();
+    });
+  }
+
+  async clickSaveChangesAndWaitForSave() {
+    await this.step(`Click '${this.saveChangesName}'`, async () => {
+      await this.clickAndWaitForOperation(this.saveChanges, 'changePassword');
     });
   }
 

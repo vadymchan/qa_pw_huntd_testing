@@ -15,8 +15,7 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfilePage.open();
     await editCandidateProfilePage.clickClearDesiredRoles();
     await editCandidateProfilePage.candidateProfile.selectDesiredRoles(desiredRoles);
-    const waitForResponse = true;
-    await editCandidateProfilePage.clickSaveChanges(waitForResponse);
+    await editCandidateProfilePage.clickSaveChangesAndWaitForSave();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertDesiredRolesHaveText(desiredRoles);

@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from '@ui/pages/BasePage';
-import { graphqlWaitForResponse } from '@utils/playwright/graphqlWaitForResponse';
 import { CandidateProfileJobExpectationsComponent } from '@ui/components/profile/candidate/CandidateProfileJobExpectationsComponent';
 import { PATHS } from '@ui/constants/paths';
 
@@ -22,13 +21,16 @@ export class EditCandidateProfileJobExpectationsPage extends BasePage {
     const validationMessage = page.locator('[class*=FormField_metaBlock]');
     this.desiredBaseSalaryValidationMessage = validationMessage.first();
   }
-
-  async clickSaveChanges(waitForResponse: boolean) {
+  
+  async clickSaveChanges() {
     await this.step(`Click '${this.saveChangesName}'`, async () => {
-      const click = () => this.saveChanges.click();
-      await (waitForResponse
-        ? graphqlWaitForResponse(this.page, 'updateCandidateProfile', click)
-        : click());
+      await this.saveChanges.click();
+    });
+  }
+
+  async clickSaveChangesAndWaitForSave() {
+    await this.step(`Click '${this.saveChangesName}'`, async () => {
+      await this.clickAndWaitForOperation(this.saveChanges, 'updateCandidateProfile');
     });
   }
 

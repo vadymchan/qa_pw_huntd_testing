@@ -11,11 +11,9 @@ test.describe(`Edit profile as recruiter`, () => {
 
     const role = 'PM';
 
-    const waitForResponse = true;
-
     await editRecruiterProfilePage.open();
     await editRecruiterProfilePage.recruiterProfile.fillRole(role);
-    await editRecruiterProfilePage.clickSaveChanges(waitForResponse);
+    await editRecruiterProfilePage.clickSaveChangesAndWaitForSave();
     await recruiterProfilePreviewPage.open();
     await recruiterProfilePreviewPage.assertRoleHasText(role);
   });

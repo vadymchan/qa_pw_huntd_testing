@@ -15,14 +15,12 @@ test.describe(`Update recruiter account settings`, () => {
     const currentPassword = registerNewRecruiter.userCredentials.password;
     const newPassword = faker.internet.password();
 
-    const waitForResponse = true;
-
     await changePasswordPage.open();
     await changePasswordPage.clickChangePassword();
     await changePasswordPage.fillCurrentPassword(currentPassword);
     await changePasswordPage.fillNewPassword(newPassword);
     await changePasswordPage.fillRepeatNewPassword(newPassword);
-    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.clickSaveChangesAndWaitForSave();
 
     await logoutUserPage.clickProfile();
     await logoutUserPage.clickSignOut();

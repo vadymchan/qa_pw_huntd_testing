@@ -14,8 +14,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfileContactsPage.open();
     await editCandidateProfileContactsPage.profileContacts.fillGitHub(githubUrl);
-    const waitForResponse = false;
-    await editCandidateProfileContactsPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileContactsPage.clickSaveChanges();
     await editCandidateProfileContactsPage.assertGitHubValidationMessage(GITHUB_IS_INCORRECT);
   });
 });

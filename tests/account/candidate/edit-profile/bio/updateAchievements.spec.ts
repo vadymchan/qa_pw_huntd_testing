@@ -14,8 +14,7 @@ test.describe(`Edit profile as candidate`, () => {
 
     await editCandidateProfileBioPage.open();
     await editCandidateProfileBioPage.profileBio.fillAchievements(achievements);
-    const waitForResponse = true;
-    await editCandidateProfileBioPage.clickSaveChanges(waitForResponse);
+    await editCandidateProfileBioPage.clickSaveChangesAndWaitForSave();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertAchievementsHaveText(achievements);

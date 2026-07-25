@@ -14,8 +14,7 @@ test.describe(`Update candidate account settings`, () => {
     await changePasswordPage.open();
     await changePasswordPage.clickChangePassword();
     await changePasswordPage.fillNewPassword(newPassword);
-    const waitForResponse = false;
-    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.clickSaveChanges();
     await changePasswordPage.assertNewPasswordValidationMessage(PASSWORD_IS_REQUIRED);
   });
 });

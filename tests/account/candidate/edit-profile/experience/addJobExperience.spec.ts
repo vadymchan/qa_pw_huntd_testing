@@ -29,8 +29,7 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileExperiencePage.profileExperience.fillAchievements(
       previousJobAchievements,
     );
-    const waitForResponse = true;
-    await editCandidateProfileExperiencePage.profileExperience.clickSave(waitForResponse, 'Create');
+    await editCandidateProfileExperiencePage.profileExperience.clickSaveAndWaitForCreate();
 
     await candidateProfilePreviewPage.open();
     await candidateProfilePreviewPage.assertPreviousRoleHasText(previousRole);

@@ -14,14 +14,12 @@ test.describe(`Update recruiter account settings`, () => {
     const newPassword = faker.internet.password();
     const repeatNewPassword = faker.internet.password();
 
-    const waitForResponse = false;
-
     await changePasswordPage.open();
     await changePasswordPage.clickChangePassword();
     await changePasswordPage.fillCurrentPassword(currentPassword);
     await changePasswordPage.fillNewPassword(newPassword);
     await changePasswordPage.fillRepeatNewPassword(repeatNewPassword);
-    await changePasswordPage.clickSaveChanges(waitForResponse);
+    await changePasswordPage.clickSaveChanges();
     await changePasswordPage.assertRepeatNewPasswordValidationMessage(PASSWORD_IS_MISMATCHED);
   });
 });

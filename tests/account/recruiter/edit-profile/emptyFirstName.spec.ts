@@ -12,11 +12,9 @@ test.describe(`Update recruiter profile`, () => {
 
     const firstName = '';
 
-    const waitForResponse = false;
-
     await editRecruiterProfileContactsPage.open();
     await editRecruiterProfileContactsPage.profileContacts.fillFirstName(firstName);
-    await editRecruiterProfileContactsPage.clickSaveChanges(waitForResponse);
+    await editRecruiterProfileContactsPage.clickSaveChanges();
     await editRecruiterProfileContactsPage.assertFirstNameValidationMessage(FIRST_NAME_IS_REQUIRED);
   });
 });

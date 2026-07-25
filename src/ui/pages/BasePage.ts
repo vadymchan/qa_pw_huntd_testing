@@ -1,4 +1,5 @@
-import { expect, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
+import { graphqlWaitForResponse } from '@utils/playwright/graphqlWaitForResponse';
 import { testStep } from '@utils/playwright/testStep';
 
 export class BasePage {
@@ -13,6 +14,12 @@ export class BasePage {
 
   async open() {
     await this.page.goto(this.path);
+  }
+
+  protected async clickAndWaitForOperation(locator: Locator, operationName: string) {
+    await graphqlWaitForResponse(this.page, operationName, async () => {
+      await locator.click();
+    });
   }
 
   async assertOpened() {
