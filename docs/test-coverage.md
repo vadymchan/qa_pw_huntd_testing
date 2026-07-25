@@ -159,8 +159,8 @@
 | --- | -------------------------------------------------------------- | -------- | -------- |
 | 1   | Jobs should be visible                                         | positive | normal   |
 | 2   | Job details should be visible                                  | positive | normal   |
-| 3   | Jobs should filtered by category                               | positive | normal   |
-| 4   | Jobs should filtered by company                                | positive | normal   |
+| 3   | Jobs should be filtered by category                            | positive | normal   |
+| 4   | Jobs should be filtered by company                             | positive | normal   |
 | 5   | Pagination shouldn't be available                              | negative | normal   |
 | 6   | Applying for a job shouldn't be available                      | negative | normal   |
 | 7   | Newsletter form should subscribe successfully with valid email | positive | normal   |
