@@ -1,5 +1,5 @@
 import { test } from '@fixtures/fixtures';
-import { ACHIVEMENTS_ARE_REQUIRED } from '@ui/constants/validationMessages';
+import { ACHIEVEMENTS_ARE_REQUIRED } from '@ui/constants/validationMessages';
 
 test.describe(`Edit profile as candidate`, () => {
   test.use({ storageState: 'playwright/.auth/candidate.json' });
@@ -13,6 +13,8 @@ test.describe(`Edit profile as candidate`, () => {
     await editCandidateProfileBioPage.profileBio.fillAchievements(achievements);
     const waitForResponse = false;
     await editCandidateProfileBioPage.clickSaveChanges(waitForResponse);
-    await editCandidateProfileBioPage.assertAchievementsValidationMessage(ACHIVEMENTS_ARE_REQUIRED);
+    await editCandidateProfileBioPage.assertAchievementsValidationMessage(
+      ACHIEVEMENTS_ARE_REQUIRED,
+    );
   });
 });

@@ -1,4 +1,4 @@
-export const ACHIVEMENTS_ARE_REQUIRED = '2-3 achievements are required to be noticed by startups';
+export const ACHIEVEMENTS_ARE_REQUIRED = '2-3 achievements are required to be noticed by startups';
 export const FIRST_NAME_IS_REQUIRED = 'First name is required';
 export const LAST_NAME_IS_REQUIRED = 'Last name is required';
 export const BEHANCE_IS_INCORRECT = 'Please enter correct Behance link';
