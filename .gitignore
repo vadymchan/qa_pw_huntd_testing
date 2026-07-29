@@ -10,3 +10,6 @@ playwright/.auth
 .VSCodeCounter/
 allure-results/
 allure-report/
+
+# internal working notes (not part of the project)
+docs/TODO.md
